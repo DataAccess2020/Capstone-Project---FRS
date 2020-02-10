@@ -32,3 +32,10 @@ dat <- tibble(
 
 dat
 
+"(?<=MFG\\s{0,100}:\\s{0,100})\\w+"
+
+dat_pg <- str_extract(link, "(?<=http[s]://www.theguardian/.com\\\\)\\w")
+
+dat_pg
+
+
