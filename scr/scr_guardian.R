@@ -81,9 +81,11 @@ dat2 <- tibble(
 )
 dat2
 
-Sys.getlocale()
-Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8')
+save(dat, file = here::here("Guardian_articles.RData"))
 
+Sys.getlocale()
+Sys.setlocale("LC_ALL", 'en_GB.UTF-8')
+sys.set
 
 writeLines(articles, 
            con = file_path)
@@ -92,7 +94,6 @@ art_character <- as.character(articles)
 Encoding(art_character) <- "UTF-8"
 art_character
 enc2utf8(articles)
-
 
 
 
