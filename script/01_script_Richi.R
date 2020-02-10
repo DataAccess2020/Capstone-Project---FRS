@@ -8,8 +8,14 @@ RobotParser ( link , str_c(R.version$platform,
                           R.version$version.string,
                           sep = ", ") )
 
-Rcrawler (Website = "https://www.nytimes.com ", no_cores=8, nbcon =8, Obeyrobots = TRUE, Useragent= "str_c(R.version$platform,
-                          R.version$version.string,
-                          sep = ", ")" )
+Rcrawler (Website = "https://www.nytimes.com/", Useragent= "Mozilla 3.11",
+          RequestsDelay = 2,
+          Encod = "utf-8",
+          URLlenlimit = 255,
+          MaxDepth = 0)
 
-Rcrawler(Website = "https://www.nytimes.com", no_cores = 4, no_conn = 4)
+ListProjects()
+
+MyDATA<-LoadHTMLFiles("nytimes.com-101811", type = "list")
+
+df<-data.frame(do.call("rbind", MyDATA))
