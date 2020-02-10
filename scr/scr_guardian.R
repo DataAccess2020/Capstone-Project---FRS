@@ -19,7 +19,6 @@ page <- RCurl::getURL(url,
                                         sep = ", "),
                       httpheader = c(From = "sofiagiovanna.ragazzi@studenti.unimi.it")) 
 
-
 writeLines(page,
            con = here :: here("guardian.html"))
 
@@ -51,6 +50,10 @@ dat_pg
 
 
 # Loop for extracting the text of the files: 
+
+Sys.getlocale()
+Sys.setlocale("LC_ALL", 'en_GB.UTF-8')
+
 dir.create("articles_guardian")
 articles <- vector(mode = "list", length = length(link))
 
@@ -81,11 +84,8 @@ dat2 <- tibble(
 )
 dat2
 
-save(dat, file = here::here("Guardian_articles.RData"))
+save(dat, file = here::here("Guardian_articles.cvs"))
 
-Sys.getlocale()
-Sys.setlocale("LC_ALL", 'en_GB.UTF-8')
-sys.set
 
 writeLines(articles, 
            con = file_path)
@@ -95,5 +95,5 @@ Encoding(art_character) <- "UTF-8"
 art_character
 enc2utf8(articles)
 
-
+clean_data_table <- load.csv("Guardian_articles.csv",encoding = "UTF-8")
 
