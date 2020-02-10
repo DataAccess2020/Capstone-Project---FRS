@@ -80,3 +80,6 @@ dat2 <- tibble(
   article = articles
 )
 dat2
+
+Sys.getlocale()
+Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8')
