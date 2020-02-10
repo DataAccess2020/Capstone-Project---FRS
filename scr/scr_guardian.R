@@ -40,7 +40,7 @@ dat <- tibble(
 
 dat
 
-# 
+# THIS should be where I extract the category of each article.
 
 #https://www.theguardian.com/
 "(?<=MFG\\s{0,100}:\\s{0,100})\\w+"
@@ -49,4 +49,34 @@ dat_pg <- str_extract(link, "(https?:\\/\\/(www\\.)?guardian\\.com)\\w+")
 
 dat_pg
 
-# css for the text = .js-article__body p
+
+# Loop for extracting the text of the files: 
+dir.create("articles_guardian")
+articles <- vector(mode = "list", length = length(link))
+
+for (i in 1:length(link)) {
+  
+  cat("Iteration:", i, ". Scraping:", link[i],"\n")
+  
+  page <- RCurl::getURL(link[i], 
+                        useragent = str_c(R.version$platform,
+                                          R.version$version.string,
+                                          sep = ", "),
+                        httpheader = c(From = "sofiagiovanna.ragazzi@studenti.unimi.it"))
+  
+  file_path <- here::here("articles_guardian", str_c("art_", i, ".html"))
+  writeLines(page, 
+             con = file_path)
+  
+  articles[[i]] <- read_html(file_path) %>% 
+    html_nodes(".js-article__body p") %>% 
+    html_text()
+  
+  Sys.sleep(2)
+} 
+
+dat2 <- tibble(
+  link = link,
+  article = articles
+)
+dat2
