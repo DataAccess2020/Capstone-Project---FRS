@@ -83,3 +83,16 @@ dat2
 
 Sys.getlocale()
 Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8')
+
+
+writeLines(articles, 
+           con = file_path)
+
+art_character <- as.character(articles)
+Encoding(art_character) <- "UTF-8"
+art_character
+enc2utf8(articles)
+
+
+
+
