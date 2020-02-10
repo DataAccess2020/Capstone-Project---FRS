@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /ads/public/
+Allow: /svc/news/v3/all/pshb.rss
+Disallow: /ads/
+Disallow: /adx/bin/
+Disallow: /puzzles/leaderboards/invite/*
+Disallow: /register
+Disallow: /svc
+Disallow: /video/embedded/*
+Disallow: /1996/06/17/nyregion/guest-at-diplomat-s-party-accused-of-rape.html
+Disallow: /search/
+Disallow: /*?*query=
+Disallow: /*.pdf$
+Disallow: /*?*utm_source=
+Disallow: /*?*login=
+Disallow: /*?*searchResultPosition=
+Disallow: /*?*campaignId=
+Disallow: /*?*mcubz=
+Disallow: /*?*smprod=
+Disallow: /*?*ProfileID=
+Disallow: /*?*ListingID=
+
+User-Agent: omgilibot
+Disallow: /
+
+User-Agent: omgili
+Disallow: /
+
+User-agent: Googlebot
+Disallow: /*?*smid=
+Disallow: /*?*partner=
+
+Sitemap: https://www.nytimes.com/sitemaps/new/news.xml.gz
+Sitemap: https://www.nytimes.com/sitemaps/new/sitemap.xml.gz
+Sitemap: https://www.nytimes.com/sitemaps/new/wire.xml.gz
+Sitemap: https://www.nytimes.com/sitemaps/new/collections.xml.gz
+Sitemap: https://www.nytimes.com/sitemaps/new/video.xml.gz
+Sitemap: https://www.nytimes.com/sitemaps/www.nytimes.com_realestate/sitemap.xml.gz
+Sitemap: https://www.nytimes.com/sitemaps/www.nytimes.com/2016_election_sitemap.xml.gz
+Sitemap: https://www.nytimes.com/elections/2018/sitemap
+
