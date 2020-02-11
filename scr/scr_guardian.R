@@ -41,12 +41,12 @@ dat
 
 # THIS should be where I extract the category of each article.
 
-#https://www.theguardian.com/
-"(?<=MFG\\s{0,100}:\\s{0,100})\\w+"
+section <- word(link, 5, sep = fixed('/'))
 
-dat_pg <- str_extract(link, "(https?:\\/\\/(www\\.)?guardian\\.com)\\w+")
-
-dat_pg
+dat_pg <- tibble(
+  link = link,
+  section = section
+)
 
 
 # Loop for extracting the text of the files: 
