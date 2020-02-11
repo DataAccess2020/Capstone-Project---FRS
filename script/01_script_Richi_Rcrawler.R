@@ -3,19 +3,22 @@ library("RCurl")
 library("tidyverse")
 library("rvest")
 library("Rcrawler")
-link <- "https://www.nytimes.com/"
-RobotParser ( link , str_c(R.version$platform,
-                          R.version$version.string,
-                          sep = ", ") )
+library("stringr")
 
-Rcrawler (Website = "https://www.nytimes.com/", Useragent= "Mozilla 3.11",
+
+Rcrawler (Website = "https://www.repubblica.it", Useragent= "Mozilla 3.11",
           RequestsDelay = 2,
-          Encod = "utf-8",
           URLlenlimit = 255,
-          MaxDepth = 0)
+          MaxDepth = 1)
 
 ListProjects()
 
-MyDATA<-LoadHTMLFiles("nytimes.com-101811", type = "list")
+MyDATA<-LoadHTMLFiles("repubblica.it-111649", type = "list")
 
-df<-data.frame(do.call("rbind", MyDATA))
+article <- read_html("repubblica.it-111625") %>%
+  html_nodes(".body-text > span")%>% 
+  html_text()
+
+
+
+.entry-title a

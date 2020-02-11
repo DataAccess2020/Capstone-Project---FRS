@@ -1,0 +1,699 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="it-IT"  class="no-js">
+
+<head>
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>E+</title>
+  <meta name="description" content="Espresso+, dalla pi&ugrave; grande tradizione dell'Espresso, la pi&ugrave; innovativa forma di giornalismo digitale">
+  <meta name="keywords"  content="Espresso+, La Repubblica, Gruppo GEDI">
+
+    
+    <!-- CSS & script
+  ================================================== -->
+  <link type="text/css" rel="stylesheet" href="css/uniform.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+
+  <!--[if IE]>
+    <script type="text/javascript">
+       var console = { log: function() {} };
+    </script>
+  <![endif]-->
+ 
+  <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="js/modernizr_2.7.1.js"></script>
+  <script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+  <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+  <script type="text/javascript" src="js/library.js"></script>
+  <script type="text/javascript" src="https://www.repubblica.it/adagiojs/adagiorep.js"></script>
+  <script type="text/javascript" src="https://oasjs.kataweb.it/adsetup.js"></script>
+  
+<link type="text/css" rel="stylesheet" href="https://www.repubblica.it/minify/sites/repubblica/espresso/common/common.cache.php?name=common_premium_css">
+<script type="text/javascript" src="https://www.repubblica.it/minify/sites/repubblica/espresso/common/common.cache.php?name=common_premium_js"></script>
+
+
+<script type="text/javascript" src="https://login.kataweb.it/login/js/api/sso-api.js"></script>
+
+</head>
+
+<body>
+<!-- mininav -->
+
+
+
+	<script type="text/javascript">
+		<!--
+		var reg_exp_1 = "^393[0-9]{8,10}$";
+		var reg_exp_2 = "^3[0-9]{8,10}$";
+		function checkNumber(){
+			var numero = document.getElementById('username').value;
+			if(numero.match(reg_exp_1)) {
+				return true;
+			}else
+			if(numero.match(reg_exp_2)) {
+				document.getElementById('username').value = "39"+numero;
+				return true;
+			}else{
+				return true;
+			}
+		}
+
+
+        //-- imposto il parametro origin e backurl
+		if(window.GeleSocial) GeleSocial.settings.loginParams = {"origin": "prm_home"}
+
+
+		window.SSOConf = {
+			targetDomain: "https://login.kataweb.it",
+			appId:        "premium"
+		}
+		SSO.injectFrame()
+
+		var currentUrl            = window.location.href;
+		
+		var hashId                = null;
+		
+		var urlPremiumLogin       = "https://espresso.repubblica.it/plus/edicola/manager?service=login&urlToken=espnznpromo&source=HEE_MAG" + "&SSID=";
+		var urlPremiumLoginViaSSO = "https://login.kataweb.it/login/SSO?op=login&service=premium&backurl=https%3A%2F%2Fespresso.repubblica.it%2Fplus%2Fedicola%2Fmanager%3Fservice%3Dlogin%26urlToken%3Despnznpromo%26source%3DHEE_MAG";
+
+		function AutoLoginCallBack(dati) {
+			if ("login" ==  dati.op)   { 
+				//--- non solo loggato sull'applicazione ma lo sono su SSO
+				//alert("do login - hashid:" +dati.hashId);
+				console.log("AutoLogin - do login");
+				window.location.href = urlPremiumLogin+dati.SSID;
+			}
+			else  if ("changeuser" ==  dati.op)    {
+				//--- Lo SSO è loggato con un altro utente: esegui il logout appplicativo del vecchio utente ed esegui login nuovo utente
+				//alert("do changeuser - hashid:" +dati.hashId);
+				console.log("AutoLogin - do changeuser");
+				window.location.href = urlPremiumLogin+dati.SSID;
+			}
+			else  if ("login_manual" ==  dati.op)    {
+				// ???? forzare il login in modo che questo attivi il flusso di registrazione: nessun aazione automatica eseguita
+				//alert("do login_manual");
+				console.log("AutoLogin - do login_manual");
+				//window.location.href = urlPremiumLoginViaSSO;
+			}
+			else  if ("logout" ==  dati.op)    {
+				//--- logout applicativo (NO SSO) e ritorno sulla home
+				//alert("do logout");
+				console.log("AutoLogin - do logout");
+				window.location.href = "https://espresso.repubblica.it/plus/edicola/manager?service=logout";
+			}
+			else  if ("sameuser" ==  dati.op)    {
+				//-- nessuna azione presentare la pagina richiesta
+				//alert("tutto OK");
+				console.log("AutoLogin - tutto OK");
+			}
+			else {
+				console.log("AutoLogin - ??????????");
+			}
+		}
+		SSO.checkStatusChange(hashId, AutoLoginCallBack);
+
+		//-->
+</script>
+
+
+
+
+<!-- mininav -->
+	<div id="mininav">
+		<div class="content">
+
+			<h1 class="mininav-logo"><a href="https://espresso.repubblica.it/plus">L'espresso</a></h1>
+			<nav id="mininav-pay" class="premium-navigation">
+				<h1 class="assistive-text">Navigazione </h1>
+				<ul>
+					<li><a href="https://espresso.repubblica.it/plus/edicola/home.jsp?testata=espresso">Home</a></li>
+
+					<li><a href="https://espresso.repubblica.it/plus/edicola/guida.jsp">guida all&#x27;uso</a></li>
+					<li><a href="https://espresso.repubblica.it/plus/edicola/faq_contatti.jsp">faq</a></li>
+					<li class="last"><a href="https://help.kataweb.it/assistenza/espressoplus/richiesta.php">contatti</a></li>
+				</ul>
+			</nav>
+
+
+			<div class="utility">
+				<h1 class="assistive-text">Accedi / Abbonati</h1> 
+				<ul class="header-utility">
+
+				<li>
+					<a id="account-data-container-floating" class="login show-ghost" href="javascript:void(0)" title="">Accedi</a>
+					<div id="signinmenu">
+						<p class="remember"><a href="javascript:GeleSocial.settings.backurl='https://espresso.repubblica.it/plus/edicola/manager?service=login.social'; RenderSocial.login()">Accedi</a></p>
+
+						<p class="code">Se hai un codice di abbonamento clicca:<a href="https://espresso.repubblica.it/plus/edicola/codici.jsp" class="button">Inserisci codice</a></p>
+					</div>
+				</li>
+
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+
+<!-- slider -->
+  <section class="page" id="page1">
+    
+    <h1 class="assistive-text">Espresso+ cosa &egrave;</h1>
+    
+    <div class="wrapper bottoni">
+      <div class="content">
+        <div class="inner bottoni">
+
+          <a id="bottone1" class="promo_1 show-ghost" href="javascript:void(0)">
+            
+            <span class="type">
+              <span class="title_top">Scegli offerta</span>
+              <span class="title">mensile</span>
+            </span>
+            
+            <span class="bollo">2 settimane gratis</span>
+          
+          </a>
+          
+          <div class="offerta promo_1">
+            <p>Dopo la promo</p>
+            <h1>5,99&euro;<span class="titolo_form">/mese</span></h1>
+            <p>Scegli il metodo di pagamento:</p>   
+            <form action="https://espresso.repubblica.it/plus/edicola/manager"  method="post" >
+              <input type="hidden" name="service" value="purchase">
+			  <input type="hidden" name="urlToken" value="espnzncrossm2w">
+              <input type="hidden" name="productId" value="RESM_ES1M.01">
+			  <input type="hidden" name="source" value="HEE_MAG">
+              <fieldset id="promo_mensile">
+                <span> 
+                  <input type="radio" name="paymentId" value="CCCBS" checked="checked"/>
+                </span><p class="fieldstyle">Carta di credito</p>
+			    <span>
+                  <input type="radio" name="paymentId" value="PPCBS" />
+                </span><p class="fieldstyle">PayPal</p>
+              </fieldset>
+              <span><button class="submit-button" type="submit" value="Submit">Continua</button></span>
+            </form>
+          </div>
+
+          <a id="bottone2" class="promo_2 show-ghost" href="javascript:void(0)">
+            <span class="type">
+              <span class="title_top">Scegli offerta</span>
+              <span class="title">annuale</span>
+            </span>
+            <span class="bollo">2 settimane gratis</span>
+          </a>
+          <div class="offerta promo_2">
+            <p>Dopo la promo</p>
+            <h1>49,99&euro;<span class="titolo_form">/anno</span></h1>
+            <p>Scegli il metodo di pagamento:</p>   
+            <form action="https://espresso.repubblica.it/plus/edicola/manager"  method="post" >
+              <input type="hidden" name="service" value="purchase">
+              <input type="hidden" name="urlToken" value="espnzncrossy2w">
+              <input type="hidden" name="productId" value="RESM_ES1Y.00">
+			  <input type="hidden" name="source" value="HEE_MAG">
+              <fieldset id="promo_annuale">
+                <span>
+                  <input type="radio" name="paymentId" value="BB"/>
+                </span><p class="fieldstyle">Bonifico bancario</p>
+                <span>
+                  <input type="radio" name="paymentId" value="CCCBS" checked="checked"/>
+                </span><p class="fieldstyle">Carta di credito</p>
+				<span>
+                  <input type="radio" name="paymentId" value="PPCBS"/>
+                </span><p class="fieldstyle">PayPal</p>
+              </fieldset>
+              <button class="submit-button" type="submit" value="Submit">Continua</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="banner-slider">
+
+      <ul class="slides">
+        <li id="slide1">
+            <div class="inner">
+            	<div class="relative">
+              		<h1>Dalla pi&ugrave; grande tradizione dell'Espresso, la pi&ugrave; innovativa forma di giornalismo digitale</h1>
+            	</div>
+            </div>
+        </li>
+        <li id="slide2">
+            <div class="inner"> 
+            	<div class="relative">
+	              <h1>La tua guida negli approfondimenti</h1>
+	              <p>Ogni giorno in esclusiva i migliori articoli, rubriche, video<br/>e gallerie fotografiche selezionate dalla redazione</p>
+            	</div>
+            </div>
+        </li>
+        <li id="slide3" >
+            <div class="inner">
+            	<div class="relative">
+	              <h1>Scopri il fascino del grande cinema</h1>
+	              <p>Ogni mese una selezione di film prestigiosi</p>
+            	</div>
+            </div>
+        </li>
+        <li id="slide4">
+            <div class="inner">
+            	<div class="relative">
+		           <h1>Per te l'intrattenimento pi&ugrave; autorevole</h1>
+		           <p>Un e-book al mese scritto o selezionato<br/>dalle firme dell'Espresso</p>
+            	</div>
+            </div>
+        </li>
+        <li id="slide5">
+            <div class="inner">
+            	<div class="relative">
+	              <h1>Non perdere le abitudini</h1>
+	              <p>Su Espresso+ la rivista in edicola sfogliabile<br/>direttamente sul tuo computer o iPad</p>
+            	</div>
+            </div>
+        </li>
+      </ul>
+
+    </div>
+
+  </section> <!-- fine #page1 -->
+
+
+  <div class="mask_down">    
+
+    <a href="#page2"><span></span></a>
+
+  </div>
+
+
+  <section class="page" id="page2">
+    <h1 class="assistive-text">le offerte</h1>
+    <div class="wrap">
+      <div class="inner">
+
+      <!-- OFFERTA 1 ================================================== -->
+
+        <div class="column3">
+          <div class="block gratuito">
+
+            <div class="box-head">
+              <h1>FREE <img src="img/device1.png" alt="free"></h1>
+              <br style="clear:both" />
+            </div>
+
+            <div class="box-title promo_free">
+              <div class="badge1 promo_free">FREE</div>
+            </div>
+
+            <div class="box-feat promo_free">
+              <ul>
+                <li class="spunta">
+                  <h1>Tutti i contenuti di lespresso.it</h1>
+                </li>
+                <li>
+                  <h1>Accesso ai contenuti premium di Espresso+</h1>
+                </li>
+                <li>
+                  <h1>Film e e-Book selezionati dalle firme dell'Espresso</h1>
+                </li>
+                <li>
+                  <h1>Sfoglio pdf in digitale su computer e iPad</h1>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- OFFERTA 2 ================================================== -->
+
+        <div class="column3">
+          <div class="block mensile">
+
+            <div class="box-head">
+              <h1>OFFERTA MENSILE <img src="img/device2.png" alt="piano mensile"></h1>
+              <br style="clear:both" />
+            </div>
+
+            <div class="box-title promo">
+              <div class="badge1 promo">5,99&euro;<br><span class="sub">/mese</span></div>
+            </div>
+
+            <div class="box-feat promo">
+              <ul>
+                <li>
+                  <h1>Tutti i contenuti di lespresso.it</h1>
+                </li>
+                <li>
+                  <h1>Accesso ai contenuti premium di Espresso+</h1>
+                </li>
+                <li>
+                  <h1>Film e e-Book selezionati dalle firme dell'Espresso</h1>
+                </li>
+                <li>
+                  <h1>Sfoglio pdf in digitale su computer e iPad</h1>
+                </li>
+              </ul>
+
+            </div>
+
+            <div class="box-abbonati promo">
+              <h1>2 settimane gratis</h1>
+            </div>
+
+            <div class="box-signup">
+                
+              <div class="form2">
+                <p>Scegli il metodo di pagamento:</p><br>
+
+                <form id="bottom2" action="https://espresso.repubblica.it/plus/edicola/manager" method="post" >
+                   <input type="hidden" name="service" value="purchase">
+                   <input type="hidden" name="urlToken" value="espnzncrossm2w">
+				   <input type="hidden" name="productId" value="RESM_ES1M.01">
+				   <input type="hidden" name="source" value="HEE_MAG">
+                   <fieldset class="promo">
+                    <span>
+                      <input type="radio" name="paymentId" value="CCCBS" checked="checked"/>
+                      <p class="fieldstyle">Carta di credito</p>
+                    </span>
+					<span>
+                      <input type="radio" name="paymentId" value="PPCBS" />
+                      <p class="fieldstyle">PayPal</p>
+                    </span>
+                  </fieldset>
+                  <button id="continua2" name="button" type="submit" value="Submit" class="promo" form="bottom2">Continua</button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OFFERTA 3 ================================================== -->
+
+        <div class="column3">
+          <div class="block annuale">
+
+            <div class="box-head">
+              <h1>OFFERTA ANNUALE <img src="img/device2.png" alt="piano annuale"></h1>
+              <br style="clear:both" />
+            </div>
+
+            <div class="box-title promo">
+              <div class="badge1 promo">49,99&euro;<br><span class="sub">/anno</span></div>
+            </div>
+
+            <div class="box-feat promo">
+              <ul>
+                <li>
+                  <h1>Tutti i contenuti di lespresso.it</h1>
+                </li>
+                <li>
+                  <h1>Accesso ai contenuti premium di Espresso+</h1>
+                </li>
+                <li>
+                  <h1>Film e e-Book selezionati dalle firme dell'Espresso</h1>
+                </li>
+                <li>
+                  <h1>Sfoglio pdf in digitale su computer e iPad</h1>
+                </li>
+              </ul>
+
+            </div>
+
+            <div class="box-abbonati promo">
+              <h1>2 settimane gratis</h1>
+            </div>
+
+            <div class="box-signup">
+                
+              <div class="form3">
+                <p>Scegli il metodo di pagamento:</p><br>
+                <form id="bottom3" action="https://espresso.repubblica.it/plus/edicola/manager" method="post" >
+                   <input type="hidden" name="service" value="purchase">
+                   <input type="hidden" name="urlToken" value=espnzncrossy2w>
+				   <input type="hidden" name="productId" value="RESM_ES1Y.00">
+				   <input type="hidden" name="source" value="HEE_MAG">
+                   <fieldset class="promo">
+                    <span>
+                      <input type="radio" name="paymentId" value="BB"/>
+                      <p class="fieldstyle">Bonifico bancario</p>
+                   </span>
+                    <span>
+                      <input type="radio" name="paymentId" value="CCCBS" checked="checked"/>
+                      <p class="fieldstyle">Carta di credito</p>
+                     </span>
+					 <span>
+                      <input type="radio" name="paymentId" value="PPCBS" />
+                      <p class="fieldstyle">PayPal</p>
+                     </span>
+                  </fieldset>
+            <button id="continua3" name="button" type="submit" value="Submit" class="promo" form="bottom3">Continua</button>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>      <!--  fine OFFERTA 3  -->
+
+      </div>         <!-- fine inner -->
+    </div>       <!-- fine wrapper -->
+
+  </section> <!-- fine page -->
+
+
+<!-- Footer
+  ================================================== -->
+<footer role="contentinfo">
+  <h1 class="assistive-text">footer</h1>
+
+  <div class="circle_up"> <a href="#page1"><span class="freccia"> </span></a></div>
+
+  <div class="wrap">
+    <div class="inner centered">
+      <nav class="footer_sitemap">
+        <h1 class="assistive-text">sitemap</h1>
+        <ul>
+				<li> <a href="https://espresso.repubblica.it/plus/edicola/guida.jsp">Guida all'uso</a>	</li>
+				<li> <a href="https://espresso.repubblica.it/plus/edicola/faq_contatti.jsp">FAQ</a> </li>
+				<li> <a href="https://help.kataweb.it/assistenza/espressoplus/richiesta.php">Contatti</a> </li>
+				<li> <a href="https://espresso.repubblica.it/plus/edicola/condizioni.jsp">Termini e Condizioni</a> </li>
+        </ul> 
+      </nav>
+      <p class="footer-small">ISSN 2499-0833 &mdash; Copyright &copy; 1999-<script type="text/javascript">document.write(new Date().getFullYear());</script> GEDI Digital S.r.l. Tutti i diritti riservati - All rights reserved &mdash; <a href="https://espresso.repubblica.it/plus/edicola/condizioni.jsp">Condizioni Generali del servizio  </a></p>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+<!-- START Webtrekk start:  https://www.repstatic.it/cless/common/stable/include/wt/limes/sfoglio.html-->
+<script type="text/javascript">
+	//--- prendo appendo al dominio della pagina chiamata il nome del contesto.
+	var pageHref          = 'https://espresso.repubblica.it/plus/edicola/home.jsp?urlToken=espnznpromo';
+	var pageType          = 'homepage';
+	var wt_logged_service = 'premium';
+	var wt_step           = 'offerta non abbonati';
+	var wt_source         = 'HEE_MAG';
+	var loggedUser        = 'non loggato';
+	var wt_logged_premium = 'var wt_logged_premium         ='stato-off&no-promo&no-product&no-user&no-service';
+var wt_premium_status         ='stato-off';
+var wt_premium_service_type   ='no-service';
+var wt_premium_promo_active   ='no-promo';
+var wt_premium_product_active ='no-product';
+var wt_premium_user_type      ='no-user';
+';
+	
+</script>
+<!-- [GEDI] Centralized Webtrekk Include dc -->
+<!-- START Webtrekk 4.4.1 - lib 1.0 - https://www.repstatic.it/cless/common/stable/include/wt/wt.html === including another esi === https://www.repstatic.it/cless/common/stable/include/wt/wt.js -->
+<script>
+if(!window.kw_tlh) {
+    (function(){
+        var loadEl = function(el, fn){
+            if(el.readyState) {
+                if(el.readyState == 'loaded' || el.readyState == 'complete') { 
+                    fn();
+                } else {
+                    el.onreadystatechange = function() {
+                        if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                            this.onreadystatechange = null;
+                            fn();
+                        }
+                    };  
+                }
+            } else {
+                el.onload = fn
+            }
+        }
+        var loadScriptAsync = function(script, fn){
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.src = script;
+            s.async = true;
+            if(fn) { 
+                loadEl(s, fn);
+            }
+            document.getElementsByTagName('head')[0].appendChild(s);
+        }
+        var loadSequence = function(seq){
+            var f = undefined;
+            for(var i=seq.length-1;i>=0;i--){
+                var seq1 = seq[i];
+                (function(seq1){
+                    var f1 = f;
+                    f = function(){
+                        loadScriptAsync(seq1, f1);
+                    }
+                })(seq1);
+            }
+            f();
+        }
+        var wtmapping_url = '';
+        try {
+            if(!window.__wt_section) {
+                wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js?pageurl='+encodeURIComponent(location.href.toString());
+            } else {
+                wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js?__wt_section='+(window.__wt_section ? encodeURIComponent(window.__wt_section.toLowerCase()) : "");
+            }
+        } catch(e) {
+            wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js';
+        }
+        if(window.pageHref !== "http://www.repubblica.it/" && window.pageHref !== "https://www.repubblica.it/") { // Eccezione per homepage di Repubblica.it che ha mapping hardcoded in pagina
+            loadSequence([
+                'https://www.repstatic.it/cless/common/stable/js/script/wt/wt_premium_manager.js',
+                wtmapping_url,
+                'https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4&v=1'
+            ]);
+        } else {
+            // INCLUDE exception for Repubblica Homepage
+            loadSequence([
+                'https://www.repstatic.it/cless/common/stable/js/script/wt/wt_premium_manager.js',
+                'https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4&v=1'
+            ]);
+        }
+    })();
+}
+</script>
+
+<!-- Init Standard Include -->
+<!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2012 Nielsen Online -->
+<script type="text/javascript" src="//secure-it.imrworldwide.com/v60.js"></script>
+<script type="text/javascript">
+ var pvar = { cid: "kataweb-it", content: "0", server: "secure-it" };
+ var feat = { check_cookie: 0 };
+ var trac = nol_t(pvar, feat);
+ trac.record().post();
+</script>
+<noscript>
+ <div>
+ <img src="//secure-it.imrworldwide.com/cgi-bin/m?ci=kataweb-it&amp;cg=0&amp;cc=0&amp;ts=noscript" width="1" height="1" alt="" />
+ </div>
+</noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+
+<!-- END  Webtrekk start -->
+
+<script type="text/javascript">
+//-- tracking neodata
+var trackingShopJSON = {   "step": "paywall-minisito",
+
+                           "source": "HEE_MAG", 
+						   "platform": "web",
+		                   "app_id" : "espressoplus",
+
+                           "testata":"espresso" };
+adagioGetRegistration(trackingShopJSON);
+</script>
+
+<!-- Smooth scrool non saggiungere nulla dopo
+  ================================================== -->
+<script type="text/javascript">
+
+$(document).ready(function() {
+  function filterPath(string) {
+  return string
+    .replace(/^\//,'')
+    .replace(/(index|default).[a-zA-Z]{3,4}$/,'')
+    .replace(/\/$/,'');
+  }
+  var locationPath = filterPath(location.pathname);
+  var scrollElem = scrollableElement('html', 'body');
+ 
+  $('a[href*=#]').each(function() {
+    var thisPath = filterPath(this.pathname) || locationPath;
+    if (  locationPath == thisPath
+    && (location.hostname == this.hostname || !this.hostname)
+    && this.hash.replace(/#/,'') ) {
+      var $target = $(this.hash), target = this.hash;
+      if (target) {
+        var targetOffset = $target.offset().top;
+        $(this).click(function(event) {
+  event.preventDefault();
+  $(scrollElem).animate({scrollTop: targetOffset}, 400, function() {
+    location.hash = target;
+  });
+        });
+      }
+    }
+  });
+ 
+  // use the first element that is "scrollable"
+  function scrollableElement(els) {
+    for (var i = 0, argLength = arguments.length; i <argLength; i++) {
+      var el = arguments[i],
+  $scrollElement = $(el);
+      if ($scrollElement.scrollTop()> 0) {
+        return el;
+      } else {
+        $scrollElement.scrollTop(1);
+        var isScrollable = $scrollElement.scrollTop()> 0;
+        $scrollElement.scrollTop(0);
+        if (isScrollable) {
+  return el;
+        }
+      }
+    }
+    return [];
+  }
+ 
+});
+</script>
+
+</body>
+</html>
+

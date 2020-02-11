@@ -1,4 +1,7 @@
-url <- URLencode("https://www.corriere.it")
+url <- URLencode("https://www.repubblica.it")
+
+#inspect robots
+browseURL("https://repubblica.it/robots.txt")
 
 pagina <- RCurl::getURL(url, 
                       useragent = str_c(R.version$platform,
@@ -9,4 +12,9 @@ pagina <- RCurl::getURL(url,
 
 
 writeLines(pagina, 
-           con = ("corriere.html"))
+           con = ("repubblica.html"))
+
+link <- read_html(here::here("repubblica.html")) %>% 
+  html_nodes(css = "a") %>% 
+  html_attr("href")
+
