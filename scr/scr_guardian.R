@@ -7,10 +7,10 @@
 
 
 # Browsing the robots.txt file: -------------------------------------------------------
-browseURL("https://www.theguardian.com/robots.txt")
+browseURL("https://www.liberoquotidiano.it/robots.txt")
 
 # Downloading and saving the HTML: ----------------------------------------------------
-url <- URLencode("https://www.theguardian.com/international")
+url <- URLencode("https://www.liberoquotidiano.it/")
 
 library(stringr)
 page <- RCurl::getURL(url, 
@@ -20,15 +20,15 @@ page <- RCurl::getURL(url,
                       httpheader = c(From = "sofiagiovanna.ragazzi@studenti.unimi.it")) 
 
 writeLines(page,
-           con = here :: here("guardian.html"))
+           con = here :: here("libero.html"))
 
 # Extracing the links in the homepage using Rvest:--------------------------------------
 library(rvest)
-link <- read_html(here :: here("guardian.html"))%>%
-  html_nodes(css = ".fc-sublink__link , .js-headline-text") %>%
+link <- read_html(here :: here("libero.html"))%>%
+  html_nodes(css = ".vc_title a , .articolo a") %>%
   html_attr("href")
 
-link <- na.omit(link)
+link <- str_subset(link, "^https://www\\.liberoquotidiano\\.it")
 
 link
 
