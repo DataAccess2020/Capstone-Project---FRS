@@ -1,3 +1,10 @@
+library("here")
+library("RCurl")
+library("tidyverse")
+library("rvest")
+library("Rcrawler")
+library("stringr")
+
 #Browsing the page 
 url <- URLencode("https://www.repubblica.it")
 browseURL(url)
@@ -11,20 +18,13 @@ repubblica_page <- getURL(url,
 
 
 #Saving the page 
-writeLines(page2, 
+writeLines(repubblica_page, 
            con = here::here("repubblica.html"))
 
 #Creating an object to grab all the links
-link_pagine <- lapply(paste0("https://www.repubblica.it"),
-                      function(url){
-                        url_2 %>% read_html() %>% 
-                          html_nodes(".td_module_10 .td-module-title a") %>% 
-                          html_attr("href") 
-                      })
-
-link_pagine <- unlist(link_pagine)
-
-
+link_pagine <- read_html(here::here("repubblica.html")) %>% 
+                          html_nodes("a") %>% 
+                          html_attr("href")
 
 
 #Creating a folder where to store all the pages:
@@ -43,7 +43,7 @@ for (i in 1:length(link_pagine)) {
                          useragent = str_c(R.version$platform,
                                            R.version$version.string,
                                            sep = ", "),
-                         httpheader = c(From = "giannuzzifabianagemma@gmail.com"))
+                         httpheader = c(From = "riccardo.ruta@studenti.unimi.it"))
   
   #Saving the page:
   file_path_1 <- here::here("prova_Rvest_Loop", str_c("pag_", i, ".html"))
@@ -52,11 +52,9 @@ for (i in 1:length(link_pagine)) {
   
   #Parsing and extracting
   articoli_repubblica[[i]] <- read_html(file_path_1) %>% 
-    html_nodes("p") %>% 
+    html_nodes(".body-text span") %>% 
     html_text()
   
   #Setting the amount of time in which the code rests.
   Sys.sleep(2) 
 } 
-
-articoli_archivio_2016
