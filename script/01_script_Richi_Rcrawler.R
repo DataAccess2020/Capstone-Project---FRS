@@ -13,7 +13,7 @@ Rcrawler (Website = "https://www.repubblica.it", Useragent= "Mozilla 3.11",
 
 ListProjects()
 
-MyDATA<-LoadHTMLFiles("repubblica.it-111649", type = "list")
+list_DATA<-LoadHTMLFiles("repubblica.it-111649", type = "list")
 
 article <- read_html("repubblica.it-111625") %>%
   html_nodes(".body-text > span")%>% 
@@ -21,4 +21,6 @@ article <- read_html("repubblica.it-111625") %>%
 
 
 
-.entry-title a
+tabella <- tibble(
+  prova = vector_DATA
+)

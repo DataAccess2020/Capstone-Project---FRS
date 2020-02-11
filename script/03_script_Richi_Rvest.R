@@ -3,7 +3,7 @@ url <- URLencode("https://www.repubblica.it")
 #inspect robots
 browseURL("https://repubblica.it/robots.txt")
 
-pagina <- RCurl::getURL(url, 
+repubblica <- RCurl::getURL(url, 
                       useragent = str_c(R.version$platform,
                                         R.version$version.string,
                                         sep = ", "),
