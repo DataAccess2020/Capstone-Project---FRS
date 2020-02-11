@@ -49,32 +49,30 @@ dat <- tibble(
 dat
 
 #creating a folder to put the links 
-dir.create("FOLDERLINKS")
+dir.create("ARTICLESPAGES")
 
 #
 
-articoli11feb <- vector(mode = "character", length = length(CORRIERELinks))
+articoli11feb <- vector(mode = "list", length = length(CORRIERELinks))
 
-
-#Scraping the article 
-for (i in 1:length(filteredlinks2)) {
+for (i in 152:length(articoli11feb)) {
   
-  cat("Iteration:", i, ". Scraping:", filteredlinks2[i],"\n")
+  cat("Iteration:", i, ". Scraping:", CORRIERELinks[i],"\n")
   
   #Getting the page
-  page3 <- RCurl::getURL(filteredlinks2[i], 
+  page <- RCurl::getURL(CORRIERELinks[i], 
                          useragent = str_c(R.version$platform,
                                            R.version$version.string,
                                            sep = ", "),
                          httpheader = c(From = "giannuzzifabianagemma@gmail.com"))
   
   #Saving the page:
-  file_path_1 <- here::here("linksFOLDER", str_c("links_", i, ".html"))
-  writeLines(page3, 
-             con = file_path_1)
+  file_path <- here::here("ARTICLESPAGES", str_c("articles_", i, ".html"))
+  writeLines(page, 
+             con = file_path)
   
   #Parsing and extracting
-  articoli10feb[[i]] <- read_html(file_path_1) %>% 
+  articoli11feb[[i]] <- read_html(file_path) %>% 
     html_nodes("p") %>% 
     html_text()
   
@@ -83,9 +81,16 @@ for (i in 1:length(filteredlinks2)) {
 } 
 
 
+dat %>%
+  mutate(economia = str_subset(CORRIERELinks, "^https://www.corriere.it/economia/")) %>%
+  mutate(sport = str_subset(CORRIERELinks, "^https://www.corriere.it/sport/")) %>%
+  mutate(istruzione = str_subset(CORRIERELinks, "^https://www.corriere.it/scuola/")) %>%
+  mutate()
+  
+      
+  
 
-aricletext <- read_html(links) %>% 
-  html_nodes(css = "p") %>% 
-  html_text()
 
-nextarticle
+
+
+
