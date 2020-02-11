@@ -3,8 +3,9 @@
 # This script includes the scraping of the newspaper "The Guardian":
 # - browsing the robots.txt file;
 # - downloading and saving the HTML;
-# - extracing the links in the homepage using Rvest:
-
+# - extracting the links in the homepage using Rvest:
+# - extracting the section/category for each article:
+# - extracting the text of the articles
 
 # Browsing the robots.txt file: -------------------------------------------------------
 browseURL("https://www.liberoquotidiano.it/robots.txt")
@@ -39,7 +40,7 @@ dat <- tibble(
 
 dat
 
-# Extracting the category of each article: 
+# Extracting the section of each article: ----------------------------------------------
 
 section <- word(link, 5, sep = fixed('/'))
 
@@ -48,7 +49,7 @@ dat <- tibble(
   section = section
 )
 
-# Loop for extracting the text of the files: 
+# Loop for extracting the text of the files: ------------------------------------------------
 
 dir.create("articles_libero")
 articles <- vector(mode = "list", length = length(link))
@@ -74,6 +75,7 @@ for (i in 1:length(link)) {
   Sys.sleep(2)
 } 
 
+# Updating the tibble with the 3 variables: 
 dat <- tibble(
   link = link,
   article = articles,
@@ -81,8 +83,11 @@ dat <- tibble(
 )
 dat
 
+# saving it locally: 
 save(dat, file = here::here("libero_articles.cvs"))
      
+
+# Sorting the dataset, deleting empty rows: 
 library(dplyr)
 dat_sort <- dat %>%
    filter(article != "character(0)")
