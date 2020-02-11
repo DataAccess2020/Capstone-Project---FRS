@@ -6,6 +6,7 @@
 # - extracting the links in the homepage using Rvest:
 # - extracting the section/category for each article:
 # - extracting the text of the articles
+# - sorting the dataset
 
 # Browsing the robots.txt file: -------------------------------------------------------
 browseURL("https://www.liberoquotidiano.it/robots.txt")
@@ -87,7 +88,7 @@ dat
 save(dat, file = here::here("libero_articles.cvs"))
      
 
-# Sorting the dataset, deleting empty rows: 
+# Sorting the dataset, deleting empty rows: ------------------------------------------------------------
 library(dplyr)
 dat_sort <- dat %>%
    filter(article != "character(0)")
