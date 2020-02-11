@@ -85,7 +85,7 @@ dat <- tibble(
 dat
 
 # saving it locally: 
-save(dat, file = here::here("libero_articles.cvs"))
+save(dat, file = here::here("libero_articles.csv"))
      
 
 # Sorting the dataset, deleting empty rows: ------------------------------------------------------------
@@ -93,6 +93,8 @@ library(dplyr)
 dat_sort <- dat %>%
    filter(article != "character(0)")
 
+# saving it locally: 
+save(dat_sort, file = here::here("libero_articles.csv"))
 
 
 
