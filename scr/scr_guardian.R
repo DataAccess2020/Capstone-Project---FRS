@@ -25,7 +25,7 @@ writeLines(page,
 # Extracing the links in the homepage using Rvest:--------------------------------------
 library(rvest)
 link <- read_html(here :: here("libero.html"))%>%
-  html_nodes(css = ".vc_title a , .articolo a") %>%
+  html_nodes(css = ".titolo a") %>%
   html_attr("href")
 
 link <- str_subset(link, "^https://www\\.liberoquotidiano\\.it")
@@ -39,22 +39,18 @@ dat <- tibble(
 
 dat
 
-# THIS should be where I extract the category of each article.
+# Extracting the category of each article: 
 
 section <- word(link, 5, sep = fixed('/'))
 
-dat_pg <- tibble(
+dat <- tibble(
   link = link,
   section = section
 )
 
-
 # Loop for extracting the text of the files: 
 
-Sys.getlocale()
-Sys.setlocale("LC_ALL", 'en_GB.UTF-8')
-
-dir.create("articles_guardian")
+dir.create("articles_libero")
 articles <- vector(mode = "list", length = length(link))
 
 for (i in 1:length(link)) {
@@ -67,33 +63,23 @@ for (i in 1:length(link)) {
                                           sep = ", "),
                         httpheader = c(From = "sofiagiovanna.ragazzi@studenti.unimi.it"))
   
-  file_path <- here::here("articles_guardian", str_c("art_", i, ".html"))
+  file_path <- here::here("articles_libero", str_c("art_", i, ".html"))
   writeLines(page, 
              con = file_path)
   
   articles[[i]] <- read_html(file_path) %>% 
-    html_nodes(".js-article__body p") %>% 
+    html_nodes(".testoResize p") %>% 
     html_text()
   
   Sys.sleep(2)
 } 
 
-dat2 <- tibble(
+dat <- tibble(
   link = link,
-  article = articles
+  article = articles,
+  section = section
 )
-dat2
+dat
 
-save(dat, file = here::here("Guardian_articles.cvs"))
-
-
-writeLines(articles, 
-           con = file_path)
-
-art_character <- as.character(articles)
-Encoding(art_character) <- "UTF-8"
-art_character
-enc2utf8(articles)
-
-clean_data_table <- load.csv("Guardian_articles.csv",encoding = "UTF-8")
+save(dat, file = here::here("libero_articles.cvs"))
 
