@@ -82,4 +82,20 @@ dat <- tibble(
 dat
 
 save(dat, file = here::here("libero_articles.cvs"))
+     
+library(dplyr)
+dat_sort <- dat %>%
+   filter(article != "character(0)")
+
+
+
+
+
+
+
+
+
+
+
+
 
