@@ -45,10 +45,109 @@ CORRIERELinks
 
 #creating a dataset with the links
 
-datlinks <- tibble(
+datlinksC <- tibble(
   links = CORRIERELinks
 )
 dat
+
+
+datlinks$tema <- 1
+
+datlinks1 <- mutate(
+  datlinks, 
+  tema = recode(links,
+                #POLITICA
+                "https://www.corriere.it/politica/" = "POLITICA",
+                "https://www.corriere.it/elezioni/" = "POLITICA",
+                "https://www.corriere.it/elezioni/risultati-regionali-2020" = "POLITICA",
+                "https://www.corriere.it/elezioni-2019/"= "POLITICA",
+                "https://www.corriere.it/elezioni-2019/europee-risultati/italia.shtml"= "POLITICA",
+                "https://www.corriere.it/elezioni-2019/risultati-regionali/" = "POLITICA",
+                "https://www.corriere.it/elezioni-2019/risultati-comunali/capoluoghi-di-provincia/" = "POLITICA",
+                "https://www.corriere.it/elezioni-2018/" = "POLITICA",
+                "https://www.corriere.it/politica/elezioni-regionali-sicilia-2017/" = "POLITICA",
+                "https://www.corriere.it/referendum-autonomia-lombardia-e-veneto/" = "POLITICA",
+                "https://www.corriere.it/amministrative-2017/elezioni-comunali-giugno.shtml" = "POLITICA",
+                "https://www.corriere.it/politica/primarie_pd/"= "POLITICA",
+                "https://www.corriere.it/la-crisi-di-governo/" = "POLITICA",
+                "https://www.corriere.it/amministrative-2016/elezioni-comunali-giugno.shtml/"= "POLITICA",
+                
+                #CRONACA
+                "https://www.corriere.it/cronache/" = "CRONACA", 
+                "https://www.corriere.it/speciale/interni/2018/ponte-morandi-genova-video-crollo-foto-vittime-atlantia-autostrade-ultime-notizie/"= "CRONACA",
+                "https://www.corriere.it/cronache/harry-meghan-markle-matrimonio/"= "CRONACA", 
+                "https://www.corriere.it/cronache/speciali/2013/vajont/"= "CRONACA", 
+                "https://www.corriere.it/reportages/cronache/2016/migranti-morti-mediterraneo/" = "CRONACA",
+                  
+                #ESTERI
+                "https://www.corriere.it/esteri/" = "ESTERI",
+                "https://www.corriere.it/elezioni-europee/100giorni/" = "ESTERI",
+                "https://www.corriere.it/esteri/elezioni-spagna-2019/risultati-voto/" = "ESTERI",
+                "https://www.corriere.it/esteri/elezioni-usa-midterm-2018/" = "ESTERI",
+                "https://www.corriere.it/esteri/elezioni-germania-2017/" = "ESTERI",
+                "https://www.corriere.it/esteri/elezioni-regno-unito-2017/" = "ESTERI",
+                "https://www.corriere.it/esteri/presidenziali-francia/" = "ESTERI",
+                "https://www.corriere.it/elezioni-presidenziali-usa-2016/" = "ESTERI",
+                
+                #ECONOMIA
+                "https://www.corriere.it/economia/" = "ECONOMIA",
+                "https://www.corriere.it/economia/" = "ECONOMIA",
+                "https://www.corriere.it/economia/finanza/" = "ECONOMIA",
+                "https://www.corriere.it/economia/risparmio/" = "ECONOMIA",
+                "https://www.corriere.it/economia/risparmio/guide/" = "ECONOMIA",
+                "https://www.corriere.it/economia/tasse/" = "ECONOMIA",
+                "https://www.corriere.it/pensioni-investimenti-risparmi-esperto-risponde/lettere/" = "ECONOMIA",
+                "https://www.corriere.it/economia/consumi/" = "ECONOMIA",
+                "https://www.corriere.it/economia/casa/" = "ECONOMIA",
+                "https://www.corriere.it/economia/mutui/" = "ECONOMIA",
+                "https://www.corriere.it/economia/affitti/" = "ECONOMIA",
+                "https://www.corriere.it/economia/lavoro/" = "ECONOMIA",
+                "https://www.corriere.it/economia/lavoro/guide/" = "ECONOMIA",
+                "https://www.corriere.it/economia/pensioni/" = "ECONOMIA",
+                "https://www.corriere.it/economia/aziende/" = "ECONOMIA",
+                "https://www.corriere.it/economia/family-business/programma/" = "ECONOMIA",
+                "https://www.corriere.it/economia/aziende/le-storie/" = "ECONOMIA",
+                "https://www.corriere.it/economia/aziende/aprire-azienda/" = "ECONOMIA",
+                "https://www.corriere.it/economia/economia-del-futuro/" = "ECONOMIA",
+                "https://www.corriere.it/economia/moda-business/" = "ECONOMIA",
+                
+                #SPORT
+                "https://www.corriere.it/sport/" = "SPORT",
+                "https://www.corriere.it/sport/risultati-live/" = "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-a" = "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-a/calendario-risultati/" = "SPORT", 
+                "https://www.corriere.it/sport/calcio/serie-a/classifica/" = "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-a/marcatori/" = "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-a/albo-d-oro/"	 = "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-b/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-b/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/serie-b/play-off/" =  "SPORT",	
+                "https://www.corriere.it/sport/calcio/serie-b/classifica/"	= "SPORT" ,
+                "https://www.corriere.it/sport/calcio/serie-b/marcatori/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/coppe/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/champions-league/calendario-risultati/" = "SPORT",	
+                "https://www.corriere.it/sport/calcio/europa-league/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/coppa-italia/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/nations-league/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/nations-league/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/risultati-live/"	= "SPORT",
+                "https://www.corriere.it/sport/calcio/nations-league/classifica/" = "SPORT",	
+                "https://www.corriere.it/sport/formula-1/"	= "SPORT",
+                "https://www.corriere.it/sport/risultati-live/"	= "SPORT",
+                "https://www.corriere.it/sport/motori/f1/calendario-risultati/" = "SPORT",	
+                "https://www.corriere.it/sport/motori/f1/classifiche/"	= "SPORT",
+                "https://www.corriere.it/sport/motomondiale/"	= "SPORT",
+                "https://www.corriere.it/sport/risultati-live/"	= "SPORT",
+                "https://www.corriere.it/sport/motori/motogp/calendario-risultati/"	= "SPORT",
+                "https://www.corriere.it/sport/motori/motogp/classifiche/"	= "SPORT",
+                "https://www.corriere.it/sport//"	= "SPORT",
+                "https://www.corriere.it/sport/running-nuoto-bici/" = "SPORT",
+                
+                #ISTRUZIONE 
+                "^https://www.corriere.it/scuola/" = "Istruzione")
+)
+
+
 
 
 # PART THREE --------------
@@ -93,10 +192,24 @@ datTEXT <- tibble(
 datTEXT 
 
 
+# PART FOUR: CLEANING DATASET -----------
+
+dat_sort <- datTEXT %>%
+  filter(article != "character(0)")
+
+dat_sort
+
+# PART FIVE: IDENTIFYING CATEGORIES
+dat <- select(economia, istruzione, sport)
 
 
-#
 
+dat <- filter(
+  datlinks,
+  CORRIERELinks %in% c("economia", "sport", "istruzione")
+)
+
+dat
 
 section <- word(links, 5, sep = fixed('/'))
 
