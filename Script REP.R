@@ -82,8 +82,3 @@ for (i in 1:length(filteredlinks2)) {
 
 
 
-aricletext <- read_html(links) %>% 
-  html_nodes(css = "p") %>% 
-  html_text()
-
-nextarticle
