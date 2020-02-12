@@ -79,7 +79,7 @@ for (i in 1:length(link)) {
 # Updating the tibble with the 3 variables: 
 dat <- tibble(
   link = link,
-  article = articles,
+  articles = articles,
   section = section
 )
 dat
@@ -91,14 +91,10 @@ save(dat, file = here::here("libero_articles.csv"))
 # Sorting the dataset, deleting empty rows: ------------------------------------------------------------
 library(dplyr)
 dat_sort <- dat %>%
-   filter(article != "character(0)")
+   filter(articles != "character(0)")
 
 # saving it locally: 
 save(dat_sort, file = here::here("libero_articles.csv"))
-
-
-
-
 
 
 
