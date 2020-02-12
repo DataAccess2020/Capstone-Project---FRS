@@ -39,7 +39,7 @@ for (i in 1:length(link_pagine)) {
   cat("Iteration:", i, ". Scraping:", link_pagine[i],"\n")
   
   #Getting the page
-  page <- RCurl::getURL(link_pagine[i], 
+  page <- RCurl:: getURL(link_pagine[i], 
                          useragent = str_c(R.version$platform,
                                            R.version$version.string,
                                            sep = ", "),

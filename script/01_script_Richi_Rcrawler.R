@@ -9,7 +9,8 @@ library("stringr")
 Rcrawler (Website = "https://www.repubblica.it", Useragent= "Mozilla 3.11",
           RequestsDelay = 2,
           URLlenlimit = 255,
-          MaxDepth = 1)
+          MaxDepth = 1,
+          crawlZoneCSSPat = ".block-8-2 .entry-title a , .block-8-1 a , .rep-small , .no-media a")
 
 ListProjects()
 
