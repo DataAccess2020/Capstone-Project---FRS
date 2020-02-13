@@ -1,10 +1,9 @@
-library("here")
-library("RCurl")
-library("tidyverse")
-library("rvest")
-library("Rcrawler")
-library("stringr")
+# Source setup scripts:
+source(here::here("script","00_setup.R"))
 
+here::here("")
+
+#encore URL
 url <- URLencode("https://www.repubblica.it")
 
 #inspect robots

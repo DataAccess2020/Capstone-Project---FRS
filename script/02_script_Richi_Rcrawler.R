@@ -1,9 +1,7 @@
-library("here")
-library("RCurl")
-library("tidyverse")
-library("rvest")
-library("Rcrawler")
-library("stringr")
+# Source setup scripts:
+source(here::here("script","00_setup.R"))
+
+here::here("")
 
 
 #estraggo tutti i link contenuti sulla homepage di repubblica
