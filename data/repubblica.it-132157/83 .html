@@ -1,0 +1,668 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<script>window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"cbf2a24ec9","applicationID":"213151915","transactionName":"cVsIFUYLXw5SQxlYDV9RSQhaAFYa","queueTime":0,"applicationTime":14,"agent":""}</script>
+<script>(window.NREUM||(NREUM={})).loader_config={licenseKey:"cbf2a24ec9",applicationID:"213151915"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var i=n[t]={exports:{}};e[t][0].call(i.exports,function(n){var i=e[t][1][n];return r(i||n)},i,i.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<t.length;i++)r(t[i]);return r}({1:[function(e,n,t){function r(){}function i(e,n,t){return function(){return o(e,[u.now()].concat(f(arguments)),n?null:this,t),n?void 0:this}}var o=e("handle"),a=e(4),f=e(5),c=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",d=l+"ixn-";a(p,function(e,n){s[n]=i(l+n,!0,"api")}),s.addPageAction=i(l+"addPageAction",!0),s.setCurrentRouteName=i(l+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,i="function"==typeof n;return o(d+"tracer",[u.now(),e,t],r),function(){if(c.emit((i?"":"no-")+"fn-start",[u.now(),r,i],t),i)try{return n.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],t),e}finally{c.emit("fn-end",[u.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=i(d+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){var t=e.getEntries();t.forEach(function(e){"first-paint"===e.name?c("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&c("timing",["fcp",Math.floor(e.startTime)])})}function i(e,n){var t=e.getEntries();t.length>0&&c("lcp",[t[t.length-1]])}function o(e){if(e instanceof s&&!l){var n,t=Math.round(e.timeStamp);n=t>1e12?Date.now()-t:u.now()-t,l=!0,c("timing",["fi",t,{type:e.type,fid:n}])}}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var a,f,c=e("handle"),u=e("loader"),s=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){a=new PerformanceObserver(r),f=new PerformanceObserver(i);try{a.observe({entryTypes:["paint"]}),f.observe({entryTypes:["largest-contentful-paint"]})}catch(p){}}if("addEventListener"in document){var l=!1,d=["click","keydown","mousedown","pointerdown","touchstart"];d.forEach(function(e){document.addEventListener(e,o,!1)})}}},{}],3:[function(e,n,t){function r(e,n){if(!i)return!1;if(e!==i)return!1;if(!n)return!0;if(!o)return!1;for(var t=o.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var f=navigator.userAgent,c=f.match(a);c&&f.indexOf("Chrome")===-1&&f.indexOf("Chromium")===-1&&(i="Safari",o=c[1])}n.exports={agent:i,version:o,match:r}},{}],4:[function(e,n,t){function r(e,n){var t=[],r="",o=0;for(r in e)i.call(e,r)&&(t[o]=n(r,e[r]),o+=1);return t}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],5:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,i=t-n||0,o=Array(i<0?0:i);++r<i;)o[r]=e[n+r];return o}n.exports=r},{}],6:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function i(e){function n(e){return e&&e instanceof r?e:e?c(e,f,o):o()}function t(t,r,i,o){if(!l.aborted||o){e&&e(t,r,i);for(var a=n(i),f=v(t),c=f.length,u=0;u<c;u++)f[u].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function d(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||i(t)}function w(e,n){u(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:d,addEventListener:d,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(l.aborted=!0,s=l.backlog={})}var f="nr@context",c=e("gos"),u=e(4),s={},p={},l=n.exports=i();l.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(i.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[n]=r,r}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){i.buffer([e],r),i.emit(e,n,t)}var i=e("ee").get("handle");n.exports=r,r.ee=i},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=E.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();u(y,function(n,t){e[n]||(e[n]=t)}),c("mark",["onload",a()+E.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function i(){"complete"===d.readyState&&o()}function o(){c("mark",["domContent",a()+E.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(f=Math.max((new Date).getTime(),f))-E.offset}var f=(new Date).getTime(),c=e("handle"),u=e(4),s=e("ee"),p=e(3),l=window,d=l.document,m="addEventListener",v="attachEvent",g=l.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:l.setImmediate,CT:clearTimeout,XHR:g,REQ:l.Request,EV:l.Event,PR:l.Promise,MO:l.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1167.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),E=n.exports={offset:f,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),e(2),d[m]?(d[m]("DOMContentLoaded",o,!1),l[m]("load",r,!1)):(d[v]("onreadystatechange",i),l[v]("onload",r)),c("mark",["firstbyte",f],null,"api");var x=0,O=e(6)},{}],"wrap-function":[function(e,n,t){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(5),a="nr@original",f=Object.prototype.hasOwnProperty,c=!1;n.exports=function(e,n){function t(e,n,t,i){function nrWrapper(){var r,a,f,c;try{a=this,r=o(arguments),f="function"==typeof t?t(r,a):t||{}}catch(u){l([u,"",[r,a,i],f])}s(n+"start",[r,a,i],f);try{return c=e.apply(a,r)}catch(p){throw s(n+"err",[r,a,p],f),p}finally{s(n+"end",[r,a,c],f)}}return r(e)?e:(n||(n=""),nrWrapper[a]=e,p(e,nrWrapper),nrWrapper)}function u(e,n,i,o){i||(i="");var a,f,c,u="-"===i.charAt(0);for(c=0;c<n.length;c++)f=n[c],a=e[f],r(a)||(e[f]=t(a,u?f+i:i,o,f))}function s(t,r,i){if(!c||n){var o=c;c=!0;try{e.emit(t,r,i,n)}catch(a){l([a,t,r,i])}c=o}}function p(e,n){if(Object.defineProperty&&Object.keys)try{var t=Object.keys(e);return t.forEach(function(t){Object.defineProperty(n,t,{get:function(){return e[t]},set:function(n){return e[t]=n,n}})}),n}catch(r){l([r])}for(var i in e)f.call(e,i)&&(n[i]=e[i]);return n}function l(n){try{e.emit("internal-error",n)}catch(t){}}return e||(e=i),t.inPlace=u,t.flag=a,t}},{}]},{},["loader"]);</script>
+  <meta name="description" content="Miojob - scopri le offerte di lavoro. Tanti annunci in linea con le tue esigenze e notizie utili sulle tendenze del mercato." />
+  <meta name="keywords" content="lavoro, annunci lavoro, offerte lavoro, lavoro estero, lavoro part time, offerta lavoro, curriculum, neolaureati, stipendio, pensione, società di selezione, agenzie del lavoro, interinali, concorsi." lang="it" />
+  
+  <title>Cerco Lavoro - Cerco Offerte Lavoro - Annunci Offerte Lavoro - Miojob</title>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="NlN65c8uqBPOEXeGbbeHTxtCSwp7nkELzo1Jt4XeFaoHJAa0O/GH0+widHwSHIR8YwH0VazmAZJAnyyfEt3Bjg==" />
+  
+  <link rel="shortcut icon" href="/economia/miojob/favicon.ico" />    
+  <link rel="canonical" href="https://www.repubblica.it/economia/miojob/" />
+  <link rel="alternate" href="https://www.repubblica.it/economia/miojob/mobile/" media="only screen and (max-width: 1023px)" />
+  
+      <!-- OAS SETUP (please place in page header) -->
+      <script src="//oasjs.kataweb.it/adsetup.js?mapnode=newrep" type="text/javascript"></script>
+      <!-- OAS SETUP end -->
+    
+  <link rel="stylesheet" media="all" href="/economia/miojob/assets/home-c51abd456e460f2f394dad2c81e918f2b45af60170498a405ae743a5b9c13857.css" data-turbolinks-track="reload" />
+  <script src="/economia/miojob/assets/application-837256c2558a5ac87991c30dcb2100ffab05b684facc46652a3c1471180fa95c.js" data-turbolinks-track="reload"></script>
+	
+	<script type="text/javascript">
+	<!--
+	function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+	  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+	    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+	  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+	}
+	MM_reloadPage(true);
+	function MM_swapImgRestore() { //v3.0
+	  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+	}
+	function MM_preloadImages() { //v3.0
+	  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+	    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+	    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+	}
+
+	function MM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+
+	function MM_swapImage() { //v3.0
+	  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+	   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+	}
+	//-->
+	</script>
+	
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","url":"https://www.repubblica.it/economia/miojob","logo":"https://www.repubblica.it/economia/miojob/logo-miojob.png"}</script>
+	
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-1702984-1']);
+          _gaq.push (['_gat._anonymizeIp']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+      
+	<script type="text/javascript">
+  var pageHref = 'https://www.repubblica.it/economia/miojob/';
+  var pageType = 'homepage';
+</script>
+
+</head>
+<body class="home "><div id="adv-Position3"><script>try { MNZ_RICH('Position3'); } catch(e) {}</script></div><div class="adv adv-top3"><div id="adv-Top3"><script>try { MNZ_RICH('Top3'); } catch(e) {}</script></div>
+</div><a name="top"></a>
+<div id="page_frame">
+	<div id="main">
+    <div class="adv adv-top"><div id="adv-Top"><script>try { MNZ_RICH('Top'); } catch(e) {}</script></div></div>
+		<div id="header">
+      
+			  <div id="logo">
+          <div id="top-header">
+            <div class="h9" id="links_logo">
+                	<a title="Login" href="https://www.repubblica.it/economia/miojob/candidati/login">Login</a>
+<span class="red">:</span>
+<a href="https://www.repubblica.it/economia/miojob/signup">Registrazione</a>
+<span class="red">:</span>
+<span class="offerte_salvate_title">Offerte salvate</span>
+<span class="red">:</span>
+<a title="Chi siamo" href="/economia/miojob/chi-siamo">Chi siamo</a>
+<span class="red">:</span>
+<a title="faq" href="/economia/miojob/faq">FAQ</a>
+<span class="red">:</span>
+<a title="faq" href="/economia/miojob/credits">Credits</a>
+
+            </div>
+          </div>
+				  <h1><a title="Vai alla home di Repubblica.it" class="logo erreit" href="https://www.repubblica.it">Repubblica.it</a>
+    <a title="Vai alla home di Economia &amp; Finanza con Bloomberg®" class="logo economia" href="https://www.repubblica.it/economia">Economia &amp; Finanza con Bloomberg®</a>
+    </h1>
+				  		    </div>
+
+			<div id="menu">
+        <nav id="main-nav" role="navigation">
+          <ul>
+            <li class="active"><a href="/economia/miojob/">Home Lavoro</a></li>
+            <li><a href="/economia/miojob/offerte/lavoro/cerca/tutte">Ricerca</a></li>
+            <li><a href="/economia/miojob/candidati">Area Personale</a></li>
+            <li><a href="https://www.repubblica.it/economia/miojob/lavoro">Notizie e Servizi</a></li>
+            <li class="second-type-nav"><a href="/economia/miojob/aziende">Area Aziende</a></li>
+            <li class="second-type-nav trova-candidato">Trova il tuo candidato ideale</li>
+          </ul>
+          <a href="/economia/miojob/" class="mio-job-brand">powered by <span class="icon"></span></a>
+        </nav>
+			</div>
+
+		</div>
+
+    <div class="adv adv-top"><div id="adv-TopLeft"><script>try { MNZ_RICH('TopLeft'); } catch(e) {}</script></div>
+</div>
+		
+<div id="cerca">
+	<div id="cerca_sx">
+		<h2 class="search-title">Cerca offerte di lavoro </h2>
+<div id="cerca_form" >
+	<form action="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca" onsubmit="do_search('https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca');return false;">
+		<table class="h13">
+			<tr>
+             	<td ><b>Parola&nbsp;chiave</b></td><td class="right"><input type="text" size="25" name="terms" id="terms"><input type="hidden" value="100" name="AffiliateId"/></td>
+            </tr>
+            <tr>
+             	<td ><b>Localit&agrave;</b></td><td class="right">
+					<select name="search_region" id="search_region">
+						<option value="-1">Scegli area geografica</option>
+						<option value="abruzzo">Abruzzo</option>
+<option value="basilicata">Basilicata</option>
+<option value="calabria">Calabria</option>
+<option value="campania">Campania</option>
+<option value="emilia_romagna">Emilia-Romagna</option>
+<option value="friuli_venezia_giulia">Friuli-Venezia Giulia</option>
+<option value="lazio">Lazio</option>
+<option value="liguria">Liguria</option>
+<option value="lombardia">Lombardia</option>
+<option value="marche">Marche</option>
+<option value="molise">Molise</option>
+<option value="piemonte">Piemonte</option>
+<option value="puglia">Puglia</option>
+<option value="sardegna">Sardegna</option>
+<option value="sicilia">Sicilia</option>
+<option value="toscana">Toscana</option>
+<option value="trentino_alto_adige">Trentino-Alto Adige</option>
+<option value="umbria">Umbria</option>
+<option value="valle_d_aosta">Valle d&#39;Aosta</option>
+<option value="veneto">Veneto</option>
+<option value="estero">Estero</option>
+					</select>
+				</td>
+            </tr>
+            <tr>
+            	<td ><b>Area&nbsp;funzionale</b></td><td class="right">
+					<select name="search_area" id="search_area">
+						<option value="-1">Scegli area</option>
+						<option value="acquisti">Acquisti e logistica</option>
+<option value="coltivazione_allevamento_produzione">Agricoltura e allevamento</option>
+<option value="altro.1">Altro</option>
+<option value="amministrazione_e_controllo_finanza">Area amministrazione, controllo, impiegati</option>
+<option value="legale">Area legale</option>
+<option value="assistenza_clienti">Assistenza clienti,call center,telemarketing</option>
+<option value="marketing_e_vendite_commerciale">Commerciale, vendite</option>
+<option value="varie_e_consulenza">Consulenza, libera professione e varie</option>
+<option value="direzione_generale">Direzione generale, top management</option>
+<option value="erogazione_del_servizio">Erogazione di servizi</option>
+<option value="area_affari_fidi_titoli">Finanza e credito, banche</option>
+<option value="gestione_impianti">Gestione impiantie e organizzazione di
+cantiere</option>
+<option value="it_sistemi_informativi">IT, sistemi informativi</option>
+<option value="manutenzione">Manutenzione ed operai</option>
+<option value="comunicazione_e_pubbliche_relazioni">Marketing e comunicazione</option>
+<option value="neolaureati_neodiplomati">Neolaureati - neodiplomati</option>
+<option value="produzione">Produzione</option>
+<option value="qualita_sicurezza_e_ambiente">Qualità e Sicurezza</option>
+<option value="regioni_autonomie_locali_ed_enti_pubblici">Regioni, autonomie locali ed enti pubblici</option>
+<option value="ricerca_e_sviluppo_area_tecnica">Ricerca e sviluppo/area tecnica</option>
+<option value="personale_ed_organizzazione">Risorse Umane e organizzazione</option>
+<option value="direzione_medico_sanitaria">Sanità:pers.tecnico, medico, scientifico,
+operativo</option>
+<option value="scuola_formazione_e_ricerca">Scuola, formazione e ricerca</option>
+<option value="segreteria">Staff,segreteria,servizi al cliente,servizi
+generali</option>
+<option value="turismo_ed_esercizi_pubblici">Turismo ed esercizi pubblici</option>
+<option value="vigilanza_e_pubblica_sicurezza">Vigilanza e pubblica sicurezza</option>
+					</select>			
+				</td>
+			</tr>	
+		</table>
+		<input id="cerca_lavoro" onmouseover='this.src="https://www.repubblica.it/economia/miojob/assets/trova_lavoro2-aeea40eaddb435611dee237e2e56e9ee7e41fb036a5cc1cce9a8e1dd6a680764.jpg"' onmouseout='this.src="https://www.repubblica.it/economia/miojob/assets/trova_lavoro1-4c71500694f04559b5fc826b136405d563eb6621dfd3027b46abffec0a5bb12b.jpg"' type="image" src="https://www.repubblica.it/economia/miojob/assets/trova_lavoro1-4c71500694f04559b5fc826b136405d563eb6621dfd3027b46abffec0a5bb12b.jpg"  alt="Cerca lavoro" onclick="do_search('https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca');return false;" />  
+	</form>
+</div>
+	</div>
+	<div id="cerca_dx">
+		<div id="tutte_offerte" class="h8"><a href="/economia/miojob/offerte/settimana">Tutte le offerte <img width="24" height="17" align="middle" src="/economia/miojob/assets/freccia_a-69bcd48719020b8e35ef7bb380efbcc2ef9d6c2b6d240ac3bf05d80da317f18f.gif" /></a>
+		</div>
+		<h2 id="weekly_offers" width="635" height="40">Offerte della settimana </h2><div id="banner_offerte_outer">
+			<div id="banner_offerte">
+				<div class="colonna_offerte slidingElement" id="offerte_settimana_0" >
+					<div class="offerta">
+	<span class="h10"><a href="https://www.repubblica.it/economia/miojob/offerte/413397-Meccanico">Meccanico</a></span>
+	<br/>
+	<span class="h22"><a href="https://www.repubblica.it/economia/miojob/offerte/413397-Meccanico">Concessionaria di auto a Belluno per i marchi Audi, Volkswagen e Volkswagen...</a></span>
+</div><div class="offerta">
+	<span class="h10"><a href="https://www.repubblica.it/economia/miojob/offerte/388409-SPECIALISTA_CONTROLLO_QUALITA_saldatura">SPECIALISTA CONTROLLO QUALITÀ (saldatura)&#39;</a></span>
+	<br/>
+	<span class="h22"><a href="https://www.repubblica.it/economia/miojob/offerte/388409-SPECIALISTA_CONTROLLO_QUALITA_saldatura">L’AZIENDA:Multinazionale Industriale, leader ...</a></span>
+</div><div class="offerta">
+	<span class="h10"><a href="https://www.repubblica.it/economia/miojob/offerte/413561-HR_MANAGER_HUMAN_RESOURCES_MANAGER">HR MANAGER / HUMAN RESOURCES MANAGER</a></span>
+	<br/>
+	<span class="h22"><a href="https://www.repubblica.it/economia/miojob/offerte/413561-HR_MANAGER_HUMAN_RESOURCES_MANAGER">HR MANAGER / HUMAN RESOURCES MANAGER / RELAZIONI SINDACALI / RESPONSABILE AMMINISTRAZI...</a></span>
+</div>
+				</div>
+				<div class="colonna_offerte slidingElement" id="offerte_settimana_1" >
+					<div class="offerta">
+	<span class="h10"><a href="https://www.repubblica.it/economia/miojob/offerte/411085-DISEGNATORE_PROGETTISTA_MECCANICO">DISEGNATORE - PROGETTISTA MECCANICO</a></span>
+	<br/>
+	<span class="h22"><a href="https://www.repubblica.it/economia/miojob/offerte/411085-DISEGNATORE_PROGETTISTA_MECCANICO">L&amp;#39;AZIENDA: Consolidata Società a capitale Italiano produttrice di soluzioni/componenti...</a></span>
+</div><div class="offerta">
+	<span class="h10"><a href="https://www.repubblica.it/economia/miojob/offerte/413717-CENTRALINISTA_RECEPTIONIST">CENTRALINISTA / RECEPTIONIST</a></span>
+	<br/>
+	<span class="h22"><a href="https://www.repubblica.it/economia/miojob/offerte/413717-CENTRALINISTA_RECEPTIONIST">Società commerciale con sede nella provincia di Pavia RICERCAper ampliamento proprio o...</a></span>
+</div><div class="offerta">
+	<span class="h10"><a href="https://www.repubblica.it/economia/miojob/offerte/388409-SPECIALISTA_CONTROLLO_QUALITA_saldatura">SPECIALISTA CONTROLLO QUALITÀ (saldatura)&#39;</a></span>
+	<br/>
+	<span class="h22"><a href="https://www.repubblica.it/economia/miojob/offerte/388409-SPECIALISTA_CONTROLLO_QUALITA_saldatura">L’AZIENDA:Multinazionale Industriale, leader ...</a></span>
+</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>
+<div id="banner_centrale">
+	<div id="tutte_aziende">
+		<span class="h1">
+			<a href="/economia/miojob/offerte/aziende">Tutte le aziende <img width="24" height="17" align="middle" src="/economia/miojob/assets/freccia_a-69bcd48719020b8e35ef7bb380efbcc2ef9d6c2b6d240ac3bf05d80da317f18f.gif" /></a>
+		</span>
+	</div>
+	<!-- inizio banner centrale -->
+	<div class="allunga"></div>
+	<div id="striscia">
+		<div id="customer_logo_strip"><div id="strip_logo_filler"></div>
+			<div id='logo_customer_14679' class="strip_logo slidingElement" ><a href="https://www.repubblica.it/economia/miojob/aziende/14679-ETJCA_S_P_A/offerte" style="background:#fff url('/economia/miojob/logos/0003/3297/ETJCA-LogoPiccolo.jpg') center no-repeat;"></a></div>
+<div id='logo_customer_1100' class="strip_logo slidingElement" ><a href="https://www.repubblica.it/economia/miojob/aziende/1100-Praxi/offerte" style="background:#fff url('/economia/miojob/logos/0001/3544/logo.jpg') center no-repeat;"></a></div>
+
+		</div>
+	</div>
+	<script>
+//<![CDATA[
+sb = new SlidingStrip(2, 'customer_logo_strip', true, 'strip_logo_filler'); 
+//]]>
+</script>
+	<!-- fine banner centrale -->
+	
+</div>
+
+<div id="blocco_notizie">
+	<div id="blocco_sx">
+  		<!-- notizia principale -->
+  		<div id="primo_piano">
+  			<img width="686" height="27" src="/economia/miojob/assets/primo_piano-29dd96062d9aa0582cb46ae1bb48dd5cddc8d013ffc5dcc79b8538e31f66b86f.jpg" /><a id="all_news" class="h13" href="/economia/miojob/lavoro/">Tutte le notizie</a>
+  			<div id="primo_piano_cont">
+  			  		<div class="image_news_big">
+		<a href="https://www.repubblica.it/economia/2020/01/31/news/stipendi_jobpricing-247174170/"><img src="https://www.repstatic.it/content/nazionale/img/2020/02/03/103657280-592ec595-7729-4d26-a5a0-8e253c07058f.jpg" /></a>
+	</div>
+<div class="primo_piano_text"> 
+	<span class="h2">
+			<span class="primo-piano"><a href="https://www.repubblica.it/economia/2020/01/31/news/stipendi_jobpricing-247174170/" class="primo-piano-plain">Stipendi: finanza e farmaceutica al top, ristorazione e agricoltura flop</a></span>
+	</span>
+	<br/>
+	<br/>
+	<span class="h3">
+		I dati dell&amp;#39;osservatorio JobPricing. Bene anche il comparto petrolifero
+	</span>
+</div>
+
+  			</div>
+  			<br/>
+  		</div>	
+  		<!-- /notizia principale -->
+  		<div class="allunga"></div>
+  		<!-- notizie su due colonne -->
+  		<div id="ultime_notizie_box">
+  			<div id="ultime_notizie_sx">
+  				<img width="255" height="27" src="/economia/miojob/assets/ultime_notizie-f40265a11b4359e2284a3ceb26bd4c77c807500e01910bb26012765da1b5a526.jpg" />
+  				<div class="notizia_sx">
+	<div class="immagine_notizia_sx">
+	    <a href="https://www.repubblica.it/economia/miojob/2019/05/16/news/senza_gap_la_produttivita_aumenterebbe_del_35_-226320615/"><img class="image2" height="80" src="https://www.repstatic.it/content/nazionale/img/2019/05/16/091119665-443e745c-eafd-4e27-af01-ccc80f04bb7b.jpg" /></a>
+		<span class="h7">
+			<a href="https://www.repubblica.it/economia/miojob/2019/05/16/news/senza_gap_la_produttivita_aumenterebbe_del_35_-226320615/">Lavoro, con la parità uomo-donna l&#39;economia mondiale crescerebbe del 35%</a>
+		</span>
+	</div>
+</div>
+
+  				<div class="notizia_sx">
+	<div class="immagine_notizia_sx">
+	    <a href="https://www.repubblica.it/economia/miojob/2019/12/12/news/hangover_days-243288674/"><img class="image2" height="80" src="https://www.repstatic.it/content/nazionale/img/2019/12/12/172334082-8ed410aa-5a48-4335-9873-28ec0bcc6e72.jpg" /></a>
+		<span class="h7">
+			<a href="https://www.repubblica.it/economia/miojob/2019/12/12/news/hangover_days-243288674/">Notte di festa e mattina al lavoro? Un&#39;azienda inglese offre i giorni post-sbornia</a>
+		</span>
+	</div>
+</div>
+
+  			</div>
+  			<div id="ultime_notizie_dx">
+  				<div class="rigo">  </div>
+  				<div class="notizia_dx">
+	<div class="immagine_notizia_dx">
+		<a href="https://www.repubblica.it/economia/miojob/2020/02/11/news/come_far_felici_i_dipendenti_e_tenerseli_stretti-247471270/"><img class="image3" src="https://www.repstatic.it/content/nazionale/img/2020/02/11/092000454-426195f7-a3a3-433d-9346-e3ec6615822f.jpg" /></a>
+	</div>
+		<span class="h6">
+			<a href="https://www.repubblica.it/economia/miojob/2020/02/11/news/come_far_felici_i_dipendenti_e_tenerseli_stretti-247471270/">Come far felici i dipendenti, tenerseli stretti e aumentare la produttività</a>
+		</span>
+		<br/>
+		<span class="h3">Un&#39;indagine di IWG mostra che il benessere dei dipendenti aumenta la produttività e fidelizza i lavoratori. Come fare? Introdurre corsi che insegnano a rilassarsi...</span>
+</div>
+
+  				<div class="rigo">  </div>
+  				<div class="notizia_dx">
+		<span class="h6">
+			<a href="https://www.repubblica.it/economia/miojob/2020/02/09/news/il_futuro_dellavoro-246973725/">Una società di creativi, senza stipendio fisso</a>
+		</span>
+		<br/>
+		<span class="h3">E&#39; quanto immagina Deloitte in una ricerca sul futuro del lavovo. Non ci sarà più chi raccoglierà dati, ma chi li interpreterà. E l&#39;appuntamento è dietro l&#39;angolo...</span>
+</div>
+
+  				<br/>
+  			</div>
+  		</div>		
+  		<!-- /notizie su due colonne -->
+		
+		<div id="offerte">
+			<div id="offerte_sx">
+				<img width="386" height="41" src="/economia/miojob/assets/offerte_regione-8e95d75b633d7b2748e7492ebe8f377ec3bc9fe440fc8e90b123653f4c888864.jpg" />
+				<div id="regioni">
+					<table width="100%" border="0" cellspacing="6" cellpadding="0">
+						<tr>
+  								<td width="186">
+  									  <div id="0_0" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_0" data-name="Abruzzo" href="#"><img alt="Annunci di lavoro" id="im_0_0" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_0" data-name="Abruzzo" href="#">Abruzzo</a>&nbsp;<span class="red">(22)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_1" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_1" data-name="Basilicata" href="#"><img alt="Annunci di lavoro" id="im_0_1" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_1" data-name="Basilicata" href="#">Basilicata</a>&nbsp;<span class="red">(3)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_2" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_2" data-name="Calabria" href="#"><img alt="Annunci di lavoro" id="im_0_2" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_2" data-name="Calabria" href="#">Calabria</a>&nbsp;<span class="red">(11)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_3" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_3" data-name="Campania" href="#"><img alt="Annunci di lavoro" id="im_0_3" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_3" data-name="Campania" href="#">Campania</a>&nbsp;<span class="red">(55)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_4" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_4" data-name="Emilia-Romagna" href="#"><img alt="Annunci di lavoro" id="im_0_4" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_4" data-name="Emilia-Romagna" href="#">Emilia-Romagna</a>&nbsp;<span class="red">(356)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_5" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_5" data-name="Friuli-Venezia Giulia" href="#"><img alt="Annunci di lavoro" id="im_0_5" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_5" data-name="Friuli-Venezia Giulia" href="#">Friuli-Venezia Giulia</a>&nbsp;<span class="red">(38)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_6" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_6" data-name="Lazio" href="#"><img alt="Annunci di lavoro" id="im_0_6" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_6" data-name="Lazio" href="#">Lazio</a>&nbsp;<span class="red">(335)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_7" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_7" data-name="Liguria" href="#"><img alt="Annunci di lavoro" id="im_0_7" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_7" data-name="Liguria" href="#">Liguria</a>&nbsp;<span class="red">(54)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_8" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_8" data-name="Lombardia" href="#"><img alt="Annunci di lavoro" id="im_0_8" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_8" data-name="Lombardia" href="#">Lombardia</a>&nbsp;<span class="red">(2756)</span>
+  										  </span>
+                      </div>
+  									  <div id="0_9" class="regione">
+                        <a class="open-region-in-home freccia" data-index="0_9" data-name="Marche" href="#"><img alt="Annunci di lavoro" id="im_0_9" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="0_9" data-name="Marche" href="#">Marche</a>&nbsp;<span class="red">(22)</span>
+  										  </span>
+                      </div>
+                  </td>
+  								<td width="186">
+  									  <div id="1_0" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_0" data-name="Molise" href="#"><img alt="Annunci di lavoro" id="im_1_0" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_0" data-name="Molise" href="#">Molise</a>&nbsp;<span class="red">(3)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_1" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_1" data-name="Piemonte" href="#"><img alt="Annunci di lavoro" id="im_1_1" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_1" data-name="Piemonte" href="#">Piemonte</a>&nbsp;<span class="red">(306)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_2" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_2" data-name="Puglia" href="#"><img alt="Annunci di lavoro" id="im_1_2" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_2" data-name="Puglia" href="#">Puglia</a>&nbsp;<span class="red">(26)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_3" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_3" data-name="Sardegna" href="#"><img alt="Annunci di lavoro" id="im_1_3" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_3" data-name="Sardegna" href="#">Sardegna</a>&nbsp;<span class="red">(4)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_4" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_4" data-name="Sicilia" href="#"><img alt="Annunci di lavoro" id="im_1_4" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_4" data-name="Sicilia" href="#">Sicilia</a>&nbsp;<span class="red">(17)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_5" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_5" data-name="Toscana" href="#"><img alt="Annunci di lavoro" id="im_1_5" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_5" data-name="Toscana" href="#">Toscana</a>&nbsp;<span class="red">(121)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_6" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_6" data-name="Trentino-Alto Adige" href="#"><img alt="Annunci di lavoro" id="im_1_6" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_6" data-name="Trentino-Alto Adige" href="#">Trentino-Alto Adige</a>&nbsp;<span class="red">(41)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_7" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_7" data-name="Umbria" href="#"><img alt="Annunci di lavoro" id="im_1_7" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_7" data-name="Umbria" href="#">Umbria</a>&nbsp;<span class="red">(33)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_8" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_8" data-name="Valle d&#39;Aosta" href="#"><img alt="Annunci di lavoro" id="im_1_8" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_8" data-name="Valle d&#39;Aosta" href="#">Valle d&#39;Aosta</a>&nbsp;<span class="red">(7)</span>
+  										  </span>
+                      </div>
+  									  <div id="1_9" class="regione">
+                        <a class="open-region-in-home freccia" data-index="1_9" data-name="Veneto" href="#"><img alt="Annunci di lavoro" id="im_1_9" width="5" height="5" src="/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg" /></a>                        <span class="h8">
+                          <a class="open-region-in-home" data-index="1_9" data-name="Veneto" href="#">Veneto</a>&nbsp;<span class="red">(383)</span>
+  										  </span>
+                      </div>
+                  </td>
+            </tr>
+					</table>					
+				</div>
+			</div>
+			<div id="offerte_dx">
+				<img width="300" height="41" src="/economia/miojob/assets/offerte_areafunz-e80043da9e4949a3f9fce446d371a3ad59d6fb308dc903b1434a38000a0dceb2.jpg" />
+				<div id="offerte_dx_cont" class="h9">
+          <h2><a title="Produzione" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-produzione">Produzione&nbsp;<span class="red">(917)</span></a></h2>
+          <h2><a title="Commerciale, vendite" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-marketing_e_vendite_commerciale">Commerciale, vendite&nbsp;<span class="red">(892)</span></a></h2>
+          <h2><a title="Finanza e credito, banche" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-area_affari_fidi_titoli">Finanza e credito, banche&nbsp;<span class="red">(794)</span></a></h2>
+          <h2><a title="Acquisti e logistica" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-acquisti">Acquisti e logistica&nbsp;<span class="red">(533)</span></a></h2>
+          <h2><a title="IT, sistemi informativi" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-it_sistemi_informativi">IT, sistemi informativi&nbsp;<span class="red">(437)</span></a></h2>
+          <h2><a title="Area amministrazione, controllo, impiegati" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-amministrazione_e_controllo_finanza">Area amministrazione, controllo, impiegati&nbsp;<span class="red">(208)</span></a></h2>
+          <h2><a title="Assistenza clienti,call center,telemarketing" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-assistenza_clienti">Assistenza clienti,call center,telemarketing&nbsp;<span class="red">(195)</span></a></h2>
+          <h2><a title="Altro" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-altro.1">Altro&nbsp;<span class="red">(160)</span></a></h2>
+          <h2><a title="Sanità:pers.tecnico, medico, scientifico, operativo" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-direzione_medico_sanitaria">Sanità:pers.tecnico, medico, scientifico, operativo&nbsp;<span class="red">(158)</span></a></h2>
+          <h2><a title="Risorse Umane e organizzazione" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-personale_ed_organizzazione">Risorse Umane e organizzazione&nbsp;<span class="red">(129)</span></a></h2>
+          <h2><a title="Area legale" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-legale">Area legale&nbsp;<span class="red">(103)</span></a></h2>
+          <h2><a title="Marketing e comunicazione" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-comunicazione_e_pubbliche_relazioni">Marketing e comunicazione&nbsp;<span class="red">(93)</span></a></h2>
+          <h2><a title="Gestione impiantie e organizzazione di cantiere" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-gestione_impianti">Gestione impiantie e organizzazione di cantiere&nbsp;<span class="red">(44)</span></a></h2>
+          <h2><a title="Ricerca e sviluppo/area tecnica" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-ricerca_e_sviluppo_area_tecnica">Ricerca e sviluppo/area tecnica&nbsp;<span class="red">(33)</span></a></h2>
+          <h2><a title="Manutenzione ed operai" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-manutenzione">Manutenzione ed operai&nbsp;<span class="red">(18)</span></a></h2>
+          <h2><a title="Qualità e Sicurezza" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-qualita_sicurezza_e_ambiente">Qualità e Sicurezza&nbsp;<span class="red">(17)</span></a></h2>
+          <h2><a title="Consulenza, libera professione e varie" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-varie_e_consulenza">Consulenza, libera professione e varie&nbsp;<span class="red">(13)</span></a></h2>
+          <h2><a title="Direzione generale, top management" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-direzione_generale">Direzione generale, top management&nbsp;<span class="red">(7)</span></a></h2>
+          <h2><a title="Staff,segreteria,servizi al cliente,servizi generali" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-segreteria">Staff,segreteria,servizi al cliente,servizi generali&nbsp;<span class="red">(6)</span></a></h2>
+          <h2><a title="Neolaureati - neodiplomati" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-neolaureati_neodiplomati">Neolaureati - neodiplomati&nbsp;<span class="red">(4)</span></a></h2>
+          <h2><a title="Erogazione di servizi" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-erogazione_del_servizio">Erogazione di servizi&nbsp;<span class="red">(2)</span></a></h2>
+          <h2><a title="Turismo ed esercizi pubblici" href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-turismo_ed_esercizi_pubblici">Turismo ed esercizi pubblici&nbsp;<span class="red">(1)</span></a></h2>
+				</div>
+				<h1 id="offerte_dx_link" class="h8"><a href="https://www.repubblica.it/economia/miojob/offerte/area">Tutte le offerte per area <img width="24" height="17" align="absmiddle" src="/economia/miojob/assets/freccia_a-d9c3cbaa6a929f0d0e5252a24e798cc696c767464084c8480878c2260a57d9e0.jpg" /></a></h1>
+			</div>
+		</div>
+	</div>
+	<div id="blocco_dx">
+		<div id="adv1"><div id="adv-Middle1"><script>try { MNZ_RICH('Middle1'); } catch(e) {}</script></div></div>
+  	<div id="canali">
+
+      <div id="misc">
+			<div id="seguici_su">
+        <img src="/economia/miojob/assets/seguici_su-60de5d4d64e24e0cdb536c5daf8028fd79091e106e7792351da45775348f4d52.png" /> <a href="http://twitter.com/miojob_lavoro" title="Miojob è su Twitter, per essere sempre aggiornato sul mondo del lavoro seguilo subito" target="_blank"><img alt="Miojob è su Twitter, per essere sempre aggiornato sul mondo del lavoro seguilo subito" src="/economia/miojob/assets/twitter_home-2ccd73e7480eb74b5233adfbd96af98750a249e06e8a8d9ee41503c15f3e5d2d.png" /></a> <a href="http://www.facebook.com/pages/miojob/296187364678" title="Miojob è su Facebook, diventa fan e ricevi annunci e notizie nella tua homepage" target="_blank"><img alt="Miojob è su Facebook, diventa fan e ricevi annunci e notizie nella tua homepage" src="/economia/miojob/assets/facebook_home-7bfac878ed693541aac80af250574023b5c0fd47da147f0c1b79f916511a3081.png" /></a> <a href="http://www.bancalavoro.it/" title="Bancalavoro, ricerca offerte di lavoro" target="_blank"><img alt="Bancalavoro, motore di ricerca lavoro" src="/economia/miojob/assets/bancalavoro-logo-e880caf53d0967d0cd9bc8dad58521c020e66f11a685989d3ea4ae04d758104f.png" /></a> <a href="http://www.linkedin.com/groups?gid=3143804" title="Miojob è presente su linkedin, associati al gruppo per gli operatori del settore" target="_blank"><img alt="Miojob è presente su linkedin, associati al gruppo per gli operatori del settore" src="/economia/miojob/assets/linkedin-e9caddaaa9ae892b1d15bb20378e7e30b612e7e211ccf539cd7ecca7510661bc.png" /></a> <a href="http://lavoro.mitula.it/" title="mitula motore di ricerca lavoro" target="_blank"><img alt="mitula motore di ricerca lavoro" src="/economia/miojob/assets/bottonemitula-947523a949af0b0b76482bbc91b5ae745db0bb98a870d5be1b735bfdde685811.png" /></a> <a href="https://it.jooble.org/ " title="Lavoro Jooble" target="_blank"><img alt="Lavoro Jooblejooble" src="/economia/miojob/assets/bottonejooble-e0103bcff63ae0a6a89bcd69c6572ac13c3f900233a7875159e2c4c53c3b986a.png" /></a>
+      </div>	
+			<div class="allunga"></div>
+    </div>
+    </div>
+    <div id="tagcloud">
+	<span class="w-0" style="font-size:10px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/job_title_name-addetto_a_contabilita_generale">addetto contabilità</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/provincia-roma/?terms=risorse+umane">area risorse umane Roma</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca?terms=web">cerco lavoro web</a></span>
+	<span class="w-100" style="font-size:26px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-marketing_e_vendite_commerciale">commerciale e vendite </a></span>
+	<span class="w-50" style="font-size:18px"><a href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca?terms=customer+care">customer care</a></span>
+	<span class="w-100" style="font-size:26px"><a href="https://www.repubblica.it/economia/miojob/offerte/lavoro/cerca?terms=data+analyst">data analyst</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/job_title_name-geometra">geometra</a></span>
+	<span class="w-100" style="font-size:26px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-it_sistemi_informativi/">information technology</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca?terms=informatore%20scientifico">informatore scientifico del farmaco</a></span>
+	<span class="w-100" style="font-size:26px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-comunicazione_e_pubbliche_relazioni">lavoro nel marketing</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/job_title_name-responsabile_ufficio_legale">lavoro studio legale</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca?terms=magazziniere">magazziniere</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/provincia-milano/area_name-assistenza_clienti/">offerte call center Milano</a></span>
+	<span class="w-0" style="font-size:10px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/regione-lombardia/">offerte di lavoro Lombardia</a></span>
+	<span class="w-0" style="font-size:10px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/job_title_name-autista">offerte di lavoro autista</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/area_name-marketing_e_vendite_commerciale">offerte di lavoro commerciale</a></span>
+	<span class="w-50" style="font-size:18px"><a href="http://www.repubblica.it/economia/miojob/offerte/lavoro/cerca/provincia-milano/job_title_name-responsabile_ufficio_legale/">studio legale</a></span>
+</div>
+
+  </div>
+</div>
+<div class="allunga"></div>
+
+
+		<br>
+<div id="separazione"><img width="990" height="3" src="/economia/miojob/assets/rigo_footer-2ebf6e950b2de0ac47f2831d404f4e62eb92df4f6a1d9e3117b0aa6dc94ae16a.jpg" /></div>
+<div id="footer" class="h27">
+	<div id="footer_sx">Copyright &copy; 1999-2020 GEDI Digital S.r.l. Tutti i diritti riservati - P.I. 06979891006 - GEDI Gruppo Editoriale S.p.A.</div>
+	<div id="footer_dx">
+      	<span class="offerte_salvate_title">Offerte salvate</span>
+<span class="red">:</span>
+<a title="Chi siamo" href="/economia/miojob/chi-siamo">Chi siamo</a>
+<span class="red">:</span>
+<a title="Contatti" href="/economia/miojob/contatti">Contatti</a>
+<span class="red">:</span>
+<a title="Pubblicità" href="javascript:sendMail(0);">Pubblicità</a>
+<span class="red">:</span>
+<a title="faq" href="/economia/miojob/faq">FAQ</a>
+<span class="red">:</span>
+<a href="https://login.kataweb.it/static/privacy/" id="kw-privacy-link" target="_blank">Privacy</a> 
+<span class="red">:</span>
+<a title="faq" href="/economia/miojob/credits">Credits</a>
+
+	</div>
+</div>
+<img style="display:none;" src="/economia/miojob/assets/ajax_small-e8197036d6b337779f4d3ac250be02e910008921cb52d6d17fd8a358b578074d.gif" />
+<div id="adv-Position1"><script>try { MNZ_RICH('Position1'); } catch(e) {}</script></div>
+	
+
+	</div>
+</div>
+<div id="page_frame_foot"><img src="/economia/miojob/assets/page_bottom-2fd0df0ee0c1ba9903ba83445b52c03a7628f81f727b6ff2a1379287246cdc2c.png" /></div>	
+&nbsp;		
+<script type="text/javascript">
+Event.observe(window, 'load', reload_menu_global);  jQuery(document).ready(function($) {
+    $('.open-region-in-home').on('click', function(event){
+      event.preventDefault();
+      var id = $(this).data('index');
+      var name = $(this).data('name');
+      if ($('#prov_'+id).length>0) {
+    	  $('#prov_'+id).toggle();
+    	  var i = $("#im_"+id);
+    	  if( i.prop('src').match(/freccia1\.jpg/) ) {
+          i.prop('src', 'https://www.repubblica.it/economia/miojob/assets/freccia-4b59879324ba2cbfa9f6b87e26e35eb646234d045b2e7fa8ba77f0f02367ab72.jpg');
+    	  } else {
+          i.prop('src', 'https://www.repubblica.it/economia/miojob/assets/freccia1-2bdcf3b156ce1e7910515d34f8aa7557d07d84ffe1d4a09de88c43645dbe6f37.jpg');
+    	  }
+      } else {
+        $.get({
+          url: 'https://www.repubblica.it/economia/miojob/provinces_for_region',
+          data: { region_name: name, div: id },
+          success: function( data ) {
+            $( "#"+id ).append( data );
+            $( "#im_"+id ).prop('src', 'https://www.repubblica.it/economia/miojob/assets/freccia1-2bdcf3b156ce1e7910515d34f8aa7557d07d84ffe1d4a09de88c43645dbe6f37.jpg');
+          }
+        });
+      }
+    });
+  
+  });
+  
+</script>
+<script src="https://www.repubblica.it/economia/miojob/async_vars" type="text/javascript"></script>
+<!-- [GEDI] Centralized Webtrekk Include dc -->
+<!-- START Webtrekk 4.4.1 - lib 1.0 - https://www.repstatic.it/cless/common/stable/include/wt/wt.html === including another esi === https://www.repstatic.it/cless/common/stable/include/wt/wt.js -->
+<script>
+if(!window.kw_tlh) {
+    (function(){
+        var loadEl = function(el, fn){
+            if(el.readyState) {
+                if(el.readyState == 'loaded' || el.readyState == 'complete') { 
+                    fn();
+                } else {
+                    el.onreadystatechange = function() {
+                        if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                            this.onreadystatechange = null;
+                            fn();
+                        }
+                    };  
+                }
+            } else {
+                el.onload = fn
+            }
+        }
+        var loadScriptAsync = function(script, fn){
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.src = script;
+            s.async = true;
+            if(fn) { 
+                loadEl(s, fn);
+            }
+            document.getElementsByTagName('head')[0].appendChild(s);
+        }
+        var loadSequence = function(seq){
+            var f = undefined;
+            for(var i=seq.length-1;i>=0;i--){
+                var seq1 = seq[i];
+                (function(seq1){
+                    var f1 = f;
+                    f = function(){
+                        loadScriptAsync(seq1, f1);
+                    }
+                })(seq1);
+            }
+            f();
+        }
+        var wtmapping_url = '';
+        try {
+            if(!window.__wt_section) {
+                wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js?pageurl='+encodeURIComponent(location.href.toString());
+            } else {
+                wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js?__wt_section='+(window.__wt_section ? encodeURIComponent(window.__wt_section.toLowerCase()) : "");
+            }
+        } catch(e) {
+            wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js';
+        }
+        if(window.pageHref !== "http://www.repubblica.it/" && window.pageHref !== "https://www.repubblica.it/") { // Eccezione per homepage di Repubblica.it che ha mapping hardcoded in pagina
+            loadSequence([
+                'https://www.repstatic.it/cless/common/stable/js/script/wt/wt_premium_manager.js',
+                wtmapping_url,
+                'https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4&v=1'
+            ]);
+        } else {
+            // INCLUDE exception for Repubblica Homepage
+            loadSequence([
+                'https://www.repstatic.it/cless/common/stable/js/script/wt/wt_premium_manager.js',
+                'https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4&v=1'
+            ]);
+        }
+    })();
+}
+</script>
+
+<!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2012 Nielsen Online -->
+<script type="text/javascript" src="//secure-it.imrworldwide.com/v60.js">
+</script>
+<script type="text/javascript">
+ var pvar = { cid: "kataweb-it", content: "0", server: "secure-it" };
+ var feat = { check_cookie: 0 };
+ var trac = nol_t(pvar, feat);
+ trac.record().post();
+</script>
+<noscript>
+ <div>
+ <img src="//secure-it.imrworldwide.com/cgi-bin/m?ci=kataweb-it&amp;cg=0&amp;cc=0&amp;ts=noscript" 
+ width="1" height="1" alt="" />
+ </div>
+</noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+</body></html>
