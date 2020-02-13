@@ -59,7 +59,7 @@ dir.create("ARTICLES")
 
 articoli13feb <- vector(mode = "list", length = length(CORRIERELinks))
 
-as.character(unlist(articoli13feb))
+as.character(articoli13feb)
 
 
 for (i in 1:length(CORRIERELinks)) {
@@ -116,6 +116,11 @@ datsection <- tibble(
 )
 
 datsection
+
+# PART SIX: remove duplicate data
+
+datsection <- unique (datsection)
+
 
 
 # PART SIX: saving dataset
