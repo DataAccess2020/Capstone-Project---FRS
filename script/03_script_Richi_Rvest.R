@@ -1,3 +1,10 @@
+library("here")
+library("RCurl")
+library("tidyverse")
+library("rvest")
+library("Rcrawler")
+library("stringr")
+
 url <- URLencode("https://www.repubblica.it")
 
 #inspect robots
