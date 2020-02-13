@@ -18,7 +18,7 @@ url_list #controllo i link
 url_list_normalized <- LinkNormalization(url_list,"https://www.repubblica.it/" )
 url_list_normalized
 
-#pulisco l'elenco tenendo solo quelli che iniziano con "https://www.repubblica.it"
+#pulisco l'elenco tenendo solo i link che iniziano con "https://www.repubblica.it"
 url_list_cleaned <- str_subset(url_list_normalized,"^https://www.repubblica.it")
 
 #creo una tabella con tutti i link
