@@ -12,10 +12,22 @@ repubblica_link<-LinkExtractor(url="https://www.repubblica.it/")
 
 #ispeziono l'elenco dei link interni
 repubblica_link[["InternalLinks"]]
+url_list <- c(repubblica_link[["InternalLinks"]])
+
+url_list #controllo i link
+
+#normalizzo l'elenco dei link
+url_list_normalized <- LinkNormalization(url_list,"https://www.repubblica.it/" )
+url_list_normalized
+
+#pulisco l'elenco tenendo solo quelli che iniziano con "https://www.repubblica.it"
+url_list_cleaned <- str_subset(url_list_normalized,"^https://www.repubblica.it")
 
 #creo una tabella con tutti i link
 tabella_link_repubblica <- tibble(
-  elenco_link = repubblica_link[["InternalLinks"]]
+  elenco_link = url_list_cleaned
 )
 
-#con questa tabella è possibile "pulire" i link per estrarre solo gli articoli che ci interessano
+#extract text
+DATA<-ContentScraper(Url =url_list_cleaned, CssPatterns = c(".body-text > span , strong"),
+                     PatternsName = c("text"), ManyPerPattern = TRUE)

@@ -6,13 +6,17 @@ library("Rcrawler")
 library("stringr")
 
 
-Rcrawler (Website = "https://www.repubblica.it", Useragent= "Mozilla 3.11",
-          RequestsDelay = 2,
-          MaxDepth = 1)
+Rcrawler (Website = "https://www.repubblica.it",
+          Useragent= "Mozilla 3.11",
+          RequestsDelay = 1,
+          MaxDepth = 1,
+          dataUrlfilter = "^https://www.repubblica.it",
+          ManyPerPattern= TRUE
+          )
 
 ListProjects()
 
-list_DATA<-LoadHTMLFiles("repubblica.it-111649", type = "list")
+list_DATA<-LoadHTMLFiles("repubblica.it-131411", type = "list")
 
 article <- read_html("repubblica.it-111625") %>%
   html_nodes(".body-text > span")%>% 
