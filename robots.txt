@@ -1,0 +1,26 @@
+User-agent: *
+Allow: 		/ 
+Disallow: 		/ztest/ 
+Disallow: 		/ultimora/politica/CALCIOSCOMMESSE-GIUDICE-PEDERZOLI-NO-ALLENAMENTI-CON-ASCOLI/news-dettaglio/4265210 
+Disallow: 		/ultimora/24ore/nazionale/news-dettaglio/3688417 
+Disallow: 		/ultimora/24ore/AUTO-IN-CAMBIO-DI-DROGA-13-ARRESTI-DELLA-POLIZIA-DI-PESCARA-(2)/news-dettaglio/3746479 
+Disallow: 		/topics/*?p= 
+Disallow: 		/swf 
+Disallow: 		/static/__sdemo__/ 
+Disallow: 		/sport/calcio/2012/03/22/news/calcioscommesse_slavi_verso_l_italia-32043647/amp/ 
+Disallow: 		/quotidiano 
+Disallow: 		/politica/2016/05/03/foto/_pulito_o_napoli_il_candidato_di_bolzano_e_lo_slogan_infelice_seehauser_nella_bufera-138999113/1/#1 
+Disallow: 		/online3 
+Disallow: 		/online/cronaca/veronaecstasy/bologna/bologna.html 
+Disallow: 		/news/ired/ultimora/cronaca/rep_cronaca_n_3487677.html 
+Disallow: 		/mobile/ 
+Disallow: 		/mobile-rep/ 
+Disallow: 		/java 
+Disallow: 		/ipad/ 
+Disallow: 		/interstitial/ 
+Disallow: 		/dal-quotidiano/ 
+Disallow: 		/cgi-bin/back.cgi 
+Disallow: 		/2006/11/sezioni/cronaca/tabaccheria-ucciso-passante/ucciso-pregiudicato-torre/ucciso-pregiudicato-torre.html 
+Disallow: 		/2006/05/gallerie/politica/farabutti-foto-lettori-95/esterne191030071909103240_big.jpg 
+Disallow: 		/2006/05/gallerie/politica/farabutti-foto-lettori-95/esterne191030071909103240.jpg 
+

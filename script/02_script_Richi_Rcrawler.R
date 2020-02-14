@@ -52,13 +52,14 @@ control_list <- tibble(
 control_list
 
 #extract text
-text_by_contentscraper<-ContentScraper(Url = url_list_cleaned, CssPatterns = ".body-text > span , strong , .summary , .middle-img h1",
-                     PatternsName = "text", ManyPerPattern = TRUE)
+text_by_contentscraper<-ContentScraper(Url = url_list_xpath_cleaned, CssPatterns = ".middle-img h1 , .summary , .body-text > span",
+                     PatternsName = "text", ManyPerPattern = TRUE)                  
 
-
+text_by_contentscraper
 
 #creo una tabella con tutti i link ed il testo
 tabella_link_repubblica <- tibble(
   elenco_link = url_list_cleaned,
   text = text_by_contentscraper)
+
 tabella_link_repubblica
