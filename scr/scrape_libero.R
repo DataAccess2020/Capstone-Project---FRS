@@ -90,16 +90,20 @@ save(dat, file = here::here("libero_articles.csv"))
 
 # Sorting the dataset, deleting empty rows: ------------------------------------------------------------
 library(dplyr)
-dat_sort <- dat %>%
+dat_2 <- dat %>%
    filter(articles != "character(0)")
 
+articles
 # saving it locally: 
-save(dat_sort, file = here::here("libero_articles.csv"))
+save(dat_sort, file = here::here("libero_articles.Rdata"))
 
 
+dat_unlist <- unlist(dat_sort$articles)
+
+tidyarticles <- ifelse(is.na(dat$articles), NA, sapply(articles, toString))
+tidyarticles <- as.tibble(tidyarticles)
 
 
+dat_sort <- data.frame(sapply(dat_sort$articles, toString, windth=57))
 
-
-
-
+dat_3 <- cbind(dat_2, dat_sort)
