@@ -4,7 +4,7 @@ library("rvest")
 library("stringr")
 
 
-#1. downloading page-------------- 
+#PART ONE -------------- 
 
 #Storing the url to creare a tidy structure of the file using the URLencode() to avoid potential problems with formatting the URL
 url <- URLencode("https://www.corriere.it/")
@@ -26,7 +26,7 @@ writeLines(page,
            con = here::here("Ilcorrieredellasera1402.html")) 
 
 
-# 2. links -----------
+# PART TWO -----------
 
 
 #selecting the links of the articles
@@ -51,7 +51,6 @@ dat <- tibble(
 dat
 
 
-#3. scraping text articles 
 
 #creating a folder to put the links 
 dir.create("ARTICLES")
@@ -93,7 +92,7 @@ dat <- tibble(
 
 dat
 
-# 4. new variable -> section
+# PART FOUR : new variable -> section
 section <- word(CORRIERELinks, 4, sep = fixed('/'))
 
 section
@@ -107,33 +106,27 @@ dat <- tibble(
 dat
 
 
-# 5. CLEANING DATASET -----------
+# PART FOUR: CLEANING DATASET -----------
 
 cleandat <- dat %>%
   filter(article != "character(0)")
 
 cleandatdat              
                 
-# 6. remove duplicate data
+# PART SIX: remove duplicate data
 
 dat <- unique (cleandat)
 
 dat
 
-# 7. converting articles from list to character 
+# PART SIX: converting articles from list to character 
 
-finaldat <- data.frame(articlestext = sapply(dat$article, toString, windth=57))
+finaldat <- data.frame(sapply(dat$article, toString, windth=57))
 
 dat <- cbind(finaldat, dat)
 dat
 
-# 8. selecting variables 
-
-dat <- select(dat, articlestext, link, section)
-
-dat
-
-# 9. saving dataset 
+# PART SEVEN: saving dataset 
 
 save(dat, file = here::here("Corrierearticles1402.Rdata"))
 
