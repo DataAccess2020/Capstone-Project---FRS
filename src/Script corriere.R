@@ -83,7 +83,7 @@ for (i in 1:length(CORRIERELinks)) {
     html_text()
   
   #Setting the amount of time in which the code rests.
-  Sys.sleep(0) 
+  Sys.sleep(2) 
 } 
 
 dat <- tibble(
@@ -112,7 +112,7 @@ dat
 cleandat <- dat %>%
   filter(article != "character(0)")
 
-cleandatdat              
+cleandat              
                 
 # 6. remove duplicate data
 
@@ -123,6 +123,7 @@ dat
 # 7. converting articles from list to character 
 
 finaldat <- data.frame(articlestext = sapply(dat$article, toString, windth=57))
+
 
 dat <- cbind(finaldat, dat)
 dat
@@ -136,4 +137,33 @@ dat
 # 9. saving dataset 
 
 save(dat, file = here::here("Corrierearticles1402.Rdata"))
+
+# 10. Analysis 
+library(tidytext)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+
+#Trying to apply unnest_tokens at our dataset. 
+#we should have a character vector that we want to analyse
+as.tbl(dat)
+
+articlestext <- sapply(dat$article, toString, windth=57)
+
+articlestext
+
+dat1 <- tibble (text = articlestext)
+dat1
+
+word <- vector (mode = "list", length = length(dat1))
+
+
+dat1 %>% 
+  unnest_tokens (word, articlestext)
+
+articlestext
+
+link
+
 
