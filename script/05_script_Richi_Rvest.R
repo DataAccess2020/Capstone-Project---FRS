@@ -83,7 +83,7 @@ dat_2 <- tibble(
   articles = articles,
   section = section
 )
-dat_2
+
 
 # Sorting the dataset, deleting empty rows: -----------------
 dat_3 <- dat_2 %>%
@@ -94,3 +94,10 @@ dat_4 <- data.frame(sapply(dat_3$articles, toString, windth=57))
 
 # combino dat4 e dat5---------------
 dat_5 <- cbind(dat_3, dat_4)
+
+#DT definitivo------------
+
+dat_definitivo <- tibble(link= dat_5$link,
+                         section= dat_5$section,
+                         text= dat_5$sapply.dat_3.articles..toString..windth...57.)
+save(dat_definitivo, file = here::here ("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
