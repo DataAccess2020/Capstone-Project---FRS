@@ -17,3 +17,7 @@ word <- vector (mode = "character")
 dat_4 <- dat_3 %>%
   unnest_tokens (word, text)
 
+dat_4 <- dat_4 %>% 
+  group_by(link) %>% 
+  mutate(linenumber = row_number())
+  
