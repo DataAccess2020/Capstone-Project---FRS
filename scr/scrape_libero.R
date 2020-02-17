@@ -94,7 +94,7 @@ dat_1 <- dat %>%
 
 articles
 # saving it locally: 
-save(dat_sort, file = here::here("libero_articles.Rdata"))
+save(dat_1, file = here::here("libero_articles_1702.Rdata"))
 
 # cleaning and reformatting the categories: now the articles are text
 dat_2 <- data.frame(sapply(dat_2$articles, toString, windth=57))
@@ -105,4 +105,4 @@ dat_3 <- cbind(dat_2, dat_1)
 text_df <- mutate(dat_2, text = articles$articles)
 
 dat_3 <- tibble (link = dat_3$link, section = dat_3$section, text = text_df$sapply.dat_2.articles..toString..windth...57.)
-dat_3
+dat_3 

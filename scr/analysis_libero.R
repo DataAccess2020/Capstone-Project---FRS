@@ -4,16 +4,16 @@ library(tidytext) library(tidyr)
 library(tokenizers)
 library(SnowballC)
 
-libero_cleaned <- dat_3 %>%
-  unnest_tokens(word, sapply.dat_sort.articles..toString..windth...57.)
+text_cleaned <- sapply(dat_3$text, toString, windth=57)
 
+dat_3 <- mutate(dat_3, text = text_cleaned)
 
-# try
+as.tbl(dat_3, stringsAsFactor = FALSE)
+
+dat <- select(dat, text, link, section)
 
 word <- vector (mode = "character")
 
-test_df<-tokenize_words(as.character(dat_3$text))
-test_df <- unlist(test_df)
-test_df
+dat_4 <- dat_3 %>%
+  unnest_tokens (word, text)
 
-test_df <- tibble(line = 1:63, text = text)
