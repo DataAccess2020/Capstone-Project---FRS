@@ -1,6 +1,6 @@
 #SETUP SCRIPT
 # list of required packages
-want = c("here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr")
+want = c("here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 rm(have, want)
@@ -12,3 +12,6 @@ library("rvest")
 library("Rcrawler")
 library("stringr")
 library("readr")
+library("tidytext")
+library("tidyr")
+library("stopwords")
