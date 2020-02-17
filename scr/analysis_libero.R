@@ -1,35 +1,37 @@
 #Analysis: 
 
 library(tidytext) library(tidyr)
-library(tokenizers)
-library(SnowballC)library(stopwords)
+library(stopwords)
 
 x <- stopwords(language = "it", source = "snowball" )
 x
 
-y <- data.frame(x, stringsAsFactors = FALSE)
+y <- tibble(x)
 
 
-
+# trasforming the text from factor to character: 
 text_cleaned <- sapply(dat_3$text, toString, windth=57)
 
 dat_3 <- mutate(dat_3, text = text_cleaned)
 
 as.tbl(dat_3, stringsAsFactor = FALSE)
 
-dat <- select(dat, text, link, section)
-
-word <- vector (mode = "character")
+# unnesting the token words
 
 dat_4 <- dat_3 %>%
   unnest_tokens (word, text)
 
+#adding the line numbers:
+
 dat_4 <- dat_4 %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
-  
-dat_4 <- dat_4 %>% 
-  dplyr::anti_join(., y, by = x)
 
-anti_join(dat_4, y, by = x)
+  
+# removing the stopwords: 
+
+dat_4 <- dat_4 %>% 
+  anti_join(y, by=x)
+
+anti_join(dat_4$text, y, by = x)
 
