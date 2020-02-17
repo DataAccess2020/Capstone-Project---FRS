@@ -102,5 +102,7 @@ dat_2 <- data.frame(sapply(dat_2$articles, toString, windth=57))
 # creating the final dataset: 
 dat_3 <- cbind(dat_2, dat_1)
 
+text_df <- mutate(dat_2, text = articles$articles)
+
 dat_3 <- tibble (link = dat_3$link, section = dat_3$section, text = text_df$sapply.dat_2.articles..toString..windth...57.)
 dat_3
