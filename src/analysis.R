@@ -19,7 +19,6 @@ as.tbl(dat, stringsAsFactor = FALSE)
 
 dat <- select(dat, text, link, section)
 
-word <- vector (mode = "character")
 
 dat1 <- dat %>%
   unnest_tokens (word, text)
@@ -29,51 +28,33 @@ dat2 <- dat1 %>%
   group_by(link) %>%
   mutate(linenumber = row_number())
 
-#3. 
-
-Todeletewords <- stopwords(language = "it", source = "snowball" )
-
-as.tbl(Todeletewords)
-
-stopwords <- Todeletewords
-
-
-as.tbl(stopwords, stringsAsFactor = FALSE)
-
+#3. Removing stopwords 
 dat3 <- dat2 %>%
-  anti_join("stopwords" = "Todeletewords")
+  anti_join(get_stopwords(language = "it", source ="snowball"))
 
+#4. Counting words
 
-
-
-y <- if (stopwords =1) {
-   0
-} else {
-  1 
-}
-
-y
-
-
-dat4 <- select(dat2, word, stopwords)
-
-dat4 <- filter(
-  dat4, 
-  word != stopwords
-)
-
-
-dat2 <- dat1 %>%
+dat3 <- dat3 %>%
   count(word, sort = TRUE)
+dat3
 
+dat3 %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 15))
 
-dat2 %>%
+dat3 %>%
   count(word, sort = TRUE) %>%
+  filter (n < 4) %>%
   mutate(word = reorder(word, n)) %>%
   ggplot(aes(word, n)) +
   geom_col() +
   xlab(NULL) +
   coord_flip()
 
+library(wordcloud)
+  
+dat2 %>%
+  count(word) %>%
+  with(wordcloud(word, n))
 
-
+       
