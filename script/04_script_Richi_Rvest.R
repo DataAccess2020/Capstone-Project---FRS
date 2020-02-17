@@ -21,8 +21,10 @@ writeLines(repubblica_page,
 
 #extract  the links
 link_pagine <- read_html(here::here("repubblica.html")) %>% 
-                          html_nodes(".block-8-2 .entry-title a , .block-8-1 a , .rep-small , .no-media a") %>%            #controllare nodo dei link
+                          html_nodes(css = ".block-8-2 .entry-title a , .block-8-1 a , .rep-small , .no-media a") %>%
                           html_attr("href")
+
+link <- str_subset(link, "^https://www\\.repubblica\\.it")
 
 
 #Creating a folder where to store all the pages:

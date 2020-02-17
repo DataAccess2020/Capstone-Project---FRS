@@ -3,7 +3,7 @@ source(here::here("script","00_setup.R"))
 
 here::here("")
 
-#encore URL
+#encode URL
 url <- URLencode("https://www.repubblica.it")
 
 #inspect robots
