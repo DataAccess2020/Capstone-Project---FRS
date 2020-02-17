@@ -3,12 +3,6 @@
 library(tidytext) library(tidyr)
 library(stopwords)
 
-x <- stopwords(language = "it", source = "snowball" )
-x
-
-y <- tibble(x)
-
-
 # trasforming the text from factor to character: 
 text_cleaned <- sapply(dat_3$text, toString, windth=57)
 
@@ -30,8 +24,20 @@ dat_4 <- dat_4 %>%
   
 # removing the stopwords: 
 
-dat_4 <- dat_4 %>% 
-  anti_join(y, by=x)
 
-anti_join(dat_4$text, y, by = x)
+
+dat_4 <- dat_4 %>% 
+  anti_join(get_stopwords(language = "it", source= "snowball")) 
+
+stopwords_getsources()
+
+dat_4 %>%
+  count(word, sort = TRUE) 
+
+install.packages("wordcloud")
+library(wordcloud)
+
+dat_4 %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
 
