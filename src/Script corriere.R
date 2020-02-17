@@ -148,9 +148,11 @@ library(ggplot2)
 #Trying to apply unnest_tokens at our dataset. 
 #we should have a character vector that we want to analyse
 
-as.tbl(dat)
+as.tbl(dat, stringsAsFactor = FALSE)
 
 dat <- mutate(dat, text = articlestext)
+
+dat
 
 dat <- select(dat, text, link, section)
 
@@ -170,14 +172,26 @@ library(SnowballC)
 
 unlist(text_df)
 
+text_df <- tibble(line = 1:27, text = text)
+
 unlist(text)
 
-text_df %>% 
+articles <- data.frame(dat, stringsAsFactors = FALSE)
+
+dat1 <- dat %>%
   unnest_tokens (word, text)
+
+data(stop_words)
+
+dat <- dat %>%
+  anti_join(stop_words)
+
+rlang::last_error()
+
 
 articlestext
 
 link
 
-str(dat)
+str(text_df)
 
