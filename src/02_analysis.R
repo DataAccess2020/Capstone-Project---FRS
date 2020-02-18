@@ -27,17 +27,46 @@ dat3 <- dat2 %>%
   filter(!str_detect(word, '[[:punct:]]'))
 
 #4. Counting words ---------------
-dat4 <- dat3 %>%
+dat5 <- dat3 %>%
+  filter(section  == "economia") %>%
   ungroup() %>%
   count(word, sort = TRUE)
 dat4
 
-#5. words graphs 
+#5. Words graphs ----------------
 
+#graphs "CRONACA"
+dat3 %>%
+  filter(section == "cronache") %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 35)) 
+ 
+#graph "POLITICA"
+dat3 %>%
+  filter(section  == "politica") %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 35))
+
+#graph "ESTERI"
+dat3 %>%
+  filter(section  == "esteri") %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 35))
+
+#graph "ECONOMIA"
+dat3 %>%
+  filter(section  == "economia") %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 35))
+
+
+----------------------------
 
 dat %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100, size = 1000))
+
+
 
 
 dat3 %>%
@@ -49,14 +78,6 @@ dat3 %>%
   coord_flip()
 
 library(wordcloud)
-  
-dat3 %>%
-  count(word) %>%
-  with(wordcloud(word, n, max.words = 35)) %>%
-  filter(., section %in% "cronaca")
-
-
-
 library(lexicon)
 
 ?lexicon
