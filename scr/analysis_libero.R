@@ -24,12 +24,12 @@ dat_4 <- dat_4 %>%
   
 # removing the stopwords: 
 
-
-
 dat_4 <- dat_4 %>% 
   anti_join(get_stopwords(language = "it", source= "snowball")) 
 
-stopwords_getsources()
+new_stops <- c("eâ", "lâ", "â")
+
+dat_4 <- str_remove(dat_4, new_stops)
 
 dat_4 %>%
   count(word, sort = TRUE) 
@@ -39,5 +39,6 @@ library(wordcloud)
 
 dat_4 %>%
   count(word) %>%
-  with(wordcloud(word, n, max.words = 100))
+  with(wordcloud(word, n, max.words = 200))
+
 
