@@ -57,7 +57,7 @@ dat
 dir.create("ARTICLES")
 
 
-articoli17feb <- vector(mode = "list", length = length(CORRIERELinks))
+articoli14feb <- vector(mode = "list", length = length(CORRIERELinks))
 
 
 for (i in 1:length(CORRIERELinks)) {
@@ -78,7 +78,7 @@ for (i in 1:length(CORRIERELinks)) {
   
   
   #Parsing and extracting
-  articoli17feb[[i]] <- read_html(file_path) %>% 
+  articoli14feb[[i]] <- read_html(file_path) %>% 
     html_nodes("p") %>% 
     html_text()
   
@@ -88,7 +88,7 @@ for (i in 1:length(CORRIERELinks)) {
 
 dat <- tibble(
   link = CORRIERELinks,
-  article = articoli17feb
+  article = articoli14feb
 )
 
 dat
@@ -100,7 +100,7 @@ section
 
 dat <- tibble(
   link = CORRIERELinks,
-  article = articoli17feb,
+  article = articoli14feb,
   section = section,
 )
 
