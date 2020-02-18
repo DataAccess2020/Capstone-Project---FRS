@@ -2,6 +2,8 @@
 
 library(tidytext) library(tidyr)
 library(stopwords)
+library(tidyverse)
+library(wordcloud)
 
 # trasforming the text from factor to character: 
 text_cleaned <- sapply(dat_3$text, toString, windth=57)
@@ -12,34 +14,45 @@ as.tbl(dat_3, stringsAsFactor = FALSE)
 
 # unnesting the token words
 
-dat_4 <- dat_3 %>%
+libero <- dat_3 %>%
   unnest_tokens (word, text)
 
 #adding the line numbers:
 
-dat_4 <- dat_4 %>% 
+libero <- libero %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
 
   
 # removing the stopwords: 
 
-dat_4 <- dat_4 %>% 
-  anti_join(get_stopwords(language = "it", source= "snowball")) 
+new_stops <- c("eâ", "lâ", "â", "â")
 
-new_stops <- c("eâ", "lâ", "â")
+libero <- libero %>% 
+  anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
+  anti_join(get_stopwords(language = "it", source= "snowball")) %>%
+  filter(!str_detect(word, '\\d+')) %>%
+  filter(!str_detect(word, '[[:punct:]]')) %>% 
+  filter(!str_detect(word, new_stops)) 
 
-dat_4 <- str_remove(dat_4, new_stops)
+# saving: 
+write.csv(dat_4, file = here::here("libero.csv"))
 
-dat_4 %>%
-  count(word, sort = TRUE) 
+libero_words <- tibble (word = libero$word)
 
-install.packages("wordcloud")
-library(wordcloud)
+libero_words %>%
+  count(word, sort = TRUE) %>% 
+  with(wordcloud(word, n, max.words = 500))
 
-dat_4 %>%
+libero %>%
   count(word) %>%
   with(wordcloud(word, n, max.words = 200))
 
-write.csv(dat_4, file = here::here("libero.csv"))
+# graphs
+
+# wordclouds: 
+
+
+
+
 
