@@ -34,6 +34,10 @@ dat5 <- dat3 %>%
 dat4
 
 #5. Words graphs ----------------
+dat3 %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 35)) 
+
 
 #graphs "CRONACA"
 dat3 %>%
