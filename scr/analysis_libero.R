@@ -42,7 +42,7 @@ libero_words <- tibble (word = libero$word)
 
 libero_words %>%
   count(word, sort = TRUE) %>% 
-  with(wordcloud(word, n, max.words = 500))
+  with(wordcloud(word, n, max.words = 100))
 
 libero %>%
   count(word) %>%
