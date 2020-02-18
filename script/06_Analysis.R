@@ -26,7 +26,9 @@ dat_7 <- dat_6 %>%
 #remove useless words with stopwords
 dat_8 <- dat_7 %>%
   anti_join(get_stopwords(language = "it", source = "stopwords-iso")) %>% 
-              anti_join(get_stopwords(language = "en", source = "stopwords-iso"))
+              anti_join(get_stopwords(language = "en", source = "stopwords-iso")) %>%
+  anti_join(get_stopwords(language = "it", source = "snowball")) %>% 
+  anti_join(get_stopwords(source = "smart"))
 
 #visualizzo le parole opiù utilizzate
 dat_8 %>%

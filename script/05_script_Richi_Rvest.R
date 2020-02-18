@@ -1,12 +1,4 @@
-# Capstone project:
 
-# This script includes the scraping of the newspaper "The Guardian":
-# - browsing the robots.txt file;
-# - downloading and saving the HTML;
-# - extracting the links in the homepage using Rvest:
-# - extracting the section/category for each article:
-# - extracting the text of the articles
-# - sorting the dataset
 
 source(here::here("script","00_setup.R"))
 
