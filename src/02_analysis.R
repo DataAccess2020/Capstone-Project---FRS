@@ -20,18 +20,22 @@ dat2 <- dat1 %>%
   group_by(link) %>%
   mutate(linenumber = row_number())
 
-#3. Removing stopwords ----------------------
+#3. Removing stopwords, digits, punctuation----------------------
 dat3 <- dat2 %>%
-  anti_join(get_stopwords(language = "it", source ="snowball"))
+  anti_join(get_stopwords(language = "it", source ="snowball")) %>%
+  filter(!str_detect(word, '\\d+')) %>%
+  filter(!str_detect(word, '[[:punct:]]'))
 
 #4. Counting words ---------------
-dat3 <- dat3 %>%
+dat4 <- dat3 %>%
   ungroup() %>%
   count(word, sort = TRUE)
-dat3
+dat4
+
+#5. words graphs 
 
 
-dat3 %>%
+dat %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100, size = 1000))
 
@@ -48,7 +52,8 @@ library(wordcloud)
   
 dat3 %>%
   count(word) %>%
-  with(wordcloud(word, n))
+  with(wordcloud(word, n, max.words = 35)) %>%
+  filter(., section %in% "cronaca")
 
 
 
