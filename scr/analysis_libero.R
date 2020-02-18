@@ -41,5 +41,5 @@ dat_4 %>%
   count(word) %>%
   with(wordcloud(word, n, max.words = 200))
 
-write.csv(dat_4, file = here::here("libero_removed_stopwords.csv"))
+write.csv(dat_4, file = here::here("libero.csv"))
 
