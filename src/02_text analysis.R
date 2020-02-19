@@ -16,7 +16,7 @@ dat1 <- dat %>%
   unnest_tokens (word, text)
 
 
-#2. grouping by articles ----------------
+#2. grouping by articles: created new variable "linenumber"---------------
 
 dat2 <- dat1 %>%
   group_by(link) %>%
@@ -26,20 +26,22 @@ dat2 <- dat1 %>%
 #3. Removing stopwords, digits, punctuation----------------------
 
 dat3 <- dat2 %>%
+  anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "it", source ="snowball")) %>%
   filter(!str_detect(word, '\\d+')) %>%
   filter(!str_detect(word, '[[:punct:]]'))
 
 
-#4. Counting words ---------------
+#4. Creating a dataset with only 2 variables: word and count ---------------
 
-dat5 <- dat3 %>%
+dat4 <- dat3 %>%
   ungroup() %>%
   count(word, sort = TRUE)
 
 
 #5. Words graphs ----------------
-dat3 %>%
+dat5 %>%
+  select(word) %>% 
   count(word) %>%
   with(wordcloud(word, n, max.words = 200)) 
 
@@ -73,8 +75,8 @@ dat3 %>%
 
 
 
-write.csv(dat3, file = here::here("Corrieredellasera.cvs"))
 
+write.csv(dat3, file = here::here("Corrieredellasera.cvs"))
 
 save(dat3, file = here::here("Corrierearticles1402TEXTANALYSIS.Rdata"))
 
