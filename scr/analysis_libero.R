@@ -153,9 +153,59 @@ opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
 #################################################
 
-dfm <- dfm(libero$word)
-dfm_lookup(dfm, dictionary =  opeNER_dict, valuetype = "regex")
+corpus <- corpus(libero_words$word)
+
+dfm <- dfm(corpus)
+
+require(ggplot2)
+freq <- textstat_frequency(dfm, n = 30)
+
+ggplot(data = freq) +
+  geom_point(aes(x = reorder(feature, frequency), y = frequency)) +
+  coord_flip() +
+  labs(x = NULL, y = "Frequency", title = "Descriptive frequencies") +
+  theme_bw()
+
+inaug_lx <- dfm(corpus, 
+                what = 'word', 
+                tolower = TRUE, 
+                stem = FALSE,
+                remove_numbers = TRUE,
+                remove_punct = TRUE,
+                remove_separators = TRUE,
+                remove_url = TRUE,
+                ngrams = 1, 
+                dictionary = opeNER_dict)   # <--- Note this line!
+
+inaug_lx_trim <- dfm_trim(inaug_lx, 
+                          termfreq_type = "prop",
+                          min_termfreq = 0.05,
+                          min_docfreq = 3)
+
+as_tibble(inaug_lx_trim) %>% 
+  mutate(share_pos = positive / (negative + positive) * 100) %>% 
+  ggplot(aes(x= inaug_lx_trim, y = share_pos)) + 
+  geom_point() +
+  geom_smooth(method = "loess", ) + 
+  labs(x = "Year", y = "Share of positive terms", title = "Sentiment US inaugural speeches") +
+  theme_bw()
 
 
+inaug_lx_trim <- dfm_trim(inaug_lx, 
+                          termfreq_type = "prop",
+                          min_termfreq = 0.05,
+                          min_docfreq = 3)
+
+
+
+
+
+
+dfm_lookup(dfm, dictionary =  opeNER_dict, valuetype = "glob")
+
+
+myDfm <- dfm(dfm, dictionary = opeNER_dict)
+myDfm
+dfm_lookup(myDfm, dictionary =  opeNER_dict, valuetype = "glob")
 
 
