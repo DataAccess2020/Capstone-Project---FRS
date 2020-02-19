@@ -23,7 +23,7 @@ page <- RCurl::getURL(url,
 
 #Saving the page
 writeLines(page, 
-           con = here::here("Ilcorrieredellasera1402.html")) 
+           con = here::here("Ilcorrieredellasera1702.html")) 
 
 
 # 2. links -----------
@@ -57,7 +57,7 @@ dat
 dir.create("ARTICLES")
 
 
-articoli14feb <- vector(mode = "list", length = length(CORRIERELinks))
+articoli17feb <- vector(mode = "list", length = length(CORRIERELinks))
 
 
 for (i in 1:length(CORRIERELinks)) {
@@ -88,7 +88,7 @@ for (i in 1:length(CORRIERELinks)) {
 
 dat <- tibble(
   link = CORRIERELinks,
-  article = articoli14feb
+  article = articoli17feb
 )
 
 dat
@@ -100,7 +100,7 @@ section
 
 dat <- tibble(
   link = CORRIERELinks,
-  article = articoli14feb,
+  article = articoli17feb,
   section = section,
 )
 
@@ -136,5 +136,6 @@ dat
 
 # 9. saving dataset 
 
-save(dat, file = here::here("Corrierearticles1402.Rdata"))
+save(dat, file = here::here("Corrierearticles1702.Rdata"))
+
 

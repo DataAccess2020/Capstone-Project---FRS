@@ -58,7 +58,7 @@ corriere_words %>%
   xlab(NULL) +
   coord_flip()
 
-
+#. Sections: word frequencies 
 #"CRONACA"
 dat3 %>%
   filter(section == "cronache") %>%
@@ -141,7 +141,3 @@ dat3 %>%
   geom_col() +
   xlab(NULL) +
   coord_flip()
-
-
-
-
