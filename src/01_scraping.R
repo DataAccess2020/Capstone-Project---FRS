@@ -23,7 +23,7 @@ page <- RCurl::getURL(url,
 
 #Saving the page
 writeLines(page, 
-           con = here::here("Ilcorrieredellasera1702.html")) 
+           con = here::here("/data/Ilcorrieredellasera1702.html")) 
 
 
 # 2. links -----------
@@ -31,7 +31,7 @@ writeLines(page,
 
 #selecting the links of the articles
 
-links <- read_html(here::here("Ilcorrieredellasera1402.html")) %>% 
+links <- read_html(here::here("/data/Ilcorrieredellasera1402.html")) %>% 
   html_nodes(css = ".is-8 .has-text-black , .is-pd-t-0 > .bck-media-news") %>% 
   html_attr("href")
 
@@ -54,7 +54,7 @@ dat
 #3. scraping text articles 
 
 #creating a folder to put the links 
-dir.create("ARTICLES")
+dir.create("/data/ARTICLES")
 
 
 articoli17feb <- vector(mode = "list", length = length(CORRIERELinks))
@@ -136,6 +136,6 @@ dat
 
 # 9. saving dataset 
 
-save(dat, file = here::here("Corrierearticles1702.Rdata"))
+save(dat, file = here::here("/data/Corrierearticles1702.Rdata"))
 
 
