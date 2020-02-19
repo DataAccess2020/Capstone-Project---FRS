@@ -103,22 +103,45 @@ dat3 %>%
 
 #"ESTERI"
 dat3 %>%
+  filter(section == "esteri") %>%
+  count(word, sort = TRUE) 
+
+dat3 %>%
   filter(section  == "esteri") %>%
   count(word) %>%
   with(wordcloud(word, n, max.words = 200))
 
+dat3 %>%
+  filter(section == "esteri") %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
 
-#graph "ECONOMIA"
+
+#"ECONOMIA"
+dat3 %>%
+  filter(section == "economia") %>%
+  count(word, sort = TRUE) 
+
 dat3 %>%
   filter(section  == "economia") %>%
   count(word) %>%
-  with(wordcloud(word, n, max.words = 35))
+  with(wordcloud(word, n, max.words = 200))
+
+dat3 %>%
+  filter(section == "economia") %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
 
 
-
-
-write.csv(dat3, file = here::here("Corrieredellasera.cvs"))
-
-save(dat3, file = here::here("Corrierearticles1402TEXTANALYSIS.Rdata"))
 
 
