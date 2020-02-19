@@ -122,13 +122,39 @@ libero %>%
 
 #____________________________________________________________
 
+# maybe sentiment?
 
+library(xml2)
+library(quanteda)
 
+# Read file and find the nodes
+opeNER_xml <- read_xml("it-sentiment_lexicon.lmf.xml")
+entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
+lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
+confidence <- xml_find_all(opeNER_xml, ".//Confidence")
+sentiment <- xml_find_all(opeNER_xml, ".//Sentiment")
 
+# Parse and put in a data frame
+opeNER_df <- data.frame(
+  id = xml_attr(entries, "id"),
+  lemma = xml_attr(lemmas, "writtenForm"),
+  partOfSpeech = xml_attr(entries, "partOfSpeech"),
+  confidenceScore = as.numeric(xml_attr(confidence, "score")),
+  method = xml_attr(confidence, "method"),
+  polarity = as.character(xml_attr(sentiment, "polarity")),
+  stringsAsFactors = F
+)
+# Fix a mistake
+opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
+                             "neutral", opeNER_df$polarity)
 
+# Make quanteda dictionary
+opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
+#################################################
 
-
+dfm <- dfm(libero$word)
+dfm_lookup(dfm, dictionary =  opeNER_dict, valuetype = "regex")
 
 
 
