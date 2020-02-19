@@ -31,19 +31,32 @@ dat3 <- dat2 %>%
   filter(!str_detect(word, '\\d+')) %>%
   filter(!str_detect(word, '[[:punct:]]'))
 
+#4. Saving vectorized dataset 
 
-#4. Creating a dataset with only 2 variables: word and count ---------------
-
-dat4 <- dat3 %>%
-  ungroup() %>%
-  count(word, sort = TRUE)
+save(dat3, file = here::here("/data/IlCorriereDellaSera.Rdata"))
 
 
-#5. Words graphs ----------------
-dat5 %>%
-  select(word) %>% 
+#5. Creating a dataset with only 2 variables: word and count ---------------
+corriere_words <- tibble (word = dat3$word)
+
+#6. Word frequencies 
+corriere_words %>%
+  count(word, sort = TRUE) 
+
+#graph 
+
+corriere_words %>%
   count(word) %>%
-  with(wordcloud(word, n, max.words = 200)) 
+  with(wordcloud(word, n, max.words = 200))
+
+corriere_words %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 15) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
 
 
 #graphs "CRONACA"
@@ -51,6 +64,16 @@ dat3 %>%
   filter(section == "cronache") %>%
   count(word) %>%
   with(wordcloud(word, n, max.words = 200)) 
+
+dat3 %>%
+  filter(section == "cronache") %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 10) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
  
 
 #graph "POLITICA"
