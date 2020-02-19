@@ -59,7 +59,11 @@ corriere_words %>%
   coord_flip()
 
 
-#graphs "CRONACA"
+#"CRONACA"
+dat3 %>%
+  filter(section == "cronache") %>%
+  count(word, sort = TRUE) 
+
 dat3 %>%
   filter(section == "cronache") %>%
   count(word) %>%
@@ -76,14 +80,28 @@ dat3 %>%
   coord_flip()
  
 
-#graph "POLITICA"
+#"POLITICA"
+dat3 %>%
+  filter(section == "politica") %>%
+  count(word, sort = TRUE) 
+
 dat3 %>%
   filter(section  == "politica") %>%
   count(word) %>%
   with(wordcloud(word, n, max.words = 200))
 
+dat3 %>%
+  filter(section == "politica") %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 3) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
 
-#graph "ESTERI"
+
+#"ESTERI"
 dat3 %>%
   filter(section  == "esteri") %>%
   count(word) %>%
