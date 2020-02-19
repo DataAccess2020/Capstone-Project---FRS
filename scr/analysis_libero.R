@@ -27,6 +27,7 @@ libero <- libero %>%
 
 # removing the stopwords: --------------------------------------
 
+# Those are words that were probably not scraped in the right encoding. Since those are not usual italian stopwords, I'm deleting them manually: 
 new_stops <- c("eâ", "lâ", "â", "â", "â")
 
 libero <- libero %>% 
@@ -36,7 +37,7 @@ libero <- libero %>%
   filter(!str_detect(word, '[[:punct:]]')) %>% 
   filter(!str_detect(word, new_stops)) 
 
-# saving this clean data: 
+# saving this clean and vectorized dataset (this will be used in the merge process with the data from the other 2 newspapers): 
 write.csv(libero, file = here::here("libero.csv"))
 
 # I created a new data containing only the word variable, in order to calculate the frequency, without considering the links: 
