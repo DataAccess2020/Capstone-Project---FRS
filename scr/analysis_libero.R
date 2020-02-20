@@ -1,7 +1,7 @@
 #Analysis: 
 
 # sourcing the packages: 
-source(here::here("script","00_setup.R"))
+source(here::here("scr","00_setup.R"))
 
 # trasforming the text from factor to character: 
 text_cleaned <- sapply(dat_3$text, toString, windth=57)
