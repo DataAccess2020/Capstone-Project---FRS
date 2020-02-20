@@ -154,7 +154,9 @@ opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
 #################################################
 
-corpus <- corpus(libero_words$word)
+corpus <- corpus(dat_3$text)
+
+summary(corpus)
 
 dfm <- dfm(corpus)
 
