@@ -1,10 +1,7 @@
 #Analysis: 
 
-library(tidytext) 
-library(tidyr)
-library(stopwords)
-library(tidyverse)
-library(wordcloud)
+# sourcing the packages: 
+source(here::here("script","00_setup.R"))
 
 # trasforming the text from factor to character: 
 text_cleaned <- sapply(dat_3$text, toString, windth=57)
@@ -125,9 +122,6 @@ libero %>%
 
 # maybe sentiment?
 
-library(xml2)
-library(quanteda)
-
 # Read file and find the nodes
 opeNER_xml <- read_xml("it-sentiment_lexicon.lmf.xml")
 entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
@@ -160,7 +154,6 @@ summary(corpus)
 
 dfm <- dfm(corpus)
 
-require(ggplot2)
 freq <- textstat_frequency(dfm, n = 30)
 
 ggplot(data = freq) +

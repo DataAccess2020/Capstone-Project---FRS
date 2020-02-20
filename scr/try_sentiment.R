@@ -1,5 +1,8 @@
 # try sentiment: 
 
+# sourcing the packages: 
+source(here::here("script","00_setup.R"))
+
 library(hunspell)
 
 parole_libero <- libero_words %>%
@@ -15,3 +18,5 @@ head(hunspell_check(parole_libero, dict = "it_IT"))
 
 # quali parole non sono state riconosciute: 
 parole_libero[hunspell_check(parole_libero, dict = "it_IT") == F]
+
+

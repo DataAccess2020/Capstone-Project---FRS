@@ -8,13 +8,15 @@
 # - extracting the text of the articles
 # - sorting the dataset
 
+# sourcing the packages: 
+source(here::here("script","00_setup.R"))
+
 # Browsing the robots.txt file: -------------------------------------------------------
 browseURL("https://www.liberoquotidiano.it/robots.txt")
 
 # Downloading and saving the HTML: ----------------------------------------------------
 url <- URLencode("https://www.liberoquotidiano.it/")
 
-library(stringr)
 page <- RCurl::getURL(url, 
                       useragent = str_c(R.version$platform,
                                         R.version$version.string,
@@ -25,7 +27,7 @@ writeLines(page,
            con = here :: here("libero.html"))
 
 # Extracing the links in the homepage using Rvest:--------------------------------------
-library(rvest)
+
 link <- read_html(here :: here("libero.html"))%>%
   html_nodes(css = ".titolo a") %>%
   html_attr("href")
@@ -35,7 +37,7 @@ link <- str_subset(link, "^https://www\\.liberoquotidiano\\.it")
 link
 
 # Creating the data frame:
-library(tidyverse)
+
 dat <- tibble(
   link = link)
 
@@ -85,7 +87,7 @@ dat <- tibble(
 dat
 
 # Sorting the dataset, deleting empty rows: ------------------------------------------------------------
-library(dplyr)
+
 dat_1 <- dat %>%
    filter(articles != "character(0)")
 
