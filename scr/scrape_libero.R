@@ -9,7 +9,7 @@
 # - sorting the dataset
 
 # sourcing the packages: 
-source(here::here("script","00_setup.R"))
+source(here::here("scr","00_setup.R"))
 
 # Browsing the robots.txt file: -------------------------------------------------------
 browseURL("https://www.liberoquotidiano.it/robots.txt")
