@@ -3,17 +3,10 @@
 # sourcing the packages: 
 source(here::here("scr","00_setup.R"))
 
-# trasforming the text from factor to character: 
-text_cleaned <- sapply(dat_3$text, toString, windth=57)
-
-# adding the new text format to the data frame: 
-dat_3 <- mutate(dat_3, text = text_cleaned)
-
-as.tbl(dat_3, stringsAsFactor = FALSE)
 
 # unnesting the token words into a new dataset:-----------------------------
 
-libero <- dat_3 %>%
+libero <- dat_character %>%
   unnest_tokens (word, text)
 
 # adding the line numbers:----------------------------------------

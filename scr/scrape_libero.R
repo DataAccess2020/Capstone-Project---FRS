@@ -111,4 +111,13 @@ dat_3
 # saving it locally: 
 save(dat_3, file = here::here("libero_articles_1702.Rdata"))
 
+# trasforming the text from factor to character: 
+text_cleaned <- sapply(dat_3$text, toString, windth=57)
+
+# adding the new text format to the data frame: 
+dat_character <- mutate(dat_3, text = text_cleaned)
+
+as.tbl(dat_character, stringsAsFactor = FALSE)
+
+save(dat_character, file = here::here("dat_character.Rdata"))
 
