@@ -18,14 +18,32 @@ head(hunspell_check(parole_libero, dict = "it_IT"))
 
 # quali parole non sono state riconosciute: 
 parole_libero[hunspell_check(parole_libero, dict = "it_IT") == F]
-
+# riunisco in un unico vector: 
 parole_libero <- str_c(parole_libero, collapse = " ")
 
+# CORPUS:----------------------------------------------------- 
 corpus <- corpus(
   parole_libero
 )
 summary(corpus)
 names(corpus)
 
+# contesto in cui compaiono certe parole nel corpus: 
 kwic(corpus, "mussolini")
-kwic(corpus, "invest", valuetype = "regex")
+kwic(corpus, "coronavirus")
+kwic(corpus, "salvini")
+
+
+## TOKENS: ------------------------------------------------------
+corp_it_frasi <- corp_it %>%
+  corpus_reshape(to = "sentences")
+# I testi ora sono frasi singole
+texts(corp_it_frasi)[3]
+
+
+
+
+
+
+
+
