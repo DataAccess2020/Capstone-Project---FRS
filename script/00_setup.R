@@ -1,9 +1,11 @@
 #SETUP SCRIPT
+
 # list of required packages
-want = c("here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords", "udpipe")
-have = want %in% rownames(installed.packages())
+want <- c("here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords", "udpipe")
+have <- want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 rm(have, want)
+
 #call required packages
 library("here")
 library("RCurl")
