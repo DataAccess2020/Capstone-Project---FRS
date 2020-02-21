@@ -147,13 +147,18 @@ opeNERdict <- quanteda::dictionary(
 lengths(opeNERdict)
 
 # create the a dataset with the text (as character) and the sectin( filtered)
-prova_sent <-  dat_character %>% 
+data_sentiment <-  dat_character %>% 
   select(section, text) %>% 
   filter(!is.na(section))
 
+
+table(dat_character$section)
+data_sentiment <- subset (data_sentiment, section == "esteri" | section =="italia" | section=="politica"| section=="sfoglio") 
+
+
 # create the corpus for the sentiment analysis: 
 crp_prova <- corpus(
-  prova_sent
+  data_sentiment
 )
 
 # create the DFM for the sentiement analysis: 
