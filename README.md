@@ -10,7 +10,6 @@ This is the brench in which the articles of *Il Corriere della Sera* are scraped
 In this brench there are three main dataset:
 
 - *dat*: it is the starting dataset, created after the scraping part of my analysis. It is composed by:
-
          - 30 observation (the articles published on the homepage on February 17);
          - 3 variables: 
            1) Link;
@@ -20,7 +19,6 @@ In this brench there are three main dataset:
            
 - *dat3*: it is the dataset in which the variable *"word"* is added. It presents 4 variables and 8440 observation. 
 This dataset was obtained in two steps:
-
          1) The first step is what we call *vectorization*: using the command **unnest_token** I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
          2) The second step is about the *pre-processing*: I removed from the observations what was unusful for the analysis. This way I obtained *dat3*; 
 
