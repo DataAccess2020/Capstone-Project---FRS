@@ -184,3 +184,5 @@ dat3 %>%
   geom_col() +
   xlab(NULL) +
   coord_flip()
+
+
