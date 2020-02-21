@@ -1,20 +1,23 @@
-# Capstone project:
+# Capstone project: team FRS
 
-# This script includes the scraping of the newspaper "The Guardian":
+# This script includes the scraping of the newspaper "Libero Quotidiano":
 # - browsing the robots.txt file;
 # - downloading and saving the HTML;
-# - extracting the links in the homepage using Rvest:
-# - extracting the section/category for each article:
-# - extracting the text of the articles
-# - sorting the dataset
+# - extracting the links in the homepage using Rvest;
+# - extracting the section/category for each article;
+# - extracting the text of the articles;
+# - sorting the dataset;
+# - adding the newspaper name in the dataset;
+# - saving the final dataset as Rdata--> dat_3.Rdata
+# - saving the dataset with the variable text as character --> dat_character.Rdata
 
-# sourcing the packages: 
+# Sourcing all the needed packages: ---------------------------------------------------
 source(here::here("scr","00_setup.R"))
 
 # Browsing the robots.txt file: -------------------------------------------------------
 browseURL("https://www.liberoquotidiano.it/robots.txt")
 
-# Downloading and saving the HTML: ----------------------------------------------------
+# Downloading and saving the HTML of the homepage: ----------------------------------------------------
 url <- URLencode("https://www.liberoquotidiano.it/")
 
 page <- RCurl::getURL(url, 
@@ -86,29 +89,30 @@ dat <- tibble(
 )
 dat
 
-# Sorting the dataset, deleting empty rows: ------------------------------------------------------------
+# Deleting NAs: ------------------------------------------------------------
 
 dat_1 <- dat %>%
    filter(articles != "character(0)")
 
 articles
 
-# cleaning and reformatting the categories: now the articles are text
+# Cleaning and reformatting the categories: now the articles are text
 dat_2 <- data.frame(sapply(dat_2$articles, toString, windth=57))
 
 # adding the newspaper name in the dataset: 
 
 newspaper <- rep ("Libero Quotidiano", length = 63)
 
-# creating the final dataset: 
+# Creating the final dataset: -------------------------------------------------
 dat_3 <- cbind(dat_2, dat_1)
 
+# making sure that the variable "text" is a character vector: 
 text_df <- mutate(dat_2, text = articles$articles)
 
 dat_3 <- tibble (link = dat_3$link, section = dat_3$section, text = text_df$sapply.dat_2.articles..toString..windth...57., newspaper = newspaper)
 dat_3 
 
-# saving it locally: 
+# Saving it locally: 
 save(dat_3, file = here::here("libero_articles_1702.Rdata"))
 
 # trasforming the text from factor to character: 
@@ -119,5 +123,6 @@ dat_character <- mutate(dat_3, text = text_cleaned)
 
 as.tbl(dat_character, stringsAsFactor = FALSE)
 
+# saving it locally: 
 save(dat_character, file = here::here("dat_character.Rdata"))
 

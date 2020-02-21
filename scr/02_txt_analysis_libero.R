@@ -1,21 +1,31 @@
-#Analysis: 
+# Capstone project: team FRS
 
-# sourcing the packages: 
+# This script includes the text analysis on the articles scraped from "Libero Quotidiano":
+# - unnesting the token words;
+# - adding the line numbers;
+# - removing the stopwords;
+# - saving the clean and vectorized dataset in csv --> libero.csv
+# - creating a dataset with only the words (libero_words)
+# - analysis of the most frequent words (in the whole dataset and by sections);
+# - wordclouds of the frequencies;
+
+
+# sourcing all the needed packages: ---------------------------------------------
 source(here::here("scr","00_setup.R"))
 
 
-# unnesting the token words into a new dataset:-----------------------------
+# Unnesting the token words:-----------------------------
 
 libero <- dat_character %>%
   unnest_tokens (word, text)
 
-# adding the line numbers:----------------------------------------
+# Adding the line numbers:----------------------------------------
 
 libero <- libero %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
 
-# removing the stopwords: --------------------------------------
+# Removing the stopwords: --------------------------------------
 
 # Those are words that were probably not scraped in the right encoding. Since those are not usual italian stopwords, I'm deleting them manually: 
 new_stops <- c("eâ", "lâ", "â", "â", "â")
@@ -27,7 +37,7 @@ libero <- libero %>%
   filter(!str_detect(word, '[[:punct:]]')) %>% 
   filter(!str_detect(word, new_stops)) 
 
-# saving this clean and vectorized dataset (this will be used in the merge process with the data from the other 2 newspapers): 
+# Saving this clean and vectorized dataset: 
 write.csv(libero, file = here::here("libero.csv"))
 
 # I created a new data containing only the word variable, in order to calculate the frequency, without considering the links: 
@@ -51,7 +61,7 @@ libero_words %>%
   xlab(NULL) +
   coord_flip()
 
-# 1. Frequencies for the section "politica": ---------------------------
+# 1. Frequencies for the section "politica": -------------------------------------
 libero %>%
   filter(section  == "politica") %>%
   ungroup() %>%
@@ -63,7 +73,7 @@ libero %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 2. Frequencies for the section "italia": -------------------------------
+# 2. Frequencies for the section "italia": --------------------------------------------
 libero %>%
   filter(section  == "italia") %>%
   ungroup() %>%
@@ -75,38 +85,26 @@ libero %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 3. Frequencies for the section "personaggi": --------------------------------------------
+# 3. Frequencies for the section "esteri": -------------------------------------------
 libero %>%
-  filter(section  == "personaggi") %>%
+  filter(section  == "esteri") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
 # 3.1 Wordcloud:
 libero %>%
-  filter(section  == "personaggi") %>%
+  filter(section  == "esteri") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
-  with(wordcloud(word, n, max.words = 100))
+  with(wordcloud(word, n, max.words = 50))
 
-# 4. Frequencies for the section "esteri": -------------------------------------------
+# 4. Frequencies for the section "sfoglio": --------------------------------------
 libero %>%
-  filter(section  == "esteri") %>%
+  filter(section  == "sfoglio") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
 # 4.1 Wordcloud:
 libero %>%
-  filter(section  == "esteri") %>%
-  ungroup() %>%
-  count(word, sort = TRUE) %>%
-  with(wordcloud(word, n, max.words = 100))
-
-# 5. Frequencies for the section "spettacoli": --------------------------------------
-libero %>%
-  filter(section  == "spettacoli") %>%
-  ungroup() %>%
-  count(word, sort = TRUE) 
-# 5.1 Wordcloud:
-libero %>%
-  filter(section  == "spettacoli") %>%
+  filter(section  == "sfoglio") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
