@@ -101,11 +101,23 @@ libero_dtm
 # most frequent words: 
 topfeatures(libero_dtm)
 textstat_frequency(libero_dtm, n = 20)
-
+# Wordcloud: 
 textplot_wordcloud(libero_dtm, 
                    min_count =5)
 
+#Filtrare la DTM eliminando i termini poco informativi o problematici e Pesare i valori nelle celle in base alla frequenza del termine nel corpus (TF) rispetto alla frequenza del termine tra vari documenti (IDF)
 
+libero_dtm_trim <- libero_dtm %>%
+  dfm_trim(min_termfreq = 0.75, termfreq_type = "quantile", 
+           max_docfreq = 0.25, docfreq_type = "prop",
+           verbose = T)
+
+libero_dtm_trim
+
+textplot_wordcloud(libero_dtm_trim, 
+                   min_count = 10)
+
+#TF-IDF: 
 libero_dtm_tfidf <- dfm_tfidf(
   libero_dtm
 )
@@ -114,6 +126,28 @@ textstat_frequency(libero_dtm_tfidf, n = 20, force=T)
 
 textplot_wordcloud(libero_dtm_tfidf, 
                    min_count = 10)
+
+# Dizionari: 
+opeNER <- rio::import("./dictionary/opeNER_df.csv")
+head(opeNER)
+
+# words without polarity: 
+table(opeNER$polarity, useNA = "always")
+opeNER <- opeNER %>%
+  filter(polarity != "")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

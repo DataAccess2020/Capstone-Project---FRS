@@ -139,6 +139,9 @@ opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral",
 # Make quanteda dictionary
 opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
+write.csv(opeNER_df, file = here::here("opeNER_df.csv"))
+
+
 #################################################
 
 corpus <- corpus(dat_3$text)
