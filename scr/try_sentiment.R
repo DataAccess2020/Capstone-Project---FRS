@@ -201,12 +201,109 @@ quanteda::convert(libero_dtm1,
   xlab("Polarità sentiment\n(da negativo a positivo)") +
   theme_bw()
 
+## SENTIMENT WITH CONTINOUS CATEGORIES: ---------------------------------------------------
+dpm_words <- dpm$V1
+# Indignato
+dpm_ind <- dpm$INDIGNATO
+names(dpm_ind) <- dpm_words
+# Preoccupato
+dpm_pre <- dpm$PREOCCUPATO
+names(dpm_pre) <- dpm_words
+# Triste
+dpm_sad <- dpm$TRISTE
+names(dpm_sad) <- dpm_words
+# Divertito
+dpm_div <- dpm$DIVERTITO
+names(dpm_div) <- dpm_words
+# Soddisfatto
+dpm_sat <- dpm$SODDISFATTO
+names(dpm_sat) <- dpm_words
 
+# create a DFM: 
+libero_sent_dpm <- dfm(
+  crp_prova,
+  tolower = T,
+  select = dpm_words,
+  groups = "section"
+)
+libero_sent_dpm
 
+# 1. Indignato
+libero_sent_ind <- libero_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_ind) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Indignato = ".") %>%
+  rownames_to_column("section")
 
+# 2. Preoccupato
+libero_sent_pre <- libero_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_pre) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Preoccupato = ".")
 
+# 3. Triste
+libero_sent_sad <- libero_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_sad) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Triste = ".")
 
+# 4. Divertito
+libero_sent_div <- libero_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_div) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Divertito = ".")
 
+# 5. Soddisfatto
+libero_sent_sat <- libero_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_sat) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Soddisfatto = ".")
+
+# unisco: 
+libero_sent_emo <- bind_cols(
+  libero_sent_ind, libero_sent_pre, libero_sent_sad, libero_sent_div, libero_sent_sat
+)
+libero_sent_emo
+
+# GRAPHS FOR EMOTIONS: 
+# for each sections:
+libero_sent_emo %>%
+  gather(var, val, -section) %>%
+  ggplot(., aes(x = reorder_within(var, val, section), y = val)) +
+  geom_bar(aes(fill = section),
+           stat = "identity", 
+           col = "black", alpha = 0.5) +
+  facet_wrap(~section, ncol = 2, scales = "free_y") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_reordered() +
+  coord_flip() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# emotions ranked: 
+
+libero_sent_emo %>%
+  gather(var, val, -section) %>%
+  ggplot(., aes(x = reorder_within(section, val, var), y = val)) +
+  geom_bar(aes(fill = var),
+           stat = "identity", 
+           col = "black", alpha = 0.5) +
+  facet_wrap(~var, ncol = 2, scales = "free_y") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_reordered() +
+  coord_flip() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
 
 
