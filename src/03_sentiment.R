@@ -1,105 +1,185 @@
 source(here::here("src","00_setup.R"))
 
-library(hunspell)
+# SENTIMENT ANALYSIS 
 
-#Assicurarci che non ci siano caratteri estranei:
-#1- rimuoviamo la punteggiatura;
-#2- convertiamo tutte le parole in minuscolo;
-#3- eliminaiamo lo spazio bianco ai margini (prodotto eliminando la punteggiatura);
-#4- usiamo la funzione unique() per selezionare i valori unici
+# sentiment analysis with discrete categories: positive, negative, neutral
+opeNER <- rio::import("./dictionary/opeNER_df.csv")
+head(opeNER)
 
-corriere_words <- as.matrix(corriere_words) #we need an atomic vector 
-
-corriere_words2 <- corriere_words %>%
-  str_replace_all("[^[:alnum:][:space:]]", " ") %>%
-  str_to_lower() %>%
-  str_split(" ") %>%
-  unlist() %>%
-  str_trim("both") %>%
-  unique()
-
-corriere_words2
-
-# Ora possiamo usare la funzione hunspell_check() per cercare le parole che
-# sono presenti nel dizionario.
-
-head(hunspell_check(corriere_words, dict = "it_IT"))
-
-# parole che non sono state riconosciute
-
-corriere_words[hunspell_check(corriere_words, dict = "it_IT") == F]
-
-writeLines( corriere_words, "./data/corrierewords.txt")
+# elimino parole senza polarità  
+table(opeNER$polarity, useNA = "always")     
+opeNER <- opeNER %>%                       #obs change 25098 - 25053
+  filter(polarity != "")
 
 
-#quanteda --- 
+# Depeche Mood: 
+dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
+head(dpm)
+
+
+# Creare dizionario dal lessico opeNER
+opeNERdict <- quanteda::dictionary(
+  split(opeNER$lemma, opeNER$polarity)
+)
+lengths(opeNERdict)
+
+
+data_sentiment <-  dat %>% 
+  select(section, articlestext) %>% 
+  filter(!is.na(section))
+
+table(dat$section)
+data_sentiment <- subset(data_sentiment, section == "esteri" | section =="cronache" | section=="politica"| section=="economia") 
+
+data_sentiment
 
 library(quanteda)
 
-corrierewords_dtm <- dfm (
-  corriere_words2,
-  verbose = T)
+#creo il corpus
+crp <- quanteda::corpus ("data_sentiment")
 
-corrierewords_dtm
+crp
 
-#parole che compaiono più frequentemente
-topfeatures(corrierewords_dtm)
-
-#Resoconto più dettagliato
-textstat_frequency(corrierewords_dtm, n = 8440)
-
-# Word cloud
-textplot_wordcloud(corrierewords_dtm, 
-                   min_count = 3)
-
-#filtrare e pesare la DTM
-
-corrierewords_dtm_trim <- corrierewords_dtm %>%
-  dfm_trim(min_termfreq = 0.75, termfreq_type = "quantile", 
-           max_docfreq = 0.25, docfreq_type = "prop",
-           verbose = T)
-
-textplot_wordcloud(corrierewords_dtm_trim, 
-                   min_count = 3)
-
-# SENTIMENT ----------------------------
-??opeNER
-
-opeNER <- import("./dizionari/opeNER_df.csv")
-head(opeNER)
-
-
-#CORPUS -------------------------------
-
-#creo un corpus   
-corp_it <- corpus(
-    corriere_words
+#credo dfm
+crp_sent <- dfm(
+  crp,
+  tolower = T,
+  dictionary = opeNERdict
+) %>%
+  dfm_group(
+    group = "fonte"
   )
+head(crp_sent)
 
-#struttura del corpus 
-summary(corp_it)
+head(corriere_dtm1)
 
-#contenuto del corpus
-names(corp_it)
+quanteda::convert(crp_sent,
+                  to = "data.frame") %>%
+  rename(section = document) %>%
+  gather(var, val, -section) %>%
+  group_by(section) %>%
+  mutate(
+    val = val/sum(val)
+  ) %>%
+  ggplot(., aes(x = var, y = val)) +
+  geom_bar(aes(fill = section), 
+           stat = "identity", alpha = 0.5) +
+  facet_wrap(~section, ncol = 3) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_bw()
 
-# Aggiungere nomi partiti in una nuova variabile
-docvars(corp_it, "giornalee") <- "IlCorriere"
-
-# La variabile sarà salvata all'interno di "documents"
-corp_it$documents$IlCorriere
 
 
-kwic(corp_it, "raga", valuetype = "regex")
 
-corpus1 <- corpus(
-  corriere_words$word
+## SENTIMENT WITH CONTINOUS CATEGORIES: analysis of the emotions---------------------------------------------------
+# Creating vectors for each categories of the DPM, each is weighted:
+# saving the words from DPM in a vector: 
+dpm_words <- dpm$V1
+
+# Creating vectors for each categories of the DPM, each is weighted:
+# 1. Indignato / Outrage: 
+dpm_ind <- dpm$INDIGNATO
+names(dpm_ind) <- dpm_words
+
+# 2. Preoccupato / Worried:
+dpm_pre <- dpm$PREOCCUPATO
+names(dpm_pre) <- dpm_words
+
+# 3. Triste / Sad: 
+dpm_sad <- dpm$TRISTE
+names(dpm_sad) <- dpm_words
+
+# 4. Divertito / Entertained: 
+dpm_div <- dpm$DIVERTITO
+names(dpm_div) <- dpm_words
+
+# 5. Soddisfatto / Pleased: 
+dpm_sat <- dpm$SODDISFATTO
+names(dpm_sat) <- dpm_words
+
+# creating a DFM: 
+corriere_sent_dpm <- dfm(
+  crp,
+  tolower = T,
+  select = dpm_words,
+  groups = "section"
 )
-summary(corpus1)
-names(corpus1)
 
+corriere_sent_dpm
 
-corp_it <- corpus(
-  corriere_words
+# 1. Indignato
+corriere_sent_ind <- corriere_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_ind) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Indignato = ".") %>%
+  rownames_to_column("section")
+
+# 2. Preoccupato
+corriere_sent_pre <-  corriere_sent_dpm  %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_pre) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Preoccupato = ".")
+
+# 3. Triste
+corriere_sent_sad <-  corriere_sent_dpm  %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_sad) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Triste = ".")
+
+# 4. Divertito
+corriere_sent_div <- corriere_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_div) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Divertito = ".")
+
+# 5. Soddisfatto
+corriere_sent_sat <- corriere_sent_dpm %>%
+  dfm_weight(scheme = "prop") %>%
+  dfm_weight(weights = dpm_sat) %>%
+  rowSums() %>%
+  as.data.frame() %>%
+  rename(Soddisfatto = ".")
+
+# unisco: 
+corriere_sent_emo <- bind_cols(
+  corriere_sent_ind, corriere_sent_pre, corriere_sent_sad, corriere_sent_div, corriere_sent_sat
 )
+corriere_sent_emo
 
-kwic(corpus1, "giovani", valuetype = "regex")
+# GRAPHS FOR EMOTIONS: 
+# for each sections:
+corriere_sent_emo %>%
+  gather(var, val, -section) %>%
+  ggplot(., aes(x = reorder_within(var, val, section), y = val)) +
+  geom_bar(aes(fill = section),
+           stat = "identity", 
+           col = "black", alpha = 0.5) +
+  facet_wrap(~section, ncol = 2, scales = "free_y") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_reordered() +
+  coord_flip() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# emotions ranked: 
+
+corriere_sent_emo %>%
+  gather(var, val, -section) %>%
+  ggplot(., aes(x = reorder_within(section, val, var), y = val)) +
+  geom_bar(aes(fill = var),
+           stat = "identity", 
+           col = "black", alpha = 0.5) +
+  facet_wrap(~var, ncol = 2, scales = "free_y") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_reordered() +
+  coord_flip() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
