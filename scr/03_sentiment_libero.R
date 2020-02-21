@@ -80,7 +80,7 @@ crp_prova <- corpus(
   data_sentiment
 )
 
-# create the DFM for the sentiement analysis: 
+# create the DFM for the sentiment analysis: 
 libero_dtm1 <- dfm(
   crp_prova,
   tolower = T,
