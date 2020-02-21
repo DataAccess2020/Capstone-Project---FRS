@@ -8,6 +8,9 @@
 # - creating a dataset with only the words (libero_words)
 # - analysis of the most frequent words (in the whole dataset and by sections);
 # - wordclouds of the frequencies;
+# - creating the corpus;
+# - creating the document-term matrix and filtering it;
+# - creating the TF-IDF;
 
 
 # sourcing all the needed packages: ---------------------------------------------
@@ -111,91 +114,44 @@ libero %>%
 
 #____________________________________________________________
 
-# maybe sentiment?
+# TEXT ANALYSIS: 
 
-# Read file and find the nodes
-opeNER_xml <- read_xml("it-sentiment_lexicon.lmf.xml")
-entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
-lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
-confidence <- xml_find_all(opeNER_xml, ".//Confidence")
-sentiment <- xml_find_all(opeNER_xml, ".//Sentiment")
-
-# Parse and put in a data frame
-opeNER_df <- data.frame(
-  id = xml_attr(entries, "id"),
-  lemma = xml_attr(lemmas, "writtenForm"),
-  partOfSpeech = xml_attr(entries, "partOfSpeech"),
-  confidenceScore = as.numeric(xml_attr(confidence, "score")),
-  method = xml_attr(confidence, "method"),
-  polarity = as.character(xml_attr(sentiment, "polarity")),
-  stringsAsFactors = F
+# CORPUS:----------------------------------------------------- 
+crp <- corpus(
+  libero_words$word
 )
-# Fix a mistake
-opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
-                             "neutral", opeNER_df$polarity)
+summary(crp)
+names(crp)
 
-# Make quanteda dictionary
-opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
+## DOCUMENT - TERM MATRIX:-------------------------------------------------
 
-write.csv(opeNER_df, file = here::here("opeNER_df.csv"))
+libero_dtm <- dfm(
+  crp,
+  verbose = T
+)
+libero_dtm
 
+#Filtrare la DTM eliminando i termini poco informativi o problematici e Pesare i valori nelle celle in base alla frequenza del termine nel corpus (TF) rispetto alla frequenza del termine tra vari documenti (IDF)
 
-#################################################
+libero_dtm_trim <- libero_dtm %>%
+  dfm_trim(min_termfreq = 0.75, termfreq_type = "quantile", 
+           max_docfreq = 0.25, docfreq_type = "prop",
+           verbose = T)
 
-corpus <- corpus(dat_3$text)
+libero_dtm_trim
 
-summary(corpus)
+#TF-IDF: 
+libero_dtm_tfidf <- dfm_tfidf(
+  libero_dtm
+)
 
-dfm <- dfm(corpus)
+textstat_frequency(libero_dtm_tfidf, n = 20, force=T)
 
-freq <- textstat_frequency(dfm, n = 30)
-
-ggplot(data = freq) +
-  geom_point(aes(x = reorder(feature, frequency), y = frequency)) +
-  coord_flip() +
-  labs(x = NULL, y = "Frequency", title = "Descriptive frequencies") +
-  theme_bw()
-
-inaug_lx <- dfm(corpus, 
-                what = 'word', 
-                tolower = TRUE, 
-                stem = FALSE,
-                remove_numbers = TRUE,
-                remove_punct = TRUE,
-                remove_separators = TRUE,
-                remove_url = TRUE,
-                ngrams = 1, 
-                dictionary = opeNER_dict)   # <--- Note this line!
-
-inaug_lx_trim <- dfm_trim(inaug_lx, 
-                          termfreq_type = "prop",
-                          min_termfreq = 0.05,
-                          min_docfreq = 3)
-
-as_tibble(inaug_lx_trim) %>% 
-  mutate(share_pos = positive / (negative + positive) * 100) %>% 
-  ggplot(aes(x= inaug_lx_trim, y = share_pos)) + 
-  geom_point() +
-  geom_smooth(method = "loess", ) + 
-  labs(x = "Year", y = "Share of positive terms", title = "Sentiment US inaugural speeches") +
-  theme_bw()
-
-
-inaug_lx_trim <- dfm_trim(inaug_lx, 
-                          termfreq_type = "prop",
-                          min_termfreq = 0.05,
-                          min_docfreq = 3)
+textplot_wordcloud(libero_dtm_tfidf, 
+                   min_count = 10)
 
 
 
 
-
-
-dfm_lookup(dfm, dictionary =  opeNER_dict, valuetype = "glob")
-
-
-myDfm <- dfm(dfm, dictionary = opeNER_dict)
-myDfm
-dfm_lookup(myDfm, dictionary =  opeNER_dict, valuetype = "glob")
 
 

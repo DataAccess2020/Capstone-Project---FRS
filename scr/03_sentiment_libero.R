@@ -1,137 +1,57 @@
-# try sentiment: 
+# Capstone project: team FRS
+
+# This script includes the sentiment and emotional analysis on the articles scraped from "Libero Quotidiano":
+# - downloading and saving the sentiement dictionary; --> opeNER_df.csv
+# - importing the "depeche mood" dictionary; --> DepecheMood_italian_token_full.tsv
+# - Sentiment analysis: 
+#    - creating the dataset with only the 4 sections I need;
+#    - creating the corpus;
+#    - creating the DFM;
+# - Sentiment graphs: for each of the 4 sections and for the whole dataset;
+# - Emotion analysis: 
+
+
+
 
 # sourcing the packages: 
 source(here::here("scr","00_setup.R"))
 
 library(hunspell)
 
-#parole_libero <- libero_words %>%
-#  str_replace_all("[^[:alnum:][:space:]]", " ") %>%
-#  str_to_lower() %>%
- # str_split(" ") %>%
-  #unlist() %>%
-  #str_trim("both") %>%
-  #unique()
 
-# controllo delle parole presenti nel dizionario (incluso in R - sezione spelling):
-#head(hunspell_check(parole_libero, dict = "it_IT"))
+# Dictionary 1: -----------------------------------------------------
+# Read file and find the nodes
+opeNER_xml <- read_xml("it-sentiment_lexicon.lmf.xml")
+entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
+lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
+confidence <- xml_find_all(opeNER_xml, ".//Confidence")
+sentiment <- xml_find_all(opeNER_xml, ".//Sentiment")
 
-# quali parole non sono state riconosciute: 
-#parole_libero[hunspell_check(parole_libero, dict = "it_IT") == F]
-# riunisco in un unico vector: 
-#parole_libero <- str_c(parole_libero, collapse = " ")
-
-# CORPUS:----------------------------------------------------- 
-crp <- corpus(
-  libero_words$word
+# Parse and put in a data frame
+opeNER_df <- data.frame(
+  id = xml_attr(entries, "id"),
+  lemma = xml_attr(lemmas, "writtenForm"),
+  partOfSpeech = xml_attr(entries, "partOfSpeech"),
+  confidenceScore = as.numeric(xml_attr(confidence, "score")),
+  method = xml_attr(confidence, "method"),
+  polarity = as.character(xml_attr(sentiment, "polarity")),
+  stringsAsFactors = F
 )
-summary(crp)
-names(crp)
+# Fix a mistake
+opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
+                             "neutral", opeNER_df$polarity)
 
-# contesto in cui compaiono certe parole nel corpus: 
-#kwic(corpus, "mussolini")
-#kwic(corpus, "coronavirus")
-#kwic(corpus, "salvini")
+# Make quanteda dictionary: 
+opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
+# Saving it locally: 
+write.csv(opeNER_df, file = here::here("opeNER_df.csv"))
 
-## TOKENS: ------------------------------------------------------
-#corpus_frasi <- corpus %>%
- # corpus_reshape(to = "sentences")
-# I testi ora sono frasi singole
-#texts(corpus_frasi)[3]
-
-# rimuovo numeri e punteggiatura: 
-#token_frasi <- corpus_frasi %>%
- # tokens(remove_punct = T,
-  #       remove_numbers = T,
-   #      verbose = T)
-
-#head(token_frasi[[6]])
-
-# rimuovo apostrofi: 
-#texts(corpus_frasi) <- texts(corpus_frasi) %>%
- # str_replace_all("([a-z])\\'", "\\1 ")
-
-#token_frasi <- corpus_frasi %>%
- # tokens(remove_punct = T,
-         #remove_numbers = T)
-#head(token_frasi[[6]], n = 7)
-
-#STEMMING:---------------------------------------------
-
-#stopwords: 
-#stp <- c(stopwords("italian"), "d", "eâ", "lâ", "â", "â", "â")
-
-# get_stopwords(language= "it", source = "snowball"), get_stopwords(language= "it", source = "stopwords-iso")
-# rimuovo sia stopwords che maiuscole: 
-#token_frasi <- token_frasi %>%
- # tokens_tolower() %>%                     # Porta tutto in minuscolo
-  #tokens_remove(stp) %>%                   # Rimuove stop words (lista aggiornata da noi)
-#  tokens_wordstem(language = "italian")    # Stemming
-#head(token_frasi[[1]], n = 10)
-
-# N - GRAMMI: ---------------------------------------------------
-
-#ngr <- textstat_collocations(
- # token_frasi, 
-#  size = 2:3,                 # Sequence di 2 e 3 parole
- # min_count = 3) 
-
-#ngr %>%
- # arrange(-count)
-
-# unisco all'oggetto precedente: 
-
-#token_frasi <- tokens_compound(
-#  token_frasi, 
- # phrase(ngr$collocation), 
-#  join = T
-#)
-
-## DOCUMENT - TERM MATRIX:-------------------------------------------------
-
-# Matrice nella quale le righe sono i documenti, le colonne le parole, 
-# e nelle celle il conteggio delle volte che una determinata parola compare in un determinato documento
-libero_dtm <- dfm(
-  crp,
-  verbose = T
-)
-libero_dtm
-
-# most frequent words: 
-topfeatures(libero_dtm)
-textstat_frequency(libero_dtm, n = 20)
-# Wordcloud: 
-textplot_wordcloud(libero_dtm, 
-                   min_count =5)
-
-#Filtrare la DTM eliminando i termini poco informativi o problematici e Pesare i valori nelle celle in base alla frequenza del termine nel corpus (TF) rispetto alla frequenza del termine tra vari documenti (IDF)
-
-libero_dtm_trim <- libero_dtm %>%
-  dfm_trim(min_termfreq = 0.75, termfreq_type = "quantile", 
-           max_docfreq = 0.25, docfreq_type = "prop",
-           verbose = T)
-
-libero_dtm_trim
-
-textplot_wordcloud(libero_dtm_trim, 
-                   min_count = 10)
-
-#TF-IDF: 
-libero_dtm_tfidf <- dfm_tfidf(
-  libero_dtm
-)
-
-textstat_frequency(libero_dtm_tfidf, n = 20, force=T)
-
-textplot_wordcloud(libero_dtm_tfidf, 
-                   min_count = 10)
-
-# Dizionari: -----------------------------------------------------
+# Import it: 
 opeNER <- rio::import("./dictionary/opeNER_df.csv")
 head(opeNER)
 
-# words without polarity: 
+# Words without polarity: 
 table(opeNER$polarity, useNA = "always")
 opeNER <- opeNER %>%
   filter(polarity != "")
@@ -146,11 +66,10 @@ opeNERdict <- quanteda::dictionary(
 )
 lengths(opeNERdict)
 
-# create the a dataset with the text (as character) and the sectin( filtered)
+# create the a dataset with the text (as character) and the section(filtered)
 data_sentiment <-  dat_character %>% 
   select(section, text) %>% 
   filter(!is.na(section))
-
 
 table(dat_character$section)
 data_sentiment <- subset (data_sentiment, section == "esteri" | section =="italia" | section=="politica"| section=="sfoglio") 
@@ -201,7 +120,7 @@ quanteda::convert(libero_dtm1,
   xlab("Polarità sentiment\n(da negativo a positivo)") +
   theme_bw()
 
-## SENTIMENT WITH CONTINOUS CATEGORIES: ---------------------------------------------------
+## SENTIMENT WITH CONTINOUS CATEGORIES: emotion analysis ---------------------------------------------------
 dpm_words <- dpm$V1
 # Indignato
 dpm_ind <- dpm$INDIGNATO
