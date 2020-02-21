@@ -7,7 +7,7 @@ During this course we learned how to scrape data from HTTP web pages and we had 
 The main goal for this project is to apply the scraping knowledge that we learned in the seminar and to go behind it, trying to use some new packages and functions. This way we will test our ability to *self-learn*.  
 
 ## The research question 
-The starting point of our research is the idea that newspapers which position themselves in diverse political areas tend to structure their homepages in different ways. From this we decided to scrape 3 italian newspapers and to conduct on each a text and a sentiment analysis in order to discover (?) whether the political orientation influences the content of the articles, in particular the words used to discuss events and facts.
+The starting point of our research is the idea that newspapers which position themselves in diverse political areas tend to structure their homepages in different ways. From this we decided to scrape 3 italian newspapers and to conduct on each a text and a sentiment analysis in order to discover whether the political orientation influences the content of the articles, in particular the words used to discuss events and facts.
 
 The three newspapers are:
  - *Libero* (dx);
@@ -42,7 +42,8 @@ We created **three brench** so everyone could conduct analysis without creating 
                     1. *00_setup*: it is about the packages used;
                     2. *01_scraping*: it is about the scraping;
                     3. *02_analysis*: it is about the analysis;
-   - **fig**: is the folder in which the graphs are saved in a png format. 
+   - **fig**: is the folder in which the graphs are saved in a png format;
+   - **dictionary**: it contains the dictionaries for the sentiment analysis. 
 
 
 
