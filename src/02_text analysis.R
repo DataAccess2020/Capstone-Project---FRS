@@ -39,6 +39,9 @@ save(dat3, file = here::here("/data/IlCorriereDellaSera.Rdata"))
 #5. Creating a dataset with only 2 variables: word and count ---------------
 corriere_words <- tibble (word = dat3$word)
 
+save(corriere_words, file = here::here("/data/IlCorriereDellaSeraWORDS.Rdata"))
+
+
 #6. Word frequencies 
 corriere_words %>%
   count(word, sort = TRUE) 
@@ -136,6 +139,46 @@ dat3 %>%
   filter(section == "economia") %>%
   count(word, sort = TRUE) %>%
   filter(n > 5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
+
+#LA-LETTURA
+dat3 %>%
+  filter(section == "la-lettura") %>%
+  count(word, sort = TRUE) 
+
+dat3 %>%
+  filter(section  == "la-lettura") %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 20))
+
+dat3 %>%
+  filter(section == "la-lettura") %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 3) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip()
+
+#SCUOLA
+dat3 %>%
+  filter(section == "scuola") %>%
+  count(word, sort = TRUE) 
+
+dat3 %>%
+  filter(section  == "scuola") %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 20))
+
+dat3 %>%
+  filter(section == "scuola") %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 2) %>%
   mutate(word = reorder(word, n)) %>%
   ggplot(aes(word, n)) +
   geom_col() +
