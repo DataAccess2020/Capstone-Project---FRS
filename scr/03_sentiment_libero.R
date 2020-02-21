@@ -21,7 +21,7 @@ library(hunspell)
 
 # Dictionary 1: -----------------------------------------------------
 # Read file and find the nodes
-opeNER_xml <- read_xml("it-sentiment_lexicon.lmf.xml")
+opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
 entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
 lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
 confidence <- xml_find_all(opeNER_xml, ".//Confidence")
