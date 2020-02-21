@@ -120,25 +120,33 @@ quanteda::convert(libero_dtm1,
   xlab("Polarità sentiment\n(da negativo a positivo)") +
   theme_bw()
 
-## SENTIMENT WITH CONTINOUS CATEGORIES: emotion analysis ---------------------------------------------------
+## SENTIMENT WITH CONTINOUS CATEGORIES: analysis of the emotions---------------------------------------------------
+# Creating vectors for each categories of the DPM, each is weighted:
+# saving the words from DPM in a vector: 
 dpm_words <- dpm$V1
-# Indignato
+
+# Creating vectors for each categories of the DPM, each is weighted:
+# 1. Indignato / Outrage: 
 dpm_ind <- dpm$INDIGNATO
 names(dpm_ind) <- dpm_words
-# Preoccupato
+
+# 2. Preoccupato / Worried:
 dpm_pre <- dpm$PREOCCUPATO
 names(dpm_pre) <- dpm_words
-# Triste
+
+# 3. Triste / Sad: 
 dpm_sad <- dpm$TRISTE
 names(dpm_sad) <- dpm_words
-# Divertito
+
+# 4. Divertito / Entertained: 
 dpm_div <- dpm$DIVERTITO
 names(dpm_div) <- dpm_words
-# Soddisfatto
+
+# 5. Soddisfatto / Pleased: 
 dpm_sat <- dpm$SODDISFATTO
 names(dpm_sat) <- dpm_words
 
-# create a DFM: 
+# creating a DFM: 
 libero_sent_dpm <- dfm(
   crp_prova,
   tolower = T,
