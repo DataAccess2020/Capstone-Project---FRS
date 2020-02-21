@@ -127,7 +127,7 @@ textstat_frequency(libero_dtm_tfidf, n = 20, force=T)
 textplot_wordcloud(libero_dtm_tfidf, 
                    min_count = 10)
 
-# Dizionari: 
+# Dizionari: -----------------------------------------------------
 opeNER <- rio::import("./dictionary/opeNER_df.csv")
 head(opeNER)
 
@@ -136,10 +136,52 @@ table(opeNER$polarity, useNA = "always")
 opeNER <- opeNER %>%
   filter(polarity != "")
 
+# Depeche Mood: 
+dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
+head(dpm)
 
+# Sentiment: -----------------------------------------------------
+opeNERdict <- quanteda::dictionary(
+  split(opeNER$lemma, opeNER$polarity)
+)
+lengths(opeNERdict)
 
+# create the a dataset with the text (as character) and the sectin( filtered)
+prova_sent <-  dat_character %>% 
+  select(section, text) %>% 
+  filter(!is.na(section))
 
+# create the corpus for the sentiment analysis: 
+crp_prova <- corpus(
+  prova_sent
+)
 
+# create the DFM for the sentiement analysis: 
+libero_dtm1 <- dfm(
+  crp_prova,
+  tolower = T,
+  dictionary = opeNERdict
+) %>%
+  dfm_group(
+    group = "section"
+  )
+head(libero_dtm1)
+
+# Graph of the sentiments: 
+quanteda::convert(libero_dtm1,
+                  to = "data.frame") %>%
+  rename(section = document) %>%
+  gather(var, val, -section) %>%
+  group_by(section) %>%
+  mutate(
+    val = val/sum(val)
+  ) %>%
+  ggplot(., aes(x = var, y = val)) +
+  geom_bar(aes(fill = section), 
+           stat = "identity", alpha = 0.5) +
+  facet_wrap(~section, ncol = 3) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_bw()
 
 
 
