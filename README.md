@@ -3,72 +3,54 @@
 ## *Brench_fab*
 This is the brench in which the articles of *Il Corriere della Sera* are scraped and analysed. 
 
-## Structure
+## Data
+This folder contains:
+- the homepage of *Il Corriere della Sera* (17/02) saved into an html page: **Ilcorrieredellasera1702.html**; 
+- The folder **ARTICLES** in which the html pages of each article are stored; 
+- the saved dataset. 
 
+### Dataset 
+There are three dataset:
 
-## Dataset 
-In this brench there are three main dataset:
-
-- *dat*: it is the starting dataset, created after the scraping part of my analysis. It is composed by:
-         - 30 observation (the articles published on the homepage on February 17);
-         - 3 variables: 
-           1) Link;
-           2) Articlestext; 
-           3) Section;
-         - This dataset can be opened going to the folder **data** and then opening the file **Corrierearticles1702.Rdata**. 
+**dat**: it is the starting dataset, created after the scraping part of my analysis. It is composed by:
+- 30 observation (the articles published on the homepage on February 17);
+- 3 variables: 
+  1) Link;
+  2) Articlestext; 
+  3) Section;
+- This dataset can be opened going to the folder **data** and then opening the file **Corrierearticles1702.Rdata**. 
            
-- *dat3*: it is the dataset in which the variable *"word"* is added. It presents 4 variables and 8440 observation. 
-This dataset was obtained in two steps:
-         1) The first step is what we call *vectorization*: using the command **unnest_token** I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
-         2) The second step is about the *pre-processing*: I removed from the observations what was unusful for the analysis. This way I obtained *dat3*; 
+**dat3**: it is the dataset in which the variable *"word"* is added. It presents 4 variables and 8440 observation. 
+- This dataset was obtained in two steps:
+  1) The first step is what we call *vectorization*: using the command **unnest_token** I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
+  2) The second step is about the *pre-processing*: I removed from the observations what was unusful for the analysis. This way I obtained *dat3*; 
+- This dataset can be opened going to the folder **data** and then opening the file **IlCorriereDellaSera.Rdata**.
+
+**corriere_words**: it is the dataset that contains only the words. 
+- It is constituted by one variable and 8440 observations;
+- This dataset can be opened going to the folder **data** and then opening the file **IlCorriereDellaSeraWORDS.Rdata**
+
+## **src**
+This folder contains the scripts:
+1. **00_setup**: it is the script containing all the used packages and the library of them; 
+2. **01_scraping**: it is the script which contains the scraping part;
+3. **02_textanalysis**: it is the script that contains 
+   - the part of *tokenization* and *pre-processing*;
+   - the part about *word frequencies* 
+4. **03_sentiment**: it is the script containg the sentiment analysis. 
+
+## **junk**
+This folder contains all the things I didn't want to delate:
+- **03_quantedatextanalysis**: it is a script in which I was sperimenting a new package for the text analysis; 
+- **Scriptcorriere** and **Scriptcorrierebozza** which are the first script I used; they are a sort of draft. 
+
+## **dictionary** 
+This folder contains the two dictionaries used to conduct the sentiment analysis:
+- *DepecheMood_italian_token_full*: it is an emotive lexic with five different emotions (indignation, worry, sad, happy, satisfied);
+- *opeNER_df*: it is a lexic with positive, negative and neutral sentiment; 
+
+## **fig**
+This folder contains the graphs with descriptive names. 
 
 
 
---------------------------------------
-## Introduction
-This is the repository for the final assingment of the course Data Access and Regulation, module II. We are three students from the University of Milan enrolled in a two year MA in Data Analytics (for short, DAPS&CO). 
-During this course we learned how to scrape data from HTTP web pages and we had an introduction on text and sentiment analysis. 
-The main goal for this project is to apply the scraping knowledge that we learned in the seminar and to go behind it, trying to use some new packages and functions. This way we will test our ability to *self-learn*.  
-
-## The research question 
-The starting point of our research is the idea that newspapers which position themselves in diverse political areas tend to structure their homepages in different ways. From this we decided to scrape 3 italian newspapers and to conduct on each a text and a sentiment analysis in order to discover whether the political orientation influences the content of the articles, in particular the words used to discuss events and facts.
-
-The three newspapers are:
- - *Libero* (dx);
- - *Il corriere della sera* (cx);
- - *La Repubblica* (sx).
-
-## Steps: 
-We can define five different steps in which our project is divided: 
- 1. Scraping
- 2. Pre-processing the obtained data
- 3. Text-analysis
- 4. Sentiment analysis
- 5. Reporting of the results in a meaningful way
-
-## Team's organization:
-Each one of us partecipied in all the phases of the project, since we decided it would be best to not assign a specific task to a single member. But in general, to each member was assigned a newspaper. 
-This decision depends on two main reasons:
-1. All of us were interested in improving and testing our skills in all the differentn phases of the project; 
-2. Each newspaper required different css in the scraping part and different manipulation of the data in order to obtain a clear dataset. 
-
-## Repository structure: 
-We created **three brench** so everyone could conduct analysis without creating conflicts:
- - **branch_ric**: it contains the part about *La Repubblica*;
- - **branch_sof**: it contains the part about *Libero Quotidiano*;
- - **branch_fab**: it contains the part about *Il Corriere della Sera*. 
- 
- ## Folders structure: 
- Each branch is organized in four folders:
-  - **data**: is the folder in which are stored the html pages that we scraped, the links of the articles (contained in a specific folder that each one created in its script) and the dataset; 
-  - **junk**;
-  - **src/script**: is the folder in which we saved the script. In general we created three script for each newspaper:
-                    1. *00_setup*: it is about the packages used;
-                    2. *01_scraping*: it is about the scraping;
-                    3. *02_analysis*: it is about the analysis;
-   - **fig**: is the folder in which the graphs are saved in a png format;
-   - **dictionary**: it contains the dictionaries for the sentiment analysis. 
-
-
-
-The team
