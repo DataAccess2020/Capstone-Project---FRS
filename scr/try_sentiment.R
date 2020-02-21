@@ -172,7 +172,7 @@ libero_dtm1 <- dfm(
   )
 head(libero_dtm1)
 
-# Graph of the sentiments: 
+# SENTIMENT GRAPH, for each of the 4 sections: ---------------------------------------------------
 quanteda::convert(libero_dtm1,
                   to = "data.frame") %>%
   rename(section = document) %>%
@@ -188,8 +188,18 @@ quanteda::convert(libero_dtm1,
   scale_y_continuous(labels = scales::percent) +
   theme_bw()
 
-
-
+# SENTIMENT GRAPH for the whole dataset: ------------------------------------------------------------
+quanteda::convert(libero_dtm1,
+                  to = "data.frame") %>%
+  rename(section = document) %>%
+  mutate(
+    polar = (positive - negative)/(positive + negative)
+  ) %>%
+  ggplot(., aes(y = reorder(section, polar), x = polar)) +
+  geom_point() +
+  ylab("") +
+  xlab("Polarità sentiment\n(da negativo a positivo)") +
+  theme_bw()
 
 
 
