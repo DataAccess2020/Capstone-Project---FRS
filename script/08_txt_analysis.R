@@ -113,6 +113,63 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
+# 5. Frequencies for the section "esteri": --------------------------------------
+rep_anal %>%
+  filter(section  == "esteri") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) 
+# 5.1 Wordcloud:
+rep_anal %>%
+  filter(section  == "esteri") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, max.words = 100))
+# 6. Frequencies for the section "salute": --------------------------------------
+rep_anal %>%
+  filter(section  == "salute") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) 
+# 6.1 Wordcloud:
+rep_anal %>%
+  filter(section  == "salute") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, max.words = 100))
+
+# 7. Frequencies for the section "spettacoli": --------------------------------------
+rep_anal %>%
+  filter(section  == "spettacoli") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) 
+# 7.1 Wordcloud:
+rep_anal %>%
+  filter(section  == "spettacoli") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, max.words = 100))
+# 8. Frequencies for the section "sport": --------------------------------------
+rep_anal %>%
+  filter(section  == "sport") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) 
+# 8.1 Wordcloud:
+rep_anal %>%
+  filter(section  == "sport") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, max.words = 100))
+# 9. Frequencies for the section "tecnologia": --------------------------------------
+rep_anal %>%
+  filter(section  == "tecnologia") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) 
+# 9.1 Wordcloud:
+rep_anal %>%
+  filter(section  == "tecnologia") %>%
+  ungroup() %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, max.words = 100))
+
 #____________________________________________________________
 
 # TEXT ANALYSIS: 
