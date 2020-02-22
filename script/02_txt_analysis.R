@@ -4,7 +4,7 @@
 source(here::here("script","00_setup.R"))
 
 #import dataset-------
-load(here::here("data/rvest/02_articoli_repubblica_17_02_2020.Rdata"))
+load(here::here("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
 
 #remove double links-------------
 dataset_pulito <- unique (dat_definitivo)
