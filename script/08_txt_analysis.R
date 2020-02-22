@@ -175,17 +175,16 @@ rep_anal %>%
 
 # Create Corpus in order to use quanteda-----------
 crp <- corpus(
-  rep_anal$word
-)
-summary(crp)
-names(crp)
+  rep_anal$word)
+
+
 
 ## create DFM data frame matrix-----------------------
 
 rep_dtm <- dfm(
   crp,
   verbose = T)
-rep_dtm
+
 
 #weight DFM-------------------------
 
