@@ -1,0 +1,96 @@
+---
+title: "Capstone project"
+author: "Fabiana G. Giannuzzi"
+date: "22/2/2020"
+output: 
+  html_document:
+    toc: true
+    theme: journal
+    highlight: tango
+    fig_width: 10
+    fig_height: 8
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## *The use of words in newspapers*
+
+#### **Introduction**
+During the '80s researchers considered journalist as creators of news, the responsible of the form that an event takes within the society. Gans (1979) explicitly sustain the idea that anything is a news originally: the news are just what journalists share with the public and the way in which they do that. (Spelndore 2017)
+
+The core idea of this project is to test this perspective, analysing and comparing the way in which events are reported and represented in different newspapers. The political orientation is the way in which we decided to classify newspapers assuming that journalism has to be considered a practice partially influenced and constituted by its relations with politics. (Splendore 2017)
+
+##### **Assumptions**
+At the basis of this project there are two assumptions: 
+
+1. The political orientation of newspapers may have an influence on its contents; 
+
+2. Words are powerful tools in creating, reproducing and representing events. 
+
+#### **The project**
+The research question of this project aims to discover whether newspapers positioning themselves in different political areas presents the news in different ways. Specifically, the hypothesis is that different newspapers presents news in different ways.
+We selected three newspapers ans then we scraped the articles presents on the homepage on February 17. The newspapers object of this project are:
+
+- Libero, representing the right-ring;
+
+- Il Corriere della Sera, representing the center-ring;
+
+- La Repubblica, representing the left-ring.
+
+Our objective is achieved conducting sentiment, emotional and text analysis of these articles. 
+The sentiment and emotional analysis use dictionaires and some algoritms to evaluate the feelings expressed in one text just looking at the words used; the text analysis is more observational and descriptive: it allows you to have a look at the frequency of the word used in the articles. 
+
+The analysis of this project involves two levels:
+1. An internal level, which means that the way to express an idea or to describe en event depends on political perspective of the journal about an argument in general. At this purpose we created the variable *"section"* that may be useful to contestualize the use of some words, their frequency and the sentiments emerging from the articles.
+
+2. An external level, which is about the comparison between the various newspapers. This part allows us to accept or reject our starting hypothesis.  
+
+#### **Scraping**
+Scraping the articles of the various homepages is the focal part of the project. 
+To scrape the pages we used four different packages that we learned to use during the course of Data Access and Regulation II. These packages are: 
+
+- RCurl, 
+
+- tidyverse, 
+
+- rvest,
+
+- stringr, which allows us to work with strings. 
+
+##### **Difficulties**
+The hardest work in this part was to discover the correct css to obtain the links. 
+
+```{r, eval=FALSE}
+#selecting the links of the articles
+links <- read_html(here::here("/data/Ilcorrieredellasera1402.html")) %>% 
+  html_nodes(css = ".is-8 .has-text-black , .is-pd-t-0 > .bck-media-news") %>% 
+  html_attr("href")
+
+links
+```
+
+#### **Analysis**
+In the first part of the analysis I used the package *"tidytext"*. 
+The starting point was to tokenize the articles, meaning that we must divide the text in separate words.   
+
+##### **Pre-processing**
+Pre-processing is a fundamental phase to conduct the analysis because it allows you to clean data 
+
+##### **Text analysis**
+
+##### **Sentiment and emotional analysis**
+
+
+
+
+
+Specifically, sentiment, emotional and text analysis are expected to explore  in terms of words used and 
+with different political orientations. This way, it can be said that two point are central: (two assumptions)
+
+SPIEGAZIONE DI SCELTE PRESE 
+POSSIBILI MIGLIORAMENTI E SVILUPPI 
+* parlare del perchè il 17 febbraio: quando avevamo tutti i codici -> + articoli la prox volta 
+“default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”
