@@ -13,15 +13,15 @@ text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 #replaced into "dataset_pulito"--------
 dataset_pulito <- mutate(dataset_pulito, text = text_cleaned)
 
-# Unnesting the token words:-----------------------------
+# Unnesting the token words----------
 rep_anal <- dataset_pulito %>% unnest_tokens (word, text)
 
-# Adding the line numbers:----------------------------------------
+# Adding the line numbers:------------
 rep_anal <- rep_anal %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
 
-# Removing the stopwords: --------------------------------------
+# Removing the stopwords -------------
 rep_anal <- rep_anal %>% 
   anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "it", source= "snowball")) %>%
@@ -30,6 +30,7 @@ rep_anal <- rep_anal %>%
   filter(!str_detect(word, '\\d+')) %>%
   filter(!str_detect(word, '[[:punct:]]'))
 
+
 # Saving this clean and vectorized dataset: 
 write.csv(rep_anal, file = here::here("data/rvest/rep_analisi.csv"))
 
@@ -37,7 +38,12 @@ write.csv(rep_anal, file = here::here("data/rvest/rep_analisi.csv"))
 # in order to calculate the frequency, without considering the links: 
 repubblica_words <- tibble (word = rep_anal$word)
 
-## FREQUECIES: ------------------------------------------
+#romving other incorrect words--------
+rmv_word <- c("true", "http", "https","catch","embed", "embedded")
+
+repubblica_words$word
+
+## FREQUECIES: -------
 # The most frequent words in my data are: 
 repubblica_words %>%
   count(word, sort = TRUE) 
@@ -47,7 +53,6 @@ repubblica_words %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 200))
 
-warnings()
 
 # plot for the frequecies: 
 repubblica_words %>%
@@ -59,7 +64,7 @@ repubblica_words %>%
   xlab(NULL) +
   coord_flip()
 
-# 1. Frequencies for the section "politica": -------------------------------------
+# 1 Frequencies for the section "politica": --------
 rep_anal %>%
   filter(section  == "politica") %>%
   ungroup() %>%
@@ -72,7 +77,7 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 2. Frequencies for the section "ambiente": --------------------------------------------
+# 2 Frequencies for the section "ambiente": ---------
 rep_anal %>%
   filter(section  == "ambiente") %>%
   ungroup() %>%
@@ -84,7 +89,7 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 3. Frequencies for the section "cronaca": -------------------------------------------
+# 3 Frequencies for the section "cronaca": ------------
 prova <- rep_anal %>%
   filter(section  == "cronaca") %>%
   ungroup() %>%
@@ -96,7 +101,7 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 50))
 
-# 4. Frequencies for the section "economia": --------------------------------------
+# 4 Frequencies for the section "economia": ---------
 rep_anal %>%
   filter(section  == "economia") %>%
   ungroup() %>%
@@ -108,7 +113,7 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 5. Frequencies for the section "esteri": --------------------------------------
+# 5 Frequencies for the section "esteri": -----------
 rep_anal %>%
   filter(section  == "esteri") %>%
   ungroup() %>%
@@ -119,7 +124,7 @@ rep_anal %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
-# 6. Frequencies for the section "salute": --------------------------------------
+# 6 Frequencies for the section "salute": -------
 rep_anal %>%
   filter(section  == "salute") %>%
   ungroup() %>%
@@ -131,7 +136,7 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 7. Frequencies for the section "spettacoli": --------------------------------------
+# 7 Frequencies for the section "spettacoli": --------
 rep_anal %>%
   filter(section  == "spettacoli") %>%
   ungroup() %>%
@@ -142,7 +147,7 @@ rep_anal %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
-# 8. Frequencies for the section "sport": --------------------------------------
+# 8 Frequencies for the section "sport": -------
 rep_anal %>%
   filter(section  == "sport") %>%
   ungroup() %>%
@@ -153,7 +158,7 @@ rep_anal %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
-# 9. Frequencies for the section "tecnologia": --------------------------------------
+# 9 Frequencies for the section "tecnologia": --------------
 rep_anal %>%
   filter(section  == "tecnologia") %>%
   ungroup() %>%
@@ -165,40 +170,34 @@ rep_anal %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-#____________________________________________________________
 
-# TEXT ANALYSIS: 
-
-# CORPUS:----------------------------------------------------- 
+# Create Corpus in order to use dfm wight-----------
 crp <- corpus(
   rep_anal$word
 )
 summary(crp)
 names(crp)
 
-## DOCUMENT - TERM MATRIX:-------------------------------------------------
+## create DFM data frame matrix-----------------------
 
 rep_dtm <- dfm(
   crp,
-  verbose = T
-)
+  verbose = T)
 rep_dtm
 
-#Filtrare la DTM eliminando i termini poco informativi o problematici e Pesare i valori nelle celle in base alla frequenza del termine nel corpus (TF) rispetto alla frequenza del termine tra vari documenti (IDF)
+#weight DFM-------------------------
 
-libero_dtm_trim <- libero_dtm %>%
+rep_dtm_wighted <- rep_dtm %>%
   dfm_trim(min_termfreq = 0.75, termfreq_type = "quantile", 
            max_docfreq = 0.25, docfreq_type = "prop",
            verbose = T)
 
-libero_dtm_trim
 
-#TF-IDF: 
-libero_dtm_tfidf <- dfm_tfidf(
-  libero_dtm
-)
+#TF-IDF: ---------------------
+rep_idf <- dfm_tfidf(
+  rep_dtm)
 
-textstat_frequency(libero_dtm_tfidf, n = 20, force=T)
+textstat_frequency(rep_idf, n = 20, force=T)
 
-textplot_wordcloud(libero_dtm_tfidf, 
+textplot_wordcloud(rep_dtm_wighted, 
                    min_count = 10)
