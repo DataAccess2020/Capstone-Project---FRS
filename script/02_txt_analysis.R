@@ -23,16 +23,23 @@ rep_anal <- rep_anal %>%
   group_by(link) %>% 
   mutate(linenumber = row_number())
 
-# Removing the stopwords -------------
+
+# Removing the stopwords and word scraped wrongly -------------
 rep_anal <- rep_anal %>% 
   anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "it", source= "snowball")) %>%
   anti_join(get_stopwords(language = "en", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "en", source= "snowball")) %>%
   filter(!str_detect(word, '\\d+')) %>%
-  filter(!str_detect(word, '[[:punct:]]'))
-
-
+  filter(!str_detect(word, '[[:punct:]]')) %>% 
+  filter(!str_detect(word, "true")) %>% 
+  filter(!str_detect(word, "https")) %>% 
+  filter(!str_detect(word, "http")) %>% 
+  filter(!str_detect(word, "embed")) %>% 
+  filter(!str_detect(word, "embedded")) %>% 
+  filter(!str_detect(word, "catch")) 
+  
+  
 # Saving this clean and vectorized dataset: 
 write.csv(rep_anal, file = here::here("data/rvest/rep_analisi.csv"))        #as .CSV
 save(dat_definitivo, file = here::here ("data/rvest/rep_analisi.Rdata")) #as .Rdata
