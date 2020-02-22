@@ -7,26 +7,21 @@ load(here::here("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
 #remove double links-------------
 dataset_pulito <- unique (dat_definitivo)
 
-#pulisco il testo from factor to character---------------
+#"text" column transformed from factor to characte---------------
 text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 
-#sostituisco nel dataframe definitivo la colonna text con il character (al posto del factor)--------
+#replaced into "dataset_pulito"--------
 dataset_pulito <- mutate(dataset_pulito, text = text_cleaned)
 
 # Unnesting the token words:-----------------------------
 rep_anal <- dataset_pulito %>% unnest_tokens (word, text)
 
 # Adding the line numbers:----------------------------------------
-
 rep_anal <- rep_anal %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
 
 # Removing the stopwords: --------------------------------------
-
-# Those are words that were probably not scraped in the right encoding.
-#Since those are not usual italian stopwords, I'm deleting them manually:
-
 rep_anal <- rep_anal %>% 
   anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "it", source= "snowball")) %>%
@@ -50,7 +45,7 @@ repubblica_words %>%
 # Wordcloud: 
 repubblica_words %>%
   count(word, sort = TRUE) %>%
-  with(wordcloud(word, n, max.words = 400))
+  with(wordcloud(word, n, max.words = 200))
 
 warnings()
 
