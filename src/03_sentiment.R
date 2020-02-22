@@ -25,7 +25,7 @@ lengths(opeNERdict)
 
 
 data_sentiment <-  dat %>% 
-  select(section, articlestext) %>% 
+  select(section, text) %>% 
   filter(!is.na(section))
 
 table(dat$section)
@@ -36,18 +36,20 @@ data_sentiment
 library(quanteda)
 
 #creo il corpus
-crp <- quanteda::corpus ("data_sentiment")
+crp <- quanteda::corpus (
+  "data_sentiment"
+  )
 
 crp
 
 #credo dfm
-crp_sent <- dfm(
+crp_sentimentt <- dfm(
   crp,
   tolower = T,
   dictionary = opeNERdict
 ) %>%
   dfm_group(
-    group = "fonte"
+    group = "seziome"
   )
 head(crp_sent)
 
