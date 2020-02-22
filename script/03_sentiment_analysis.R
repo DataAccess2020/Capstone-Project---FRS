@@ -4,7 +4,6 @@
 source(here::here("script","00_setup.R"))
 
 
-# Dictionary 1: --------------
 # Read file and find the nodes
 opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
 entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
@@ -20,32 +19,32 @@ opeNER_df <- data.frame(
   confidenceScore = as.numeric(xml_attr(confidence, "score")),
   method = xml_attr(confidence, "method"),
   polarity = as.character(xml_attr(sentiment, "polarity")),
-  stringsAsFactors = F
-)
+  stringsAsFactors = F)
+
 # Fix a mistake
 opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
                              "neutral", opeNER_df$polarity)
 
-# Make quanteda dictionary: 
+# Make quanteda dictionary 
 opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
-# Saving it locally: 
+# Saving it locally
 write.csv(opeNER_df, file = here::here("dictionary","opeNER_df.csv"))
 
-# Import it: 
+# Import it
 opeNER <- rio::import("./dictionary/opeNER_df.csv")
 head(opeNER)
 
-# Words without polarity: 
+# Words without polarity
 table(opeNER$polarity, useNA = "always")
 opeNER <- opeNER %>%
   filter(polarity != "")
 
-# Depeche Mood: 
+# Depeche Mood
 dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
 head(dpm)
 
-# Sentiment: -----------------------------------------------------
+# Sentiment----------------------------------------------------
 opeNERdict <- quanteda::dictionary(
   split(opeNER$lemma, opeNER$polarity)
 )
@@ -122,38 +121,36 @@ quanteda::convert(rep_dtm1,
 # saving the words from DPM in a vector
 dpm_words <- dpm$V1
 
-# Creating vectors for each categories of the DPM, each is weighted:
-# 1. Indignato / Outrage: 
+# Creating vectors for each categories of the DPM, each is weighted-----
+
+# 1 Indignato / Outrage----
 dpm_ind <- dpm$INDIGNATO
 names(dpm_ind) <- dpm_words
 
-# 2. Preoccupato / Worried:
+# 2 Preoccupato / Worried----
 dpm_pre <- dpm$PREOCCUPATO
 names(dpm_pre) <- dpm_words
 
-# 3. Triste / Sad: 
+# 3 Triste / Sad----
 dpm_sad <- dpm$TRISTE
 names(dpm_sad) <- dpm_words
 
-# 4. Divertito / Entertained: 
+# 4 Divertito / Entertained----
 dpm_div <- dpm$DIVERTITO
 names(dpm_div) <- dpm_words
 
-# 5. Soddisfatto / Pleased: 
+# 5 Soddisfatto / Pleased----
 dpm_sat <- dpm$SODDISFATTO
 names(dpm_sat) <- dpm_words
 
-# creating a DFM: 
+# creating a DFM
 rep_sent_dpm <- dfm(
   crp_sent,
   tolower = T,
   select = dpm_words,
-  groups = "section"
-)
+  groups = "section")
 
-rep_sent_dpm
-
-# 1. Indignato
+# 1 Indignato----
 rep_sent_ind <- rep_sent_dpm %>%
   dfm_weight(scheme = "prop") %>%
   dfm_weight(weights = dpm_ind) %>%
@@ -162,7 +159,7 @@ rep_sent_ind <- rep_sent_dpm %>%
   rename(Indignato = ".") %>%
   rownames_to_column("section")
 
-# 2. Preoccupato
+# 2 Preoccupato----
 rep_sent_pre <- rep_sent_dpm %>%
   dfm_weight(scheme = "prop") %>%
   dfm_weight(weights = dpm_pre) %>%
@@ -170,7 +167,7 @@ rep_sent_pre <- rep_sent_dpm %>%
   as.data.frame() %>%
   rename(Preoccupato = ".")
 
-# 3. Triste
+# 3 Triste----
 rep_sent_sad <- rep_sent_dpm %>%
   dfm_weight(scheme = "prop") %>%
   dfm_weight(weights = dpm_sad) %>%
@@ -178,7 +175,7 @@ rep_sent_sad <- rep_sent_dpm %>%
   as.data.frame() %>%
   rename(Triste = ".")
 
-# 4. Divertito
+# 4 Divertito----
 rep_sent_div <- rep_sent_dpm %>%
   dfm_weight(scheme = "prop") %>%
   dfm_weight(weights = dpm_div) %>%
@@ -186,7 +183,7 @@ rep_sent_div <- rep_sent_dpm %>%
   as.data.frame() %>%
   rename(Divertito = ".")
 
-# 5. Soddisfatto
+# 5 Soddisfatto----
 rep_sent_sat <- rep_sent_dpm %>%
   dfm_weight(scheme = "prop") %>%
   dfm_weight(weights = dpm_sat) %>%
@@ -215,8 +212,7 @@ rep_sent_emo %>%
   theme_minimal() +
   theme(legend.position = "bottom")
 
-# emotions ranked: 
-
+# emotions ranked
 rep_sent_emo %>%
   gather(var, val, -section) %>%
   ggplot(., aes(x = reorder_within(section, val, var), y = val)) +
