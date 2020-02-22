@@ -1,3 +1,5 @@
+#TXT ANALYSIS
+
 #install and call packages
 source(here::here("script","00_setup.R"))
 
@@ -7,7 +9,7 @@ load(here::here("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
 #remove double links-------------
 dataset_pulito <- unique (dat_definitivo)
 
-#"text" column transformed from factor to characte---------------
+#"text" column transformed from factor to character---------------
 text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 
 #replaced into "dataset_pulito"--------
@@ -171,7 +173,7 @@ rep_anal %>%
   with(wordcloud(word, n, max.words = 100))
 
 
-# Create Corpus in order to use dfm wight-----------
+# Create Corpus in order to use quanteda-----------
 crp <- corpus(
   rep_anal$word
 )
