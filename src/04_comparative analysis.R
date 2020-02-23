@@ -1,7 +1,7 @@
 # COMPARATIVE ANALYSIS 
 source(here::here("src","00_setup.R"))
 
-#RIC DATASET 
+#RIC DATASET ------
 #converting text of dataset ric to character 
 datset_pulito <- unique (dat_definitivo)
 text_cleaned <- sapply(datset_pulito$text, toString, width = 57)
@@ -11,7 +11,7 @@ datset_pulito <- mutate(datset_pulito, text = text_cleaned)
 newspaper <- rep ("La Repubblica", length = 19)
 datset_pulito <-mutate(datset_pulito, newspaper)
 
-#FAB DATASET 
+#FAB DATASET -----
 #Adding a variable to identify the newspaper 
 newspaper <- rep ("Il Corriere della Sera", length = 30)
 datcharacter <- mutate(datcharacter, newspaper)
@@ -19,20 +19,27 @@ datcharacter <- mutate(datcharacter, newspaper)
 save(datcharacter, file = here::here("/data/datcharacter1.Rdata"))
 
 
-#SOF DATASET
+#SOF DATASET ----
+newspaper <- rep ("Libero", length = 63)
+dat_character <- mutate(dat_character, newspaper)
+
+save(dat_character, file = here::here ("./data/sofdataset.Rdata"))
 
 
 
-
-
-# Merging dataset
+# Merging dataset --------
 NEWSPAPERS <- full_join(
   datset_pulito,
   rio::import ("./data/datcharacter1.Rdata")
 )
 
+NEWSPAPERS <- full_join(
+  NEWSPAPERS,
+  rio::import ("./data/sofdataset.Rdata")
+)
+
+
 #Creating corpus 
-library(quanteda)
 corp <- corpus(
   NEWSPAPERS
 )
@@ -61,7 +68,7 @@ textplot_keyness(
 )
 
 
-#SIMILARITY BETWEEN TEXT
+#SIMILARITY BETWEEN TEXT -----------
 
 #cosine similarity: it is a measure of similarity between two texts, based on the angolar distance between two vectors
 cos_sim <- newspapers_dtm %>%
