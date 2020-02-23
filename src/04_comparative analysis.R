@@ -51,24 +51,21 @@ newspapers_dtm <- dfm(
   corp,
   group = "newspaper")
 
-#
+#KEYNESS 
 #this is a kind of statistic which refers to the importance of a word in a specific context: it says if a word is a 
 #key-word in a document
 
 head(
-  textstat_keyness(newspapers_dtm,
-                   target = "Il Corriere della Sera"),
+  textstat_keyness(newspapers_dtm),
   n = 10
 )
 
 #PLOT
 textplot_keyness(
-  textstat_keyness(newspapers_dtm,
-                   target = "Il Corriere della Sera")
-)
+  textstat_keyness(newspapers_dtm))
 
 
-#SIMILARITY BETWEEN TEXT -----------
+#SIMILARITY BETWEEN NEWSPAPERS' TEXT-----------
 
 #cosine similarity: it is a measure of similarity between two texts, based on the angolar distance between two vectors
 cos_sim <- newspapers_dtm %>%
@@ -83,3 +80,35 @@ jac_sim <- newspapers_dtm %>%
   textstat_simil(method = "jaccard",
                  margin = "documents") 
 jac_sim
+
+
+
+#WORKING WITH SECTIONS
+
+SECTIONS <- filter(NEWSPAPERS, section == "esteri" | section =="cronache" | section=="politica"| section=="economia" | section== "la-lettura" | section== "scuola") 
+
+#Creating corpus 
+corp1 <- corpus(
+  SECTIONS
+)
+
+summary(corp)
+
+sections_dtm <- dfm(
+  corp1,
+  group = "section")
+
+#cosine similarity: it is a measure of similarity between two texts, based on the angolar distance between two vectors
+cos_sim1 <- sections_dtm %>%
+  textstat_simil(method = "cosine",
+                 margin = "documents")
+
+cos_sim
+
+#jaccard, extended jaccard: it is a measure of similarity based on the number of words in common at regard of the
+#total number of words
+jac_sim1 <- sections_dtm %>%
+  textstat_simil(method = "jaccard",
+                 margin = "documents") 
+jac_sim
+
