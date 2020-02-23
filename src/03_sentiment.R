@@ -1,10 +1,41 @@
 source(here::here("src","00_setup.R"))
 
 # SENTIMENT ANALYSIS 
+# Read file and find the nodes
+opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
+entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
+lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
+confidence <- xml_find_all(opeNER_xml, ".//Confidence")
+sentiment <- xml_find_all(opeNER_xml, ".//Sentiment")
 
-# sentiment analysis with discrete categories: positive, negative, neutral
+# Parse and put in a data frame
+opeNER_df <- data.frame(
+  id = xml_attr(entries, "id"),
+  lemma = xml_attr(lemmas, "writtenForm"),
+  partOfSpeech = xml_attr(entries, "partOfSpeech"),
+  confidenceScore = as.numeric(xml_attr(confidence, "score")),
+  method = xml_attr(confidence, "method"),
+  polarity = as.character(xml_attr(sentiment, "polarity")),
+  stringsAsFactors = F)
+
+# Fix a mistake
+opeNER_df$polarity <- ifelse(opeNER_df$polarity == "neutral", 
+                             "neutral", opeNER_df$polarity)
+
+# Make quanteda dictionary 
+opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
+
+# Saving it locally
+write.csv(opeNER_df, file = here::here("dictionary","opeNER_df.csv"))
+
+# Import it
 opeNER <- rio::import("./dictionary/opeNER_df.csv")
 head(opeNER)
+
+
+
+# sentiment analysis with discrete categories: positive, negative, neutral
+
 
 # elimino parole senza polarità  
 table(opeNER$polarity, useNA = "always")     
@@ -23,10 +54,25 @@ opeNERdict <- quanteda::dictionary(
 )
 lengths(opeNERdict)
 
+as.tbl(dat)
 
+
+#"text" column transformed from factor to character---------------
+textcharacter <- sapply(dat$articlestext, toString, windth=57)
+
+#replaced into "dataset_pulito"--------
+dat <- mutate(dat, text = textcharacter)
+
+
+dat
+
+dat <- select(dat, text, link, section)
+
+# create the a dataset with the text (as character) and the section(filtered)-----
 data_sentiment <-  dat %>% 
   select(section, text) %>% 
   filter(!is.na(section))
+
 
 table(dat$section)
 data_sentiment <- subset(data_sentiment, section == "esteri" | section =="cronache" | section=="politica"| section=="economia") 
@@ -37,25 +83,25 @@ library(quanteda)
 
 #creo il corpus
 crp <- quanteda::corpus (
-  "data_sentiment"
+  data_sentiment
   )
 
 crp
 
 #credo dfm
-crp_sentimentt <- dfm(
+crp_sentiment <- dfm(
   crp,
   tolower = T,
   dictionary = opeNERdict
 ) %>%
   dfm_group(
-    group = "seziome"
+    group = "section"
   )
-head(crp_sent)
 
-head(corriere_dtm1)
+head(crp_sentiment)
 
-quanteda::convert(crp_sent,
+
+quanteda::convert(crp_sentiment,
                   to = "data.frame") %>%
   rename(section = document) %>%
   gather(var, val, -section) %>%

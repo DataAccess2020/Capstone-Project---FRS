@@ -12,6 +12,9 @@ as.tbl(dat, stringsAsFactor = FALSE)
 
 dat <- select(dat, text, link, section)
 
+save(dat, file = here::here("/data/Corrierearticles1702.Rdata"))
+
+
 dat1 <- dat %>%
   unnest_tokens (word, text)
 
@@ -29,8 +32,8 @@ dat3 <- dat2 %>%
   anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "it", source ="snowball")) %>%
   filter(!str_detect(word, '\\d+')) %>%
-  filter(!str_detect(word, '[[:punct:]]'))
-
+  filter(!str_detect(word, '[[:punct:]]')) %>%
+  filter(!str_detect(word, '\\n+'))
 #4. Saving vectorized dataset 
 
 save(dat3, file = here::here("/data/IlCorriereDellaSera.Rdata"))
