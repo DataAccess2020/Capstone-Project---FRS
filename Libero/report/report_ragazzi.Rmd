@@ -1,8 +1,12 @@
 ---
 title: "Capstone Project"
 author: "Team FSV"
-date: "2/23/2020"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    theme: spacelab
+    highlight: pygments
+
 ---
 
 ```{r setup, include=FALSE}
@@ -47,11 +51,16 @@ This Capstone project can be divided in 3 main parts:
 
 
 # Process:
+
 In this section I will outline how the above tasks unfolded, highlighting first the process and the difficulties and secondly our achievements. 
 
-The entire content of the analysis was scraped from the homepage of Libero Quotidiano on 17th of February. This was achieved using the “Rvest” package. It is worth mentioning that the initial idea for the Capstone project was to analyse newspaper written in english, to avoid problem and difficulties during the analysis, since english is language much more used text and sentiment analysis. But due to technical issues (encoding problems that created an unreadable output and other kinds of errors), regarding the scraping part of the research, we decided it was best to switch to italian newspaper. Following this initial issue, the scraping process went on smoothly. 
+The entire content of the analysis was scraped from the homepage of Libero Quotidiano on *17th of February*. This was achieved using the `Rvest` package. It is worth mentioning that the initial idea for the Capstone project was to analyse newspaper written in english, to avoid problem and difficulties during the analysis, since english is language much more used text and sentiment analysis. But due to technical issues (encoding problems that created an unreadable output and other kinds of errors), regarding the scraping part of the research, we decided it was best to switch to italian newspaper. Following this initial issue, the scraping process went on smoothly. 
 
-Concerning the pre-processing part of the project, at the beginning I encountered some difficulties in trying to remove all the stopwords and other kind of useless words, but the help from the rest of the team made it easier to understand how it works. 
+Concerning the pre-processing part of the project, at the beginning I encountered some difficulties in trying to remove all the stopwords and other kind of useless words, but the help from the rest of the team made it easier to understand how it works. The solution for me was to create an additional object and manually input all the stopwords that the function “anti_join” was not selecting. As a direct consequence, having a clean and well organized dataset to work with, made the text analysis part of the project unfolded easily. 
+
+The process of understanding and applying the sentiment and emotion analysis was much harder than I thought. As briefly said before, most of the online available dictionary to make those types of analysis are in english, therefore by choosing to research into non-english newspaper this part of the assignment was from the start much more difficult. This is why we asked Federico Vegetti (R teacher) to help us out, since we saw online that he had done previously works in this specific field. His advices were much appreciated in particular regarding this language-related issue. 
+
+# Results: 
 
 By completing the textual, sentiment and emotion analysis, we managed to produce a substantial output. As far as the textual analysis is concerned, the output consisted in a set of wordcloud visualizations of word frequencies within the corpus; the same output was also visualized through a horizontal bar plot (figures 1 and 2). These graphs gave a rough overview of the most relevant topics discussed during the day of analysis: laws, italian prime minister Matteo Salvini and other politicians, the recent music festival Sanremo, the ongoing coronavirus crisis. 
 
@@ -60,6 +69,8 @@ The same approach was used to analyse different sections of the corpus. However 
 Through the sentiment analysis, graphs were produced showing the relationships between sections and sentiment. By plotting the polarity of each section, where the polar variable is equal to (positive - negative)/(positive + negative), an interesting pattern emerged: the “foreign affairs” section is by far the most positive one, with a score higher than 0.40, taking into consideration that the variable ranges from 0 to 1. The “Italy” section emerges as the most negative, with a score lower than 0.25 (figure 3). 
 
 Following the analysis of emotion, a range of graphs were produced. The most insightful shows the distribution of the sections for each of the 5 emotions, those being: outraged, worried, sad, entertained and pleased. Predictably, the “sfoglio” section, which typically features think pieces about culture, emerges as the one with the most positive feelings. While the “Italy” and “Foreign affairs” sections are the two contained the most words marked as “worried” and “sad” (figure 4). 
+
+→ comparison: 
 
 
 # Conclusion:
@@ -75,5 +86,9 @@ Here I will include all the plots and images that were mentioned in the report.
 
 ### Figure 2: 
 ![fig2](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_sentiment_whole.png)
+
+
+### Figure 3: 
+![fig3](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_ranking_emo.png)
 
 
