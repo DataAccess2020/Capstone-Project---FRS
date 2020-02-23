@@ -126,7 +126,7 @@ quanteda::convert(libero_dtm1,
 dpm_words <- dpm$V1
 
 # Creating vectors for each categories of the DPM, each is weighted:
-# 1. Indignato / Outrage: 
+# 1. Indignato / Outraged: 
 dpm_ind <- dpm$INDIGNATO
 names(dpm_ind) <- dpm_words
 

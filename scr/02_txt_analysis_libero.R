@@ -46,7 +46,7 @@ write.csv(libero, file = here::here("libero.csv"))
 # I created a new data containing only the word variable, in order to calculate the frequency, without considering the links: 
 libero_words <- tibble (word = libero$word)
 
-## FREQUECIES: ------------------------------------------
+## FREQUENCIES: ------------------------------------------
 # The most frequent words in my data are: 
 libero_words %>%
   count(word, sort = TRUE) 
