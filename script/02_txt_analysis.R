@@ -4,7 +4,7 @@
 source(here::here("script","00_setup.R"))
 
 #import dataset-------
-load(here::here("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
+load(here::here("data/articoli_repubblica_17_02_2020.Rdata"))
 
 #remove double links-------------
 dataset_pulito <- unique (dat_definitivo)
@@ -44,8 +44,8 @@ rep_anal <- rep_anal %>%
   
   
 # Saving this clean and vectorized dataset: 
-write.csv(rep_anal, file = here::here("data/rvest/rep_analisi.csv"))        #as .CSV
-save(dat_definitivo, file = here::here ("data/rvest/rep_analisi.Rdata")) #as .Rdata
+write.csv(rep_anal, file = here::here("data/rep_analisi.csv"))        #as .CSV
+save(dat_definitivo, file = here::here ("data/rep_analisi.Rdata")) #as .Rdata
 
 
 # I created a new data containing only the word variable

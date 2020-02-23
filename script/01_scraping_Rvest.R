@@ -22,7 +22,7 @@ writeLines(page,
 
 # Extracting the links by the homepage using Rvest:--------------------------------------
 
-link <- read_html(here :: here("data/rvest/repubblica.html"))%>%
+link <- read_html(here :: here("data/repubblica.html"))%>%
   html_nodes(css = ".Articolo , .entry-subtitle a , .entry-title a") %>%
   html_attr("href")
 
@@ -48,7 +48,7 @@ dat_1 <- tibble(
 # Loop for extracting the text of all the articles ------------------------------------------------
 
 #create a folder to store the data
-dir.create("data/rvest/articles_repubblica")
+dir.create("data/articles_repubblica")
 
 #create an object for the list of links
 articles <- vector(mode = "list", length = length(link))
@@ -64,7 +64,7 @@ for (i in 1:length(link)) {
                                           sep = ", "),
                         httpheader = c(From = "riccardo.ruta@studenti.unimi.it"))
   
-  file_path <- here::here("data/rvest/articles_repubblica", str_c("art_", i, ".html"))
+  file_path <- here::here("data/articles_repubblica", str_c("art_", i, ".html"))
   writeLines(page, 
              con = file_path)
   
@@ -99,4 +99,4 @@ dat_definitivo <- tibble(link= dat_5$link,
                          text= dat_5$sapply.dat_3.articles..toString..windth...57.)
 
 #where to save definitive dataset
-save(dat_definitivo, file = here::here ("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
+save(dat_definitivo, file = here::here ("data/articoli_repubblica_17_02_2020.Rdata"))

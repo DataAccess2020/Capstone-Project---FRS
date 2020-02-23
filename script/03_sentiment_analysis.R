@@ -51,7 +51,7 @@ opeNERdict <- quanteda::dictionary(
 lengths(opeNERdict)
 
 #import dataset-------
-load(here::here("data/rvest/articoli_repubblica_17_02_2020.Rdata"))
+load(here::here("data/articoli_repubblica_17_02_2020.Rdata"))
 
 #remove double links-------------
 dataset_pulito <- unique (dat_definitivo)
@@ -62,7 +62,7 @@ text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 #replaced into "dataset_pulito"--------
 dataset_pulito <- mutate(dataset_pulito, text = text_cleaned)
 
-# create the a dataset with the text (as character) and the section(filtered)-----
+# create a dataset with the text (as character) and the section(filtered)-----
 data_sentiment <-  dataset_pulito %>% 
   select(section, text) %>% 
   filter(!is.na(section))
