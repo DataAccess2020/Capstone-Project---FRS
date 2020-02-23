@@ -1,0 +1,79 @@
+---
+title: "Capstone Project"
+author: "Team FSV"
+date: "2/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction: 
+This report refers to the Capstone Project designed and developed by Sofia Ragazzi, Fabiana Giannuzzi and Riccardo Ruta. The overarching goal of the project was to practice and demonstrate our coding skills with R. In order to do so, we tried to cover most of the topics that we got the chance to study and explore in the second part of the Data Access and Regulation course. In particular, the project consisted in a comparison between three different newspapers positioned differently across the political spectrum. We intended to compare the language, and specifically the tone, employing a text and sentiment analysis.
+
+The work was divided equally for each member of the group: I analysed “Libero Quotidiano”, Riccardo analysed “Repubblica” and Fabiana analysed “Corriere della Sera”. Data was collected on 17th February 2020. 
+As will be explored later on, while each member completed his or her tasks and analysis, we were not able to execute the final comparison between the corpora. 
+
+# Methodology: 
+In this section I will outline the list of tasks for each part of the project. I choose not to include direct codes in this part, but every script is included in the in the “scr” folder.
+
+This Capstone project can be divided in 3 main parts: 
+- scraping
+- pre-processing
+- analysis (text and sentiment) 
+
+## Scraping: used package is: `Rvest`.
+- downloaded the homepage of “Libero Quotidiano”;
+- extracted all the links, but cleaning the results in order to obtain only the articles that I was interested in;
+- extracted the section of each article;
+- using a for-in loop, I scraped all the text from the articles.
+
+## Pre-processing: used package is: `Tidytext`.
+- the data was cleaned from missing values (the total number of articles is 63);
+- transforming the variable “text” from factor to character;
+- unnested the tokens;
+- added the line numbers for each word;
+- removed the stopwords, both manually and through the package.
+
+## Text analysis: used packages are: `Wordcloud`, `Quanteda`.
+- analysis of the most frequent words (in the whole dataset and by section); 
+- wordclouds (for the whole dataset and by section);
+- repeated the analysis but added a corpus and a document-term matrix;
+
+## Sentiment analysis: used packages are: `Quanteda`.
+- imported dictionaries for the sentiment (opeNER) and for the emotion (Depeche Mood);
+- made graphs showing the patterns.  
+
+
+# Process:
+In this section I will outline how the above tasks unfolded, highlighting first the process and the difficulties and secondly our achievements. 
+
+The entire content of the analysis was scraped from the homepage of Libero Quotidiano on 17th of February. This was achieved using the “Rvest” package. It is worth mentioning that the initial idea for the Capstone project was to analyse newspaper written in english, to avoid problem and difficulties during the analysis, since english is language much more used text and sentiment analysis. But due to technical issues (encoding problems that created an unreadable output and other kinds of errors), regarding the scraping part of the research, we decided it was best to switch to italian newspaper. Following this initial issue, the scraping process went on smoothly. 
+
+Concerning the pre-processing part of the project, at the beginning I encountered some difficulties in trying to remove all the stopwords and other kind of useless words, but the help from the rest of the team made it easier to understand how it works. 
+
+By completing the textual, sentiment and emotion analysis, we managed to produce a substantial output. As far as the textual analysis is concerned, the output consisted in a set of wordcloud visualizations of word frequencies within the corpus; the same output was also visualized through a horizontal bar plot (figures 1 and 2). These graphs gave a rough overview of the most relevant topics discussed during the day of analysis: laws, italian prime minister Matteo Salvini and other politicians, the recent music festival Sanremo, the ongoing coronavirus crisis. 
+
+The same approach was used to analyse different sections of the corpus. However this did not produce new insight into the research topic, rather showing that there are no substantial differences between specific sections of the newspaper. Nevertheless, each of those was saved in the folder “figs” of this project repository on GitHub. 
+
+Through the sentiment analysis, graphs were produced showing the relationships between sections and sentiment. By plotting the polarity of each section, where the polar variable is equal to (positive - negative)/(positive + negative), an interesting pattern emerged: the “foreign affairs” section is by far the most positive one, with a score higher than 0.40, taking into consideration that the variable ranges from 0 to 1. The “Italy” section emerges as the most negative, with a score lower than 0.25 (figure 3). 
+
+Following the analysis of emotion, a range of graphs were produced. The most insightful shows the distribution of the sections for each of the 5 emotions, those being: outraged, worried, sad, entertained and pleased. Predictably, the “sfoglio” section, which typically features think pieces about culture, emerges as the one with the most positive feelings. While the “Italy” and “Foreign affairs” sections are the two contained the most words marked as “worried” and “sad” (figure 4). 
+
+
+# Conclusion:
+
+trying to figure out solutions was really challenging sometimes, but in positive and creative way. 
+
+# Figs: 
+
+Here I will include all the plots and images that were mentioned in the report. 
+
+### Figure 1:
+![fig1](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_wordcloud.png)
+
+### Figure 2: 
+![fig2](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_sentiment_whole.png)
+
+
