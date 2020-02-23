@@ -19,7 +19,7 @@ opeNER_df <- data.frame(
   stringsAsFactors = F)
 
 # Fix a mistake
-opeNER_df$polarity <- ifelse(opeNER_df$polarity == "neutral", 
+opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
                              "neutral", opeNER_df$polarity)
 
 # Make quanteda dictionary 
@@ -32,12 +32,7 @@ write.csv(opeNER_df, file = here::here("dictionary","opeNER_df.csv"))
 opeNER <- rio::import("./dictionary/opeNER_df.csv")
 head(opeNER)
 
-
-
-# sentiment analysis with discrete categories: positive, negative, neutral
-
-
-# elimino parole senza polarità  
+# deleting words without polarity
 table(opeNER$polarity, useNA = "always")     
 opeNER <- opeNER %>%                       #obs change 25098 - 25053
   filter(polarity != "")
@@ -54,32 +49,19 @@ opeNERdict <- quanteda::dictionary(
 )
 lengths(opeNERdict)
 
-as.tbl(dat)
 
-
-#"text" column transformed from factor to character---------------
-textcharacter <- sapply(dat$articlestext, toString, windth=57)
-
-#replaced into "dataset_pulito"--------
-dat <- mutate(dat, text = textcharacter)
-
-
-dat
-
-dat <- select(dat, text, link, section)
 
 # create the a dataset with the text (as character) and the section(filtered)-----
-data_sentiment <-  dat %>% 
+data_sentiment <-  datcharacter %>% 
   select(section, text) %>% 
   filter(!is.na(section))
 
 
 table(dat$section)
-data_sentiment <- subset(data_sentiment, section == "esteri" | section =="cronache" | section=="politica"| section=="economia") 
+data_sentiment <- subset(data_sentiment, section == "esteri" | section =="cronache" | section=="politica"| section=="economia" | section== "la-lettura" | section== "scuola") 
 
 data_sentiment
 
-library(quanteda)
 
 #creo il corpus
 crp <- quanteda::corpus (
