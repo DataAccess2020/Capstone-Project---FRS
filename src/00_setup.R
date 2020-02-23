@@ -1,6 +1,6 @@
 #Setup
 
-want = c("here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords", "wordcloud")
+want = c("here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords", "wordcloud", "quanreda","xml2")
 
 have = want %in% rownames(installed.packages())
 
@@ -20,3 +20,6 @@ library("tidytext")
 library("tidyr")
 library("stopwords")
 library("wordcloud")
+library("quanteda")
+library("xml2")
+
