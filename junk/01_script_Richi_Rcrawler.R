@@ -16,7 +16,7 @@ Rcrawler (Website = "https://www.repubblica.it", #LINK DEL SITO DI PARTENZA
           Obeyrobots = FALSE, #IF TRUE AUTOMATIC INSPECT AND OBEY ROBOTS.TXT
           RequestsDelay = 1, #RITARDO TRA OGNI ITERAZIONE
           MaxDepth = 1, #LIVELLO DELLO SCRAPING
-          
+          dataUrlfilter = "^https://www.repubblica.it", #ESCLUDI LINK DEGLI ARTICOLI A PAGAMENTO (REP.REPUBBLICA
           ManyPerPattern = TRUE, #NON FERMARTI AL PRIMO MATCHING DEL PATTERN
           DIR = "./data", #DOVE SALVARE IL FILE CON GLI HTML
           ExtractCSSPat = ".body-text", #SEGUI SOLO LINK CON QUESTO CSS PATTERN
@@ -38,4 +38,3 @@ str(table, 1)   # solo un livello di profondità
 str(table[[2]]) # entra nel primo elemento della lista
 str(DATA[[1]][[3]][1])
 
-dataUrlfilter = "^https://www.repubblica.it", #ESCLUDI LINK DEGLI ARTICOLI A PAGAMENTO (REP.REPUBBLICA
