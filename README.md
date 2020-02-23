@@ -19,7 +19,9 @@ There are three dataset:
   2) Articlestext; 
   3) Section;
 - This dataset can be opened going to the folder **data** and then opening the file **Corrierearticles1702.Rdata**. 
-           
+
+**datcharacter**: it is the dataset in which the text of the articles is saved as character. 
+
 **dat3**: it is the dataset in which the variable *"word"* is added. It presents 4 variables and 8440 observation. 
 - This dataset was obtained in two steps:
   1) The first step is what we call *vectorization*: using the command **unnest_token** I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
