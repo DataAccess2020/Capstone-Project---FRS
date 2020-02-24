@@ -50,16 +50,16 @@ opeNERdict <- quanteda::dictionary(
 )
 lengths(opeNERdict)
 
-#import dataset-------
+# import dataset-------
 load(here::here("data/articoli_repubblica_17_02_2020.Rdata"))
 
-#remove double links-------------
+# remove double links-------------
 dataset_pulito <- unique (dat_definitivo)
 
-#"text" column transformed from factor to character---------------
+# "text" column transformed from factor to character---------------
 text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 
-#replaced into "dataset_pulito"--------
+# replaced into "dataset_pulito"--------
 dataset_pulito <- mutate(dataset_pulito, text = text_cleaned)
 
 # create a dataset with the text (as character) and the section(filtered)-----
@@ -116,7 +116,7 @@ quanteda::convert(rep_dtm1,
   theme_bw()
 
 ## SENTIMENT WITH CONTINOUS CATEGORIES-----------------
-#analysis of the emotions
+# analysis of the emotions
 # Creating vectors for each categories of the DPM, each is weighted
 # saving the words from DPM in a vector
 dpm_words <- dpm$V1
@@ -191,7 +191,7 @@ rep_sent_sat <- rep_sent_dpm %>%
   as.data.frame() %>%
   rename(Soddisfatto = ".")
 
-# merge 
+# Merge 
 rep_sent_emo <- bind_cols(
   rep_sent_ind, rep_sent_pre, rep_sent_sad, rep_sent_div, rep_sent_sat)
 
