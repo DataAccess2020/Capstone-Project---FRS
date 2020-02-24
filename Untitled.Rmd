@@ -49,6 +49,13 @@ The analysis of this project involves two levels:
 
 2. An external level, which is about the comparison between the various newspapers. This part allows us to accept or reject our starting hypothesis.  
 
+#### **Team's organization**
+Each one of us partecipied in all the phases of the project, since we decided it would be best to not assign a specific task to a single member. But in general, to each member was assigned a newspaper. This decision depends on two main reasons:
+
+- All of us were interested in improving and testing our skills in all the differentn phases of the project;
+
+- Each newspaper required different css in the scraping part and different manipulation of the data in order to obtain a clear dataset.
+
 ### **Scraping**
 Scraping the articles of the various homepages is the focal part of the project. 
 To scrape the pages we used four different packages that we learned to use during the course of Data Access and Regulation II. These packages are: 
@@ -145,7 +152,7 @@ Fig. 5 Percentage of emotional dimension in sections
 
 This graph displays the distribution of the emotional dimensions in the different sections. As observed above, **"Divertito"** has an high percentage in each section. Also **"Soddifatto"** seems to be a frequent emotion. **"Preoccupato"** and **"Indignato"** are less frequent meanwhile **"Triste"** is the emotional dimension with the lowest frequence. 
 
-#### Comparative analysis
+### **Comparative analysis and results**
 In this part we created a dataset (**/data/comparative_dataset.Rdata**) that contains values from all the dataset of the members of the team. In this dataset we added the variable *"newspaper"* that allows us to compare data of the three journal and observe the hypothesis we did in the explanation of the project. 
 
 Firstly I created a corpus and a dfm defining as group "newspaper". Then I used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers. 
@@ -159,40 +166,51 @@ Looking at the results it can be said that the three considered newspapers use a
 
 Secondly I created a corpus and a dfm defining as group "sections". Then I used the same measures: considering cosine method I observed that there is an high level of similarity between all the sections meanwhile using jaccard I observed that there is a low level of common words. 
 
-#### Understanding the branch 
+### **Understanding the branch** 
 In the brench there are five folders:
 
-1. Data: it contains 
-
-      - the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html;
-      - the folder ARTICLES in which the html pages of each article are stored;
-      - the saved dataset.
+***1. Data***: it contains the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html, the folder ARTICLES in which the html pages of each article are stored and the saved dataset.
 
 The saved dataset are: 
 
-**dat**: it is the starting dataset, created after the scraping part of my analysis. It is composed by 30 observation (the articles published on the homepage on February 17) and 3 variables: link, articlestext, section. This dataset can be opened going to the folder data and then opening the file *Corrierearticles1702.Rdata*;
+  - **dat**: it is the starting dataset, created after the scraping part of my analysis. It is composed by 30 observation (the articles published on the homepage on February 17) and 3 variables: link, articlestext, section. This dataset can be opened going to the folder data and then opening the file *Corrierearticles1702.Rdata*;
             
-**datcharacter**: it is the dataset in which the text of the articles is saved as character;
+  - **datcharacter**: it is the dataset in which the text of the articles is saved as character;
 
-**dat3**: it is the dataset in which the variable "word" is added. It presents 4 variables and 8440 observation.
-This dataset was obtained in two steps: the first step is what we call vectorization: using the command unnest_token I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations. The second step is about the pre-processing: I removed from the observations what was unusful for the analysis. This way I obtained dat3. This dataset can be opened going to the folder data and then opening the file *IlCorriereDellaSera.Rdata*.
+  - **dat3**: it is the dataset in which the variable "word" is added. It presents 4 variables and 8440 observation. This dataset can be opened going to the folder data and then opening the file *IlCorriereDellaSera.Rdata*.
 
-**corriere_words**: it is the dataset that contains only the words. It is constituted by one variable and 8440 observations. This dataset can be opened going to the folder data and then opening the file *IlCorriereDellaSeraWORDS.Rdata*
+  - **corriere_words**: it is the dataset that contains only the words. It is constituted by one variable and 8440 observations. This dataset can be opened going to the folder data and then opening the file *IlCorriereDellaSeraWORDS.Rdata*
 
-**data_sentimet**: it is the dataset used to conduct both sentiment and emotional analysis.
+  - **data_sentimet**: it is the dataset used to conduct both sentiment and emotional analysis.
 
-**comparative_dataset**: it contains the dataset about the three newspapers. 
-
+  - **comparative_dataset**: it contains the dataset about the three newspapers. 
 
 
-#### What I learned
+***2. SRC***
+This folder contains the scripts:
+1. **00_setup**: it is the script containing all the used packages and the library of them; 
+2. **01_scraping**: it is the script which contains the scraping part;
+3. **02_textanalysis**: it is the script that contains 
+   - the part of *tokenization* and *pre-processing*;
+   - the part about *word frequencies* 
+4. **03_sentiment**: it is the script containg the sentiment analysis. 
+5. **04_comparative analysis**: it is the script about the comparison between the data about the three newspapers. 
+
+***3. JUNK***
+This folder contains all the things I didn't want to delate bur I no longer needed. 
+
+***4. DICTIONARY*** 
+This folder contains the dictionaries used to conduct the sentiment analysis.
+ 
+***5. FIG***
+This folder contains the graphs with descriptive names. 
+
+### **What I learned**
 During the development of the project we were free, for the first time, to create a personal project: chosing the topic and being free to conduct any kind of analysis and to use any kind of package we know. From the course, of sure, I learned at looking behind what I already know and to try to find a solution also when it seems impossible. Developing this skills meant that we searched for resources everywhere and we discovered new useful packages. We contacted Federico Vegetti, asking him some materials about the sentiment and emotional analysis and he gives us a fundamental resource, that is what allowed us to complete the project. 
 It was challenging working in a group. Sometimes it's more esier making things alone because of the absence of the necessity to coordinate the work but for sure working with my colleagues has make this project more complete and accurate. 
 
-#### Comments
-The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research fild. 
+### **Comments**
+The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research field. 
+
 Fabiana Gemma Giannuzzi 
 
-
-* parlare del perchè il 17 febbraio: quando avevamo tutti i codici -> + articoli la prox volta 
-“default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”
