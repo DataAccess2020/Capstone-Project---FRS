@@ -16,8 +16,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 ```
-“default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”
-
 ## *The use of words in newspapers*
 
 ### **Introduction**
@@ -47,7 +45,7 @@ The sentiment and emotional analysis use dictionaires and some algoritms to eval
 
 The analysis of this project involves two levels:
 
-1. An internal level, which means that the way to express an idea or to describe en event depends on political perspective of the journal about an argument in general. At this purpose we created the variable *"section"* that may be useful to contestualize the use of some words, their frequency and the sentiments emerging from the articles.
+1. An internal level, which means looking at the internal average of sentiment of the newspaper and how it is distributed between sections. At this purpose we created the variable *"section"* that may be useful to contestualize the use of some words, their frequency and the sentiments emerging from the articles.
 
 2. An external level, which is about the comparison between the various newspapers. This part allows us to accept or reject our starting hypothesis.  
 
@@ -84,8 +82,16 @@ Pre-processing is a fundamental phase to conduct the analysis because it allows 
 
 ##### **Text analysis**
 In this part I created a dataset containing only words. This was the dataset I used to look at the word frequencies.
-
 In the entire set of data I obtained the following results:
+
+Fig. 1: wordcloud in the entire dataset 
+
+![](fig/wordcloud-tot.png) 
+
+
+Fig. 2: five most used word in the entire dataset.
+
+![](fig/fivemostusedword-tot.png)
 
 I also looked at the words most used in the articles scraped considering the sections. I considered five main sections: *"economia", "cronaca", "scuola", "la-lettura" and "esteri"*. To obtain the frequencies divided for sections I used a dataset which contains also the variable *section* (dat3). 
 
@@ -96,7 +102,7 @@ This is the most important phase of the project. This part is divided in three m
 
 2. In the second part I imported the dataset **datcharacter** in which the text of the article was converted from factor to character. Then I created a new dataset **dat_sentiment** that will be used to conduct both sentiment and emtional analysis. The dataset contains only two variables: text and section, which is particularly useful because in the analysis we will compare the sentiment expressed in the different sections.
  
- 3. In the third part we conducted the analysis:
+ 3. In the third part we conducted the analysis.
         
         
 ##### **Sentiment analysis**
@@ -104,21 +110,38 @@ This kind of analysis is also defined a sentiment analysis with discrete categor
 Firstly I created a corpus and a dfm that allows us to arrange documents on the basis of the document's variables. 
 Then, I created a graph shwoing the percentage of each category of sentiment (negative, neutral and positive) for each section.
 
-GRAFICO 
-        
-##### **Emotional analysis**
+Fig. 3 Sentiment analysis for each section
+
+![](fig/sentimentanalysis - sections.png)
+
+From this analysis it is possible to observe that in the newspaper *Il Corriere della Sera*:
+
+- the section that displays the higher percentage of **positive sentiment** is **"politica"**, meanwhile it is about the same for the other sections; 
+
+- the level of **neutral** sentiment is high on average. **"La-lettura"** is the section that contains the higher percentges, followed by **"economia"**;
+
+- **negative emotions** represent in average less than 20% of sentiment in all the sections. **"Cronaca"** and **"esteri"** are the sections with higher level. 
+
+
+#### **Emotional analysis**
 Emotional analysis is considered a sentiment analysis with continuous categories because it refers to more specific emotional dimensions. In this analysis there are five dimensions: *indignation, concern, sadness, happiness and satisfaction*. 
 We obtained two inverted graphs:
 
-GRAPH
-It shows the percentages of each emotional dimension in each sections. 
+1Fig. 4 Percentages of each emotional dimension in each sections. 
 
-GRAPH
-It shows how an emotional dimension is distribuited in the sections. 
-    
+![](fig/emotionalanalysis - forsection.png)
+
+From this graph we can say that almost all the sections (at the exception of "economia") present **"Divertito"** as the most frequent emotion meanwhile **"Triste"** is the emotion with the lower percentage in all the sections.
+
+The positioing of **"Soddisfatto", "Preoccupato" e " Indignato"** is about the same for each section, meaning that the journal has a coerent style in the use of words and emotion transmitted. 
+
+
+Fig. 5 Percentage of emotional dimension in sections 
+![](fig/emotionalanalysis - foremotion.png)
 
 
 
+This graph displays the distribution of the emotional dimensions in the different sections. As observed above, **"Divertito"** has an high percentage in each section. Also **"Soddifatto"** seems to be a frequent emotion. **"Preoccupato"** and **"Indignato"** are less frequent meanwhile **"Triste"** is the emotional dimension with the lowest frequence. 
 
 SPIEGAZIONE DI SCELTE PRESE 
 POSSIBILI MIGLIORAMENTI E SVILUPPI 
