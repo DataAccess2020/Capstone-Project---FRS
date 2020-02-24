@@ -1,6 +1,6 @@
 ---
-title: "Capstone Project"
-author: "Team FSV"
+title: "Use of words in newspapers"
+author: "Team Ragazzi - Ruta - Giannuzzi"
 output: 
   html_document:
     toc: true
@@ -12,6 +12,10 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Sofia Giovanna Ragazzi - 948896
+
+Word count : **1442**
 
 # Introduction: 
 This report refers to the Capstone Project designed and developed by Sofia Ragazzi, Fabiana Giannuzzi and Riccardo Ruta. The overarching goal of the project was to practice and demonstrate our coding skills with R. In order to do so, we tried to cover most of the topics that we got the chance to study and explore in the second part of the Data Access and Regulation course. In particular, the project consisted in a comparison between three different newspapers positioned differently across the political spectrum. We are considering Libero Quotidiano as a far-right newspaper, Corriere della Sera at the center of the spectrum and Repubblica as a left newspaper. We intended to compare the language, and specifically the tone, employing a text and sentiment analysis.
@@ -83,7 +87,9 @@ Lastly we performed a comparative sentiment analysis in order to estimate the di
 
 # Conclusion:
 
-This project revealed to be a real challenge for me on many aspects, not only from the point of view of actual code, but also for what concerns managing time, stress and coordinating team works. I definitely feel much more comfortable and at ease in trying to solve coding problems and issue. I think one of the most important things I understood about this data analysis is how central is to have a bright and creative problem-solving mind; trying to figure out solutions was really challenging sometimes, but also very stimulating. 
+This project revealed to be a real challenge for me on many aspects, not only from the point of view of actual code, but also for what concerns managing time, stress and coordinating team efforts. I definitely feel much more comfortable and at ease in trying to solve coding problems and issue. I think one of the most important things I understood about this type of data analysis is how central it is to have a bright and creative problem-solving mind. Trying to figure out solutions was really challenging sometimes, but also very stimulating. I would also mention how my level of confidence in working on GitHub is significantly increased from the last project.
+
+Thinking about this Capstone I see many possible improvements and changes that could have been done. First of all, I would scale up the amount of data to scrape, either adding more newspapers of different political positions or adding more articles to scrape, in order to get a more significant comparison. I would also improve the quality of the sentiment analysis, because since this was our first time working on something like this, we faced the many issues. 
 
 # Figs: 
 
