@@ -32,6 +32,8 @@ There are three dataset:
 - It is constituted by one variable and 8440 observations;
 - This dataset can be opened going to the folder **data** and then opening the file **IlCorriereDellaSeraWORDS.Rdata**
 
+**data_sentimet**: it is the dataset used to conduct both sentiment and emotional analysis. 
+
 ## **SRC**
 This folder contains the scripts:
 1. **00_setup**: it is the script containing all the used packages and the library of them; 
