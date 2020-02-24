@@ -172,10 +172,9 @@ Fig. 6 Sentiment analysis: comparison between newspapers
 Looking at this graph emerges that different newspapers behave differently on the basis of the political orientation. Particularly, the behavior we observe satisfy our expectation because the political-right newspaper results to have a more negative language while the political-left newspaper is on the positive side of the scale. Il Corriere, which represents the center-wing has an intermediate position also within the sentiment graph. 
 
 
-### **Understanding the branch** 
-In the brench there are five folders:
+### **Data used**
 
-***1. Data***: it contains the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html, the folder ARTICLES in which the html pages of each article are stored and the saved dataset.
+The folder *DATA* contains the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html, the folder ARTICLES in which the html pages of each article are stored and the saved dataset.
 
 The saved dataset are: 
 
@@ -191,9 +190,7 @@ The saved dataset are:
 
   - **comparative_dataset**: it contains the dataset about the three newspapers. 
 
-
-***2. SRC***
-This folder contains the scripts:
+The folder **src** contains the scripts:
 1. **00_setup**: it is the script containing all the used packages and the library of them; 
 2. **01_scraping**: it is the script which contains the scraping part;
 3. **02_textanalysis**: it is the script that contains 
@@ -202,14 +199,6 @@ This folder contains the scripts:
 4. **03_sentiment**: it is the script containg the sentiment analysis. 
 5. **04_comparative analysis**: it is the script about the comparison between the data about the three newspapers. 
 
-***3. JUNK***
-This folder contains all the things I didn't want to delate bur I no longer needed. 
-
-***4. DICTIONARY*** 
-This folder contains the dictionaries used to conduct the sentiment analysis.
- 
-***5. FIG***
-This folder contains the graphs with descriptive names. 
 
 ### **What I learned**
 During the development of the project we were free, for the first time, to create a personal project: chosing the topic and being free to conduct any kind of analysis and to use any kind of package we know. From the course, of sure, I learned at looking behind what I already know and to try to find a solution also when it seems impossible. Developing this skills meant that we searched for resources everywhere and we discovered new useful packages. We contacted Federico Vegetti, asking him some materials about the sentiment and emotional analysis and he gives us a fundamental resource, that is what allowed us to complete the project. 

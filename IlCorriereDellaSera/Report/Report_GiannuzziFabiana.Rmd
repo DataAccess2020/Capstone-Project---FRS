@@ -94,12 +94,12 @@ In the entire set of data I obtained the following results:
 
 Fig. 1: wordcloud in the entire dataset 
 
-![](fig/wordcloud - tot.png) 
+![](.//IlCorriereDellaSera/fig/wordcloud - tot.png) 
 
 
 Fig. 2: five most used word in the entire dataset.
 
-![](fig/fivemostusedword-tot.png)
+![](./IlCorriereDellaSera/fig/fivemostusedword-tot.png)
 
 I also looked at the words most used in the articles scraped considering the sections. I considered five main sections: *"economia", "cronaca", "scuola", "la-lettura" and "esteri"*. To obtain the frequencies divided for sections I used a dataset which contains also the variable *section* (dat3). 
 
@@ -120,7 +120,7 @@ Then, I created a graph showing the percentage of each category of sentiment (ne
 
 Fig. 3 Sentiment analysis for each section
 
-![](fig/sentimentanalysis - sections.png)
+![](./IlCorriereDellaSera/fig/sentimentanalysis - sections.png)
 
 From this analysis it is possible to observe that in the newspaper *Il Corriere della Sera*:
 
@@ -131,13 +131,13 @@ From this analysis it is possible to observe that in the newspaper *Il Corriere 
 - **negative emotions** represent in average less than 20% of sentiment in all the sections. **"Cronaca"** and **"esteri"** are the sections with higher level. 
 
 
-#### **Emotional analysis**
+##### **Emotional analysis**
 Emotional analysis is considered a sentiment analysis with continuous categories because it refers to more specific emotional dimensions. In this analysis there are five dimensions: *indignation, concern, sadness, happiness and satisfaction*. 
 We obtained two inverted graphs:
 
 Fig. 4 Percentages of each emotional dimension in each sections. 
 
-![](fig/emotionalanalysis - forsection.png)
+![](./IlCorriereDellaSera/fig/emotionalanalysis - forsection.png)
 
 From this graph we can say that almost all the sections (at the exception of "economia") present **"Divertito"** as the most frequent emotion meanwhile **"Triste"** is the emotion with the lower percentage in all the sections.
 
@@ -146,7 +146,7 @@ The positioing of **"Soddisfatto", "Preoccupato" e " Indignato"** is about the s
 
 
 Fig. 5 Percentage of emotional dimension in sections 
-![](fig/emotionalanalysis - foremotion.png)
+![](./IlCorriereDellaSera/fig/emotionalanalysis - foremotion.png)
 
 
 
@@ -155,7 +155,7 @@ This graph displays the distribution of the emotional dimensions in the differen
 ### **Comparative analysis and results**
 In this part we created a dataset (**/data/comparative_dataset.Rdata**) that contains values from all the dataset of the members of the team. In this dataset we added the variable *"newspaper"* that allows us to compare data of the three journal and observe the hypothesis we did in the explanation of the project. 
 
-Firstly we created a corpus and a dfm defining as group "newspaper". Then we used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers. 
+*Firstly* we created a corpus and a dfm defining as group "newspaper". Then we used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers. 
 
 - **cosine method**: is a measure of similarity between two texts, based on the angolar distance between two vectors.
 
@@ -164,18 +164,17 @@ Looking at the results we can observe that the texts are more similar between *I
 - **jaccard**: it is a measure of similarity based on the number of words in common at regard of the total number of words.
 Looking at the results it can be said that the three considered newspapers use a low number of common words.
 
-Secondly, we conducted a sentiment analysis through which compare the sentiment of the three newspapers.
+*Secondly*, we conducted a sentiment analysis through which compare the sentiment of the three newspapers.
 
 Fig. 6 Sentiment analysis: comparison between newspapers
-![](fig/sentimentcomparative.png)
+![](./IlCorriereDellaSera/fig/sentimentcomparative.png)
 
 Looking at this graph emerges that different newspapers behave differently on the basis of the political orientation. Particularly, the behavior we observe satisfy our expectation because the political-right newspaper results to have a more negative language while the political-left newspaper is on the positive side of the scale. Il Corriere, which represents the center-wing has an intermediate position also within the sentiment graph. 
 
 
-### **Understanding the branch** 
-In the brench there are five folders:
+### **Data used**
 
-***1. Data***: it contains the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html, the folder ARTICLES in which the html pages of each article are stored and the saved dataset.
+The folder *DATA* contains the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html, the folder ARTICLES in which the html pages of each article are stored and the saved dataset.
 
 The saved dataset are: 
 
@@ -191,9 +190,7 @@ The saved dataset are:
 
   - **comparative_dataset**: it contains the dataset about the three newspapers. 
 
-
-***2. SRC***
-This folder contains the scripts:
+The folder **src** contains the scripts:
 1. **00_setup**: it is the script containing all the used packages and the library of them; 
 2. **01_scraping**: it is the script which contains the scraping part;
 3. **02_textanalysis**: it is the script that contains 
@@ -202,14 +199,6 @@ This folder contains the scripts:
 4. **03_sentiment**: it is the script containg the sentiment analysis. 
 5. **04_comparative analysis**: it is the script about the comparison between the data about the three newspapers. 
 
-***3. JUNK***
-This folder contains all the things I didn't want to delate bur I no longer needed. 
-
-***4. DICTIONARY*** 
-This folder contains the dictionaries used to conduct the sentiment analysis.
- 
-***5. FIG***
-This folder contains the graphs with descriptive names. 
 
 ### **What I learned**
 During the development of the project we were free, for the first time, to create a personal project: chosing the topic and being free to conduct any kind of analysis and to use any kind of package we know. From the course, of sure, I learned at looking behind what I already know and to try to find a solution also when it seems impossible. Developing this skills meant that we searched for resources everywhere and we discovered new useful packages. We contacted Federico Vegetti, asking him some materials about the sentiment and emotional analysis and he gives us a fundamental resource, that is what allowed us to complete the project. 
