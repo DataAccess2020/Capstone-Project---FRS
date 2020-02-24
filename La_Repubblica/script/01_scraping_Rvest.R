@@ -20,7 +20,7 @@ page <- RCurl::getURL(url,
 writeLines(page,
            con = here :: here("data/rvest/repubblica.html"))
 
-# Extracting the links by the homepage using Rvest:--------------------------------------
+# Extracting the links by the homepage using Rvest----
 
 link <- read_html(here :: here("data/repubblica.html"))%>%
   html_nodes(css = ".Articolo , .entry-subtitle a , .entry-title a") %>%
@@ -30,12 +30,12 @@ link <- read_html(here :: here("data/repubblica.html"))%>%
 link <- str_subset(link, "^https://www\\.repubblica\\.it")
 
 
-#DT (dataset) with links-------------
+#DT (dataset) with links----
 
 dat_0 <- tibble(
   link = link)
 
-#DT with links and section----------------
+#DT with links and section----
 
 # Extracting the section of each article
 section <- word(link, 4, sep = fixed('/'))
@@ -45,7 +45,7 @@ dat_1 <- tibble(
   section = section
 )
 
-# Loop for extracting the text of all the articles ------------------------------------------------
+# Loop for extracting the text of all the articles----
 
 #create a folder to store the data
 dir.create("data/articles_repubblica")
@@ -75,24 +75,24 @@ for (i in 1:length(link)) {
   Sys.sleep(2)
 } 
 
-#DT with links, section and the articles text---------------- 
+#DT with links, section and the articles text----
 dat_2 <- tibble(
   link = link,
   articles = articles,
   section = section)
 
 
-# Sorting the dataset, deleting empty rows: -----------------
+# Sorting the dataset, deleting empty rows----
 dat_3 <- dat_2 %>%
   filter(articles != "character(0)")
 
-# clean the article column--------------
+# clean the article column----
 dat_4 <- data.frame(sapply(dat_3$articles, toString, windth=57))
 
-# combine dat4 e dat5---------------
+# combine dat4 e dat5----
 dat_5 <- cbind(dat_3, dat_4)
 
-#DT definitivo------------
+#DT definitivo----
 
 dat_definitivo <- tibble(link= dat_5$link,
                          section= dat_5$section,
