@@ -1,7 +1,7 @@
 #Text analysis 
 source(here::here("src","00_setup.R"))
 
-import("./data/Corrierearticles1702.Rdata")
+load(here::here("./data/Corrierearticles1702.Rdata"))
 
 # 1. vectorization -----------------
 #1.1 Converting the text of the articles from factor to character

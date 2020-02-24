@@ -1,43 +1,13 @@
 # COMPARATIVE ANALYSIS 
 source(here::here("src","00_setup.R"))
 
-#RIC DATASET ------
-#converting text of dataset ric to character 
-datset_pulito <- unique (dat_definitivo)
-text_cleaned <- sapply(datset_pulito$text, toString, width = 57)
-datset_pulito <- mutate(datset_pulito, text = text_cleaned)
+#Loading the dataset which contains data about all our three newspapers. 
+load(here::here("./data/comparative_dataset.Rdata"))
 
-#adding "newspaper" variable
-newspaper <- rep ("La Repubblica", length = 19)
-datset_pulito <-mutate(datset_pulito, newspaper)
+comparative_dataset        #It has four variables: link, section, text, newspaper
 
-#FAB DATASET -----
-#Adding a variable to identify the newspaper 
-newspaper <- rep ("Il Corriere della Sera", length = 30)
-datcharacter <- mutate(datcharacter, newspaper)
-
-save(datcharacter, file = here::here("/data/datcharacter1.Rdata"))
-
-
-#SOF DATASET ----
-newspaper <- rep ("Libero", length = 63)
-dat_character <- mutate(dat_character, newspaper)
-
-save(dat_character, file = here::here ("./data/sofdataset.Rdata"))
-
-
-
-# Merging dataset --------
-NEWSPAPERS <- full_join(
-  datset_pulito,
-  rio::import ("./data/datcharacter1.Rdata")
-)
-
-NEWSPAPERS <- full_join(
-  NEWSPAPERS,
-  rio::import ("./data/sofdataset.Rdata")
-)
-
+#changing the name of the dataset 
+NEWSPAPERS <- comparative_dataset
 
 #Creating corpus 
 corp <- corpus(
@@ -50,20 +20,6 @@ summary(corp)
 newspapers_dtm <- dfm(
   corp,
   group = "newspaper")
-
-#KEYNESS 
-#this is a kind of statistic which refers to the importance of a word in a specific context: it says if a word is a 
-#key-word in a document
-
-head(
-  textstat_keyness(newspapers_dtm),
-  n = 10
-)
-
-#PLOT
-textplot_keyness(
-  textstat_keyness(newspapers_dtm))
-
 
 #SIMILARITY BETWEEN NEWSPAPERS' TEXT-----------
 
@@ -103,12 +59,28 @@ cos_sim1 <- sections_dtm %>%
   textstat_simil(method = "cosine",
                  margin = "documents")
 
-cos_sim
+cos_sim1
 
 #jaccard, extended jaccard: it is a measure of similarity based on the number of words in common at regard of the
 #total number of words
 jac_sim1 <- sections_dtm %>%
   textstat_simil(method = "jaccard",
                  margin = "documents") 
-jac_sim
+jac_sim1
+
+
+quanteda::convert(newspapers_dtm,
+                  to = "data.frame") %>%
+  rename(section = document) %>%
+  gather(var, val, -newspaper) %>%
+  group_by(newspaper) %>%
+  mutate(
+    val = val/sum(val)
+  ) %>%
+  ggplot(., aes(x = var, y = val)) +
+  geom_bar(aes(fill = newspaper), 
+           stat = "identity", alpha = 0.5) +
+  facet_wrap(~newspaper, ncol = 3) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_bw()
 

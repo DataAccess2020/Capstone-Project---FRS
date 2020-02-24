@@ -19,9 +19,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ## *The use of words in newspapers*
 
 ### **Introduction**
-During the '80s researchers considered journalist as creators of news, the responsible of the form that an event takes within the society. Gans (1979) explicitly sustain the idea that anything is a news originally: the news are just what journalists share with the public and the way in which they do that. (Spelndore 2017)
+During the '80s researchers considered journalist as creators of news, the responsible of the form that an event takes within the society. Gans explicitly sustain the idea that anything is a news originally: the news are just what journalists share with the public and the way in which they do that. (Spelndore 2017)
 
-The core idea of this project is to test this perspective, analysing and comparing the way in which events are reported and represented in different newspapers. The political orientation is the way in which we decided to classify newspapers assuming that journalism has to be considered a practice partially influenced and constituted by its relations with politics. (Splendore 2017)
+The core idea of this project is to test this perspective, analysing and comparing the way in which events are reported and represented in different newspapers. The political orientation is the way in which we decided to classify newspapers assuming that journalism may be considered a practice partially influenced and constituted by its relations with politics. (Splendore 2017)
 
 ##### **Assumptions**
 At the basis of this project there are two assumptions: 
@@ -41,7 +41,7 @@ We selected three newspapers ans then we scraped the articles presents on the ho
 - La Repubblica, representing the left-ring.
 
 Our objective is achieved conducting sentiment, emotional and text analysis of these articles. 
-The sentiment and emotional analysis use dictionaires and some algoritms to evaluate the feelings expressed in one text just looking at the words used; the text analysis is more observational and descriptive: it allows you to have a look at the frequency of the word used in the articles. 
+The sentiment and emotional analysis use dictionaires and some algoritms to evaluate the feelings expressed in one text looking at the words used; the text analysis is more observational and descriptive: it allows you to have a look at the frequency of the words used in the articles. 
 
 The analysis of this project involves two levels:
 
@@ -62,7 +62,7 @@ To scrape the pages we used four different packages that we learned to use durin
 - stringr, which allows us to work with strings. 
 
 ##### **Difficulties**
-The hardest work in this part was to discover the correct css to obtain the links. 
+The hardest part in this phase was to discover the correct css to obtain the links. 
 
 ```{r, eval=FALSE}
 #selecting the links of the articles
@@ -72,10 +72,11 @@ links <- read_html(here::here("/data/Ilcorrieredellasera1402.html")) %>%
 
 links
 ```
+This was the phase that required more times to be completed. 
 
 ### **Analysis**
 In the first part of the analysis I used the package *"tidytext"*. 
-The starting point was to tokenize the articles, meaning that we must divide the text in separate words.To do that, the function asked me to convert my *articlestext* variable from a factor to a character. Then I saved the first dataset. 
+The first task was to tokenize the articles, meaning that we must divide the text in separate words.To do that, the function required to convert the *articlestext* variable (containing the text of the articles scraped) from a factor to a character. 
 
 ##### **Pre-processing**
 Pre-processing is a fundamental phase to conduct the analysis because it allows you to clean data. In this part I removed digits, punctuation and stopwords. To remove stopwords I used a new package *stopwords*. 
@@ -100,15 +101,15 @@ This is the most important phase of the project. This part is divided in three m
 
 1. The first part is about the uploading of the sentiment lexicon and then of the dictionaries needed to conduct the sentiment analysis;
 
-2. In the second part I imported the dataset **datcharacter** in which the text of the article was converted from factor to character. Then I created a new dataset **dat_sentiment** that will be used to conduct both sentiment and emtional analysis. The dataset contains only two variables: text and section, which is particularly useful because in the analysis we will compare the sentiment expressed in the different sections.
+2. In the second part I imported the dataset **datcharacter** in which the text of the article was converted from factor to character. Then I created a new dataset **data_sentiment** that will be used to conduct both sentiment and emtional analysis. The dataset contains only two variables: text and section, which is particularly useful because in the analysis we will compare the sentiment expressed in the different sections.
  
  3. In the third part we conducted the analysis.
         
         
 ##### **Sentiment analysis**
-This kind of analysis is also defined a sentiment analysis with discrete categories. 
-Firstly I created a corpus and a dfm that allows us to arrange documents on the basis of the document's variables. 
-Then, I created a graph shwoing the percentage of each category of sentiment (negative, neutral and positive) for each section.
+This kind of analysis is also defined a sentiment analysis with discrete categories because it considers three defined categories of sentiment: positive, negative and neutral.
+Firstly I created a corpus and a dfm that allows us to arrange documents on the basis of the document's variables, *section* in this case. 
+Then, I created a graph showing the percentage of each category of sentiment (negative, neutral and positive) for each section.
 
 Fig. 3 Sentiment analysis for each section
 
@@ -143,6 +144,83 @@ Fig. 5 Percentage of emotional dimension in sections
 
 
 This graph displays the distribution of the emotional dimensions in the different sections. As observed above, **"Divertito"** has an high percentage in each section. Also **"Soddifatto"** seems to be a frequent emotion. **"Preoccupato"** and **"Indignato"** are less frequent meanwhile **"Triste"** is the emotional dimension with the lowest frequence. 
+
+#### Comparative analysis
+In this part we created a dataset (**/data/comparative_dataset.Rdata**) that contains values from all the dataset of the members of the team. In this dataset we added the variable *"newspaper"* that allows us to compare data of the three journal and observe the hypothesis we did in the explanation of the project. 
+
+Firstly I created a corpus and a dfm defining as group "newspaper". Then I used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers. 
+
+- **cosine method**: is a measure of similarity between two texts, based on the angolar distance between two vectors.
+
+Looking at the results we can observe that the texts are more similar between *Il Corriere della Sera* e *Libero Quotidiano*. The similarity of *La Repubblica* with the other two newspapers is about the same, meaning that *La Repubblica* uses a different vocabulary than the others.
+
+- **jaccard**: it is a measure of similarity based on the number of words in common at regard of the total number of words.
+Looking at the results it can be said that the three considered newspapers use a low number of common words.
+
+Secondly I created a corpus and a dfm defining as group "sections". Then I used the same measures: considering cosine method I observed that there is an high level of similarity between all the sections meanwhile using jaccard I observed that there is a low level of common words. 
+
+#### Understanding the branch 
+In the brench there are five folders:
+1. Data: it contains 
+
+      - the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html;
+      - the folder ARTICLES in which the html pages of each article are stored;
+      - the saved dataset.
+
+The saved dataset are: 
+ - dat: it is the starting dataset, created after the scraping part of my analysis. It is composed by:
+ 
+                  - 30 observation (the articles published on the homepage on February 17);
+                  - 3 variables: link, articlestext, section 
+                
+his dataset can be opened going to the folder data and then opening the file Corrierearticles1702.Rdata.
+datcharacter: it is the dataset in which the text of the articles is saved as character.
+
+dat3: it is the dataset in which the variable "word" is added. It presents 4 variables and 8440 observation.
+
+This dataset was obtained in two steps:
+The first step is what we call vectorization: using the command unnest_token I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
+The second step is about the pre-processing: I removed from the observations what was unusful for the analysis. This way I obtained dat3;
+This dataset can be opened going to the folder data and then opening the file IlCorriereDellaSera.Rdata.
+corriere_words: it is the dataset that contains only the words.
+
+It is constituted by one variable and 8440 observations;
+This dataset can be opened going to the folder data and then opening the file IlCorriereDellaSeraWORDS.Rdata
+data_sentimet: it is the dataset used to conduct both sentiment and emotional analysis.
+
+SRC
+
+This folder contains the scripts:
+
+00_setup: it is the script containing all the used packages and the library of them;
+01_scraping: it is the script which contains the scraping part;
+02_textanalysis: it is the script that contains
+the part of tokenization and pre-processing;
+the part about word frequencies
+03_sentiment: it is the script containg the sentiment analysis.
+JUNK
+
+This folder contains all the things I didn't want to delate:
+
+03_quantedatextanalysis: it is a script in which I was sperimenting a new package for the text analysis;
+Scriptcorriere and Scriptcorrierebozza which are the first script I used; they are a sort of draft.
+DICTIONARY
+
+This folder contains the two dictionaries used to conduct the sentiment analysis:
+
+DepecheMood_italian_token_full: it is an emotive lexic with five different emotions (indignation, worry, sad, happy, satisfied);
+opeNER_df: it is a lexic with positive, negative and neutral sentiment;
+FIG
+
+This folder contains the graphs with descriptive names.
+
+#### What I learned
+During the development of the project we were free, for the first time, to create a personal project: chosing the topic and being free to conduct any kind of analysis and to use any kind of package we know. From the course, of sure, I learned at looking behind what I already know and to try to find a solution also when it seems impossible. Developing this skills meant that we searched for resources everywhere and we discovered new useful packages. We contacted Federico Vegetti, asking him some materials about the sentiment and emotional analysis and he gives us a fundamental resource, that is what allowed us to complete the project. 
+It was challenging working in a group. Sometimes it's more esier making things alone because of the absence of the necessity to coordinate the work but for sure working with my colleagues has make this project more complete and accurate. 
+
+#### Comments
+The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research fild. 
+Fabiana Gemma Giannuzzi 
 
 SPIEGAZIONE DI SCELTE PRESE 
 POSSIBILI MIGLIORAMENTI E SVILUPPI 
