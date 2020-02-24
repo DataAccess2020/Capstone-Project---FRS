@@ -548,16 +548,22 @@ summary {
 </div>
 <div id="understanding-the-branch" class="section level4">
 <h4>Understanding the branch</h4>
-<p>In the brench there are five folders: 1. Data: it contains</p>
-<pre><code>  - the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html;
-  - the folder ARTICLES in which the html pages of each article are stored;
-  - the saved dataset.</code></pre>
-<p>The saved dataset are: 1. dat: it is the starting dataset, created after the scraping part of my analysis. It is composed by:</p>
-<pre><code>        - 30 observation (the articles published on the homepage on February 17);
-        
-         - 3 variables: link, articlestext, section 
-            </code></pre>
-<p>his dataset can be opened going to the folder data and then opening the file Corrierearticles1702.Rdata. datcharacter: it is the dataset in which the text of the articles is saved as character.</p>
+<p>In the brench there are five folders:</p>
+<ol style="list-style-type: decimal">
+<li><p>Data: it contains</p>
+<ul>
+<li>the homepage of Il Corriere della Sera (17/02) saved into an html page: Ilcorrieredellasera1702.html;</li>
+<li>the folder ARTICLES in which the html pages of each article are stored;</li>
+<li>the saved dataset.</li>
+</ul></li>
+</ol>
+<p>The saved dataset are:</p>
+<p><strong>dat</strong>: it is the starting dataset, created after the scraping part of my analysis. It is composed by 30 observation (the articles published on the homepage on February 17) and 3 variables: link, articlestext, section. This dataset can be opened going to the folder data and then opening the file <em>Corrierearticles1702.Rdata</em>;</p>
+<p><strong>datcharacter</strong>: it is the dataset in which the text of the articles is saved as character;</p>
+<p><strong>dat3</strong>: it is the dataset in which the variable “word” is added. It presents 4 variables and 8440 observation. This dataset was obtained in two steps: the first step is what we call vectorization: using the command unnest_token I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations. The second step is about the pre-processing: I removed from the observations what was unusful for the analysis. This way I obtained dat3. This dataset can be opened going to the folder data and then opening the file <em>IlCorriereDellaSera.Rdata</em>.</p>
+<p><strong>corriere_words</strong>: it is the dataset that contains only the words. It is constituted by one variable and 8440 observations. This dataset can be opened going to the folder data and then opening the file <em>IlCorriereDellaSeraWORDS.Rdata</em></p>
+<p><strong>data_sentimet</strong>: it is the dataset used to conduct both sentiment and emotional analysis.</p>
+<p><strong>comparative_dataset</strong>: it contains the dataset about the three newspapers.</p>
 </div>
 <div id="what-i-learned" class="section level4">
 <h4>What I learned</h4>
@@ -566,7 +572,9 @@ summary {
 <div id="comments" class="section level4">
 <h4>Comments</h4>
 <p>The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research fild. Fabiana Gemma Giannuzzi</p>
-<p>SPIEGAZIONE DI SCELTE PRESE POSSIBILI MIGLIORAMENTI E SVILUPPI * parlare del perchè il 17 febbraio: quando avevamo tutti i codici -&gt; + articoli la prox volta “default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”</p>
+<ul>
+<li>parlare del perchè il 17 febbraio: quando avevamo tutti i codici -&gt; + articoli la prox volta “default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”</li>
+</ul>
 </div>
 </div>
 </div>
