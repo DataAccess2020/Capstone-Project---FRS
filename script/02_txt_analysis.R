@@ -22,9 +22,6 @@ rep_anal <- dataset_pulito %>% unnest_tokens (word, text)
 rep_anal <- rep_anal %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
-#------------------------
-
-#----------------------------
 
 
 # Removing the stopwords and word scraped wrongly -------------

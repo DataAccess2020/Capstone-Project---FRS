@@ -1,7 +1,7 @@
 #SETUP SCRIPT
 
 # list of required packages
-want <- c("wordcloud", "here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords", "udpipe", "quanteda","hunspell")
+want <- c("wordcloud", "here","RCurl","tidyverse", "rvest","Rcrawler", "stringr", "readr", "tidytext", "tidyr", "stopwords", "udpipe", "quanteda","hunspell","cowplot","ggplot2", "magick" )
 have <- want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 rm(have, want)
@@ -22,3 +22,6 @@ library("quanteda")
 library("wordcloud")
 library("hunspell")
 library("xml2")
+library("cowplot")
+library("ggplot2")
+library("magick")
