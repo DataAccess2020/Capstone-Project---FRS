@@ -21,6 +21,7 @@ We can define five different steps in which our project is divided:
  3. Text-analysis
  4. Sentiment analysis
  5. Reporting of the results in a meaningful way
+ 6. Comparing the results
 
 ## Team's organization:
 Each one of us partecipied in all the phases of the project, since we decided it would be best to not assign a specific task to a single member. But in general, to each member was assigned a newspaper. 
@@ -41,9 +42,12 @@ We created **three brench** so everyone could conduct analysis without creating 
   - **src/script**: is the folder in which we saved the script. In general we created three script for each newspaper:
                     1. *00_setup*: it is about the packages used;
                     2. *01_scraping*: it is about the scraping;
-                    3. *02_analysis*: it is about the analysis;
-   - **fig**: is the folder in which the graphs are saved in a png format;
+                    3. *02_text_analysis*: it is about the text analysis;
+                    4. *03_sentiment*: about the sentiment analysis;
+                    5. *04_comparative*: comparing the analysis of each newspaper.
+   - **fig/plot**: is the folder in which the graphs are saved in a png format;
    - **dictionary**: it contains the dictionaries for the sentiment analysis. 
+   - **report**: where the reports for each analysis are stored.
 
 
 
