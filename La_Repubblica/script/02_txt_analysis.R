@@ -3,28 +3,28 @@
 #install and call packages
 source(here::here("script","00_setup.R"))
 
-#import dataset-------
+#import dataset----
 load(here::here("data/articoli_repubblica_17_02_2020.Rdata"))
 
-#remove double links-------------
+#remove double links----
 dataset_pulito <- unique (dat_definitivo)
 
-#"text" column transformed from factor to character---------------
+#"text" column transformed from factor to character----
 text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 
-#replaced into "dataset_pulito"--------
+#replaced into "dataset_pulito----
 dataset_pulito <- mutate(dataset_pulito, text = text_cleaned)
 
-# Unnesting the token words----------
+# Unnesting the token words----
 rep_anal <- dataset_pulito %>% unnest_tokens (word, text)
 
-# Adding the line numbers:------------
+# Adding the line numbers----
 rep_anal <- rep_anal %>% 
   group_by(link) %>% 
   mutate(linenumber = row_number())
 
 
-# Removing the stopwords and word scraped wrongly -------------
+# Removing the stopwords and word scraped wrongly----
 rep_anal <- rep_anal %>% 
   anti_join(get_stopwords(language = "it", source= "stopwords-iso")) %>%
   anti_join(get_stopwords(language = "it", source= "snowball")) %>%
@@ -40,7 +40,7 @@ rep_anal <- rep_anal %>%
   filter(!str_detect(word, "catch")) 
   
   
-# Saving this clean and vectorized dataset: 
+# Saving this clean and vectorized dataset
 write.csv(rep_anal, file = here::here("data/rep_analisi.csv"))        #as .CSV
 save(dat_definitivo, file = here::here ("data/rep_analisi.Rdata")) #as .Rdata
 
@@ -50,18 +50,18 @@ save(dat_definitivo, file = here::here ("data/rep_analisi.Rdata")) #as .Rdata
 repubblica_words <- tibble (word = rep_anal$word)
 
 
-## FREQUECIES: -------
+# FREQUECIES----
 # The most frequent words in my data are: 
 repubblica_words %>%
   count(word, sort = TRUE) 
 
-# Wordcloud: 
+# Wordcloud 
 repubblica_words %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 200))
 
 
-# plot for the frequecies: 
+# plot for the frequecies 
 repubblica_words %>%
   count(word, sort = TRUE) %>%
   filter(n > 10) %>%
@@ -71,106 +71,106 @@ repubblica_words %>%
   xlab(NULL) +
   coord_flip()
 
-# 1 Frequencies for the section "politica": --------
+# 1 Frequencies for the section "politica"----
 rep_anal %>%
   filter(section  == "politica") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
 
-# 1.1 Wordcloud: 
+# 1.1 Wordcloud
 rep_anal %>%
   filter(section  == "politica") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 2 Frequencies for the section "ambiente": ---------
+# 2 Frequencies for the section "ambiente"----
 rep_anal %>%
   filter(section  == "ambiente") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 2.1 Wordcloud:
+# 2.1 Wordcloud
 rep_anal %>%
   filter(section  == "ambiente") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 3 Frequencies for the section "cronaca": ------------
+# 3 Frequencies for the section "cronaca"----
 prova <- rep_anal %>%
   filter(section  == "cronaca") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 3.1 Wordcloud:
+# 3.1 Wordcloud
 rep_anal %>%
   filter(section  == "cronaca") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 50))
 
-# 4 Frequencies for the section "economia": ---------
+# 4 Frequencies for the section "economia"----
 rep_anal %>%
   filter(section  == "economia") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 4.1 Wordcloud:
+# 4.1 Wordcloud
 rep_anal %>%
   filter(section  == "economia") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 5 Frequencies for the section "esteri": -----------
+# 5 Frequencies for the section "esteri"----
 rep_anal %>%
   filter(section  == "esteri") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 5.1 Wordcloud:
+# 5.1 Wordcloud
 rep_anal %>%
   filter(section  == "esteri") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
-# 6 Frequencies for the section "salute": -------
+# 6 Frequencies for the section "salute"----
 rep_anal %>%
   filter(section  == "salute") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 6.1 Wordcloud:
+# 6.1 Wordcloud
 rep_anal %>%
   filter(section  == "salute") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
 
-# 7 Frequencies for the section "spettacoli": --------
+# 7 Frequencies for the section "spettacoli"----
 rep_anal %>%
   filter(section  == "spettacoli") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 7.1 Wordcloud:
+# 7.1 Wordcloud
 rep_anal %>%
   filter(section  == "spettacoli") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
-# 8 Frequencies for the section "sport": -------
+# 8 Frequencies for the section "sport"----
 rep_anal %>%
   filter(section  == "sport") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 8.1 Wordcloud:
+# 8.1 Wordcloud
 rep_anal %>%
   filter(section  == "sport") %>%
   ungroup() %>%
   count(word, sort = TRUE) %>%
   with(wordcloud(word, n, max.words = 100))
-# 9 Frequencies for the section "tecnologia": --------------
+# 9 Frequencies for the section "tecnologia"----
 rep_anal %>%
   filter(section  == "tecnologia") %>%
   ungroup() %>%
   count(word, sort = TRUE) 
-# 9.1 Wordcloud:
+# 9.1 Wordcloud
 rep_anal %>%
   filter(section  == "tecnologia") %>%
   ungroup() %>%
@@ -178,20 +178,20 @@ rep_anal %>%
   with(wordcloud(word, n, max.words = 100))
 
 
-# Create Corpus in order to use quanteda-----------
+# Create Corpus in order to use quanteda----
 crp <- corpus(
   rep_anal$word)
 
 
 
-## create DFM data frame matrix-----------------------
+## create DFM data frame matrix----
 
 rep_dtm <- dfm(
   crp,
   verbose = T)
 
 
-#weight DFM-------------------------
+#weight DFM----
 
 rep_dtm_wighted <- rep_dtm %>%
   dfm_trim(min_termfreq = 0.75, termfreq_type = "quantile", 
@@ -199,7 +199,7 @@ rep_dtm_wighted <- rep_dtm %>%
            verbose = T)
 
 
-#TF-IDF: ---------------------
+#TF-IDF----
 rep_idf <- dfm_tfidf(
   rep_dtm)
 
