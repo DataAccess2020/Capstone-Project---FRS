@@ -48,7 +48,7 @@ opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 write.csv(opeNER_df, file = here::here("opeNER_df.csv"))
 
 # Import it: 
-opeNER <- rio::import("./dictionary/opeNER_df.csv")
+opeNER <- rio::import("./Libero/dictionary/opeNER_df.csv")
 head(opeNER)
 
 # Words without polarity: 
@@ -57,7 +57,7 @@ opeNER <- opeNER %>%
   filter(polarity != "")
 
 # Depeche Mood: 
-dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
+dpm <- rio::import("./Libero/dictionary/DepecheMood_italian_token_full.tsv")
 head(dpm)
 
 # Sentiment: -----------------------------------------------------
