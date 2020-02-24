@@ -14,10 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction: 
-This report refers to the Capstone Project designed and developed by Sofia Ragazzi, Fabiana Giannuzzi and Riccardo Ruta. The overarching goal of the project was to practice and demonstrate our coding skills with R. In order to do so, we tried to cover most of the topics that we got the chance to study and explore in the second part of the Data Access and Regulation course. In particular, the project consisted in a comparison between three different newspapers positioned differently across the political spectrum. We intended to compare the language, and specifically the tone, employing a text and sentiment analysis.
+This report refers to the Capstone Project designed and developed by Sofia Ragazzi, Fabiana Giannuzzi and Riccardo Ruta. The overarching goal of the project was to practice and demonstrate our coding skills with R. In order to do so, we tried to cover most of the topics that we got the chance to study and explore in the second part of the Data Access and Regulation course. In particular, the project consisted in a comparison between three different newspapers positioned differently across the political spectrum. We are considering Libero Quotidiano as a far-right newspaper, Corriere della Sera at the center of the spectrum and Repubblica as a left newspaper. We intended to compare the language, and specifically the tone, employing a text and sentiment analysis.
 
 The work was divided equally for each member of the group: I analysed “Libero Quotidiano”, Riccardo analysed “Repubblica” and Fabiana analysed “Corriere della Sera”. Data was collected on 17th February 2020. 
-As will be explored later on, while each member completed his or her tasks and analysis, we were not able to execute the final comparison between the corpora. 
+
 
 # Methodology: 
 In this section I will outline the list of tasks for each part of the project. I choose not to include direct codes in this part, but every script is included in the in the “scr” folder.
@@ -33,12 +33,14 @@ This Capstone project can be divided in 3 main parts:
 - extracted the section of each article;
 - using a for-in loop, I scraped all the text from the articles.
 
+
 ## Pre-processing: used package is: `Tidytext`.
 - the data was cleaned from missing values (the total number of articles is 63);
 - transforming the variable “text” from factor to character;
 - unnested the tokens;
 - added the line numbers for each word;
 - removed the stopwords, both manually and through the package.
+
 
 ## Text analysis: used packages are: `Wordcloud`, `Quanteda`.
 - analysis of the most frequent words (in the whole dataset and by section); 
@@ -47,16 +49,20 @@ This Capstone project can be divided in 3 main parts:
 
 ## Sentiment analysis: used packages are: `Quanteda`.
 - imported dictionaries for the sentiment (opeNER) and for the emotion (Depeche Mood);
-- made graphs showing the patterns.  
+- made graphs showing the patterns, starting from the cleaned and tokenized dataset.
+
+## Comparative analysis: used packages are: `Quanteda`.
+- corpus and a dfm defining as group “newspaper”;
+- measuring the similarities between the texts;
+- similarities between the sections; 
 
 
 # Process:
-
 In this section I will outline how the above tasks unfolded, highlighting first the process and the difficulties and secondly our achievements. 
 
 The entire content of the analysis was scraped from the homepage of Libero Quotidiano on *17th of February*. This was achieved using the `Rvest` package. It is worth mentioning that the initial idea for the Capstone project was to analyse newspaper written in english, to avoid problem and difficulties during the analysis, since english is language much more used text and sentiment analysis. But due to technical issues (encoding problems that created an unreadable output and other kinds of errors), regarding the scraping part of the research, we decided it was best to switch to italian newspaper. Following this initial issue, the scraping process went on smoothly. 
 
-Concerning the pre-processing part of the project, at the beginning I encountered some difficulties in trying to remove all the stopwords and other kind of useless words, but the help from the rest of the team made it easier to understand how it works. The solution for me was to create an additional object and manually input all the stopwords that the function “anti_join” was not selecting. As a direct consequence, having a clean and well organized dataset to work with, made the text analysis part of the project unfolded easily. 
+Concerning the pre-processing part of the project, at the beginning I encountered some difficulties in trying to remove all the stopwords and other kind of useless words, but the help from the rest of the team made it easier to understand how it works. The solution for me was to create an additional object and manually input all the stopwords that the function `anti_join` was not selecting. As a direct consequence, having a clean and well organized dataset to work with, made the text analysis part of the project unfolded easily. 
 
 The process of understanding and applying the sentiment and emotion analysis was much harder than I thought. As briefly said before, most of the online available dictionary to make those types of analysis are in english, therefore by choosing to research into non-english newspaper this part of the assignment was from the start much more difficult. This is why we asked Federico Vegetti (R teacher) to help us out, since we saw online that he had done previously works in this specific field. His advices were much appreciated in particular regarding this language-related issue. 
 
@@ -70,12 +76,14 @@ Through the sentiment analysis, graphs were produced showing the relationships b
 
 Following the analysis of emotion, a range of graphs were produced. The most insightful shows the distribution of the sections for each of the 5 emotions, those being: outraged, worried, sad, entertained and pleased. Predictably, the “sfoglio” section, which typically features think pieces about culture, emerges as the one with the most positive feelings. While the “Italy” and “Foreign affairs” sections are the two contained the most words marked as “worried” and “sad” (figure 4). 
 
-→ comparison: 
+The last part of the analysis includes the comparison between the 3 different newspapers. Our goal in this section was to examine and test the similarities and differences between the language and the vocabulary used. We investigated this section using two different measures: cosine method and jaccard. The former is based on the angular distance between two vectors: the results show that Corriere della Sera and Libero Quotidiano have two similar texts, while the third newspaper, la Repubblica resulted in being the least similar to the previous two. The second measure of similarity is “jaccard” and it is based on the number of words in common at regard of the total number of words. Considering this, all of the three newspaper use a low number of common words.
+
+Lastly we performed a comparative sentiment analysis in order to estimate the difference in the language and tone used for the three newspapers. The plot (figure 5) shows that the different newspaper behave as expected in relation to the previously explained political position: the political-right newspaper results to have a more negative language (Libero Quotidiano), while the political-left newspaper is on the positive side of the scale. 
 
 
 # Conclusion:
 
-trying to figure out solutions was really challenging sometimes, but in positive and creative way. 
+This project revealed to be a real challenge for me on many aspects, not only from the point of view of actual code, but also for what concerns managing time, stress and coordinating team works. I definitely feel much more comfortable and at ease in trying to solve coding problems and issue. I think one of the most important things I understood about this data analysis is how central is to have a bright and creative problem-solving mind; trying to figure out solutions was really challenging sometimes, but also very stimulating. 
 
 # Figs: 
 
@@ -85,10 +93,15 @@ Here I will include all the plots and images that were mentioned in the report.
 ![fig1](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_wordcloud.png)
 
 ### Figure 2: 
-![fig2](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_sentiment_whole.png)
+![fig2](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_plot_freq.png)
 
 
 ### Figure 3: 
 ![fig3](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_ranking_emo.png)
 
+### Figure 4: 
+![fig4](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/libero_sentiment_whole.png)
+
+### Figure 5: 
+![fig5](/Users/sofiaragazzi/Desktop/capstone/Capstone-Project---FRS/Libero/figs/comparative.png)
 
