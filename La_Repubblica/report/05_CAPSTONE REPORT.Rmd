@@ -12,18 +12,25 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 library(cowplot)
 library(ggplot2)
 library(magick)
+
 source(here::here("script","00_setup.R"))
 load(here::here("data/comparative_dataset.Rdata"))
+
+
 #Creating corpus 
 comparative_corp <- corpus(
   comparative_dataset)
+
+
 #creating dfm
 newspapers_dtm <- dfm(
   comparative_corp,
   group = "newspaper")
+
 ```
 
 
