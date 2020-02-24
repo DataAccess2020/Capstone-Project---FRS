@@ -1,0 +1,155 @@
+---
+title: "CAPSTONE PROJECT REPORT"
+author: "Riccardo Ruta"
+date: "24/2/2020"
+output: 
+  html_document:
+    toc: true
+    theme: spacelab
+    highlight: pygments
+    fig_caption: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(cowplot)
+library(ggplot2)
+library(magick)
+
+source(here::here("script","00_setup.R"))
+load(here::here("data/comparative_dataset.Rdata"))
+
+
+#Creating corpus 
+comparative_corp <- corpus(
+  comparative_dataset)
+
+
+#creating dfm
+newspapers_dtm <- dfm(
+  comparative_corp,
+  group = "newspaper")
+
+```
+
+
+### TO START
+
+##### The initial idea of this project was to scraping the homepage of a newspaper, downloading all the articles for analyze the text. In parallel to this goal there was to become as independent as possible in the management of the packages to do this kind of research.
+
+##### After a first attempt on international newspapers we decided to continue with Italian newspapers that had fewer limitations (more favorable robots.txt).
+
+##### I dealt with the newspaper Repubblica.it
+
+##### I started using the "Rcrawler" package and managed to obtain the data necessary for the analysis, but not being able to obtain data that could be easily compared with my colleagues (they used the "Rvest" package), I also decided to use Rvest.
+
+##### The work was divided into 3 main moments
+- Scrapyng
+- Text analysis
+- Sentiment analysis
+
+### STEPS
+
+##### The first steps were to create an organized structure of the project folders and create a "script setup" with the packages that were expected to be used, updating the list while working.
+
+##### In the scraping part, the main difficulty was to find the correct CSS pattern, as the Repubblica website does not always use the same.
+
+##### After downloading all the articles and obtaining the text, we organized the data in a convenient structure for subsequent analyzes.
+
+##### At the end of this first step I saved the dataset in ".Rdata" so that I could load it later for the next steps.
+
+##### For the part of txt analysis, the first operation was to separate the body of the article into single "clean" words, we started by using the tidytext package, finding it convenient to divide the words, when viewing the results we encountered problems. We were given the "quanteda" package so we continued with this, obtaining better results in the visualization of the results and also in the management of the analysis.
+
+##### For the sentiment analysis part we used two dictionaries with which we weighed the words of the articles and we were able to get an overview of the emotions transmitted by the different newspapers (each organized according to its own sections).
+
+
+### WHAT EMERGED FROM THE ANALYSIS
+
+##### From the analysis of the text, the words that emerge as most used actually reflect the topics of the respective sections:
+
+#### below, sections: cronaca and economia
+```{r, echo = F, dodge-st, fig.show = "hold", out.width = "150%"}
+p1 <- ggdraw() + draw_image("C:/Users/Riccardo/Desktop/git repo/CAPSTONE/Capstone-Project---FRS/La_Repubblica/plot/plot_cronaca.png")
+
+p2 <- ggdraw() + draw_image("C:/Users/Riccardo/Desktop/git repo/CAPSTONE/Capstone-Project---FRS/La_Repubblica/plot/plot_economia.png")
+
+
+plot_grid(p1, p2)
+
+```
+
+#### below, sections: esteri and politica
+```{r, echo = F, fig.show = "hold", out.width = "150%"}
+p3 <- ggdraw() + draw_image("C:/Users/Riccardo/Desktop/git repo/CAPSTONE/Capstone-Project---FRS/La_Repubblica/plot/plot_esteri.png")
+
+p4 <- ggdraw() + draw_image("C:/Users/Riccardo/Desktop/git repo/CAPSTONE/Capstone-Project---FRS/La_Repubblica/plot/plot_politica.png")
+
+
+plot_grid(p3, p4)
+```
+
+##### In general the most used word is "CORONAVIRUS" although the articles are prior to the "Italian cases" this was evidently a theme already very popular in Repubblica newspaper.
+
+![](C:\Users\Riccardo\Desktop\git repo\CAPSTONE\Capstone-Project---FRS\La_Repubblica\plot\frequencies.png) ![](C:\Users\Riccardo\Desktop\git repo\CAPSTONE\Capstone-Project---FRS\La_Repubblica\plot\plot.png)
+
+##### It is evident that this newspaper tends to use a language that conveys "good prospects" given that as a general trend the emotion produced is "divertito" and "soddisfatto".
+
+```{r, echo = F, fig.show = "hold", out.width = "150%"}
+p5 <- ggdraw() + draw_image("C:/Users/Riccardo/Desktop/git repo/CAPSTONE/Capstone-Project---FRS/La_Repubblica/plot/emotion_graph.png")
+
+p6 <- ggdraw() + draw_image("C:/Users/Riccardo/Desktop/git repo/CAPSTONE/Capstone-Project---FRS/La_Repubblica/plot/emotion_ranked_graph.png")
+
+
+plot_grid(p5, p6)
+```
+
+##### Through this graph we can observe that although there is a trend in the use of neutral language, the dichotomy between positive and negative tends towards positive language.
+
+![](C:\Users\Riccardo\Desktop\git repo\CAPSTONE\Capstone-Project---FRS\La_Repubblica\plot\section_sentiment_graph.png)
+
+###  COMPARATION
+
+#### 1
+##### Firstly we created a corpus and a dfm defining as group “newspaper”. Then we used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers.
+
+##### Cosine method: is a measure of similarity between two texts, based on the angolar distance between two vectors.
+```{r, echo = F}
+cos_sim <- newspapers_dtm %>%
+  textstat_simil(method = "cosine",
+                 margin = "documents")
+
+cos_sim
+```
+
+##### Looking at the results we can observe that the texts are more similar between Il Corriere della Sera e Libero Quotidiano. The similarity of La Repubblica with the other two newspapers is about the same, meaning that La Repubblica uses a different vocabulary than the others.
+
+##### Jaccard: it is a measure of similarity based on the number of words in common at regard of the total number of words.
+```{r, echo = F}
+jac_sim <- newspapers_dtm %>%
+  textstat_simil(method = "jaccard",
+                 margin = "documents") 
+jac_sim
+```
+
+##### Looking at the results it can be said that the three considered newspapers use a low number of common words.
+
+
+#### 2
+
+##### We performed a comparative sentiment analysis in order to estimate the difference in the language and tone used for the three newspapers.
+
+![](C:\Users\Riccardo\Desktop\git repo\CAPSTONE\Capstone-Project---FRS\La_Repubblica\plot\comparative_plot.png)
+
+##### The plot (comparative_plot) shows that the different newspaper behave as expected in relation to the previously explained political position: the political-right newspaper results to have a more negative language (Libero Quotidiano), while the political-left newspaper is on the positive side of the scale.
+
+
+
+### CONCLUDING
+
+
+##### I understand that one of the limitation of this work is the reduced number of downloaded articles, nevertheless having a more "contained" dataset to manage has allowed us to concentrate better on the use of the functions and on the part of the code. This project will be of great help for the construction of more in-depth studies (such as the thesis).
+
+##### In addition to having learned to use certain packages in R and to have become generally more confident with these jobs, thanks to this project I realized the importance, potential and difficulties of working in a team, an aspect that with this experience I believe fundamental for my future.
+
+

@@ -1,0 +1,1109 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="it" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>la Repubblica+ | Il tuo quotidiano in digitale</title>
+		<meta name="viewport" content="width=1024">
+
+	<!-- facebook -->
+	<meta property="fb:app_id" content="182234715127717" />
+	<meta property="og:site_name" content="la Repubblica+ | Il tuo quotidiano in digitale" />
+	<meta property="og:title" content="la Repubblica+ | Il tuo quotidiano in digitale - ">
+	<meta property="og:description" content="la Repubblica+ | Il tuo quotidiano in digitale ">
+	<meta property="og:image" content="//www.repstatic.it/cless/main/premium/2015-v1/img/common/favicon/favicon-1500.png" >
+	<meta property="og:url" content="//quotidiano.repubblica.it/">
+	<!-- facebook -->
+
+	<link rel="apple-touch-icon-precomposed" href="//www.repstatic.it/cless/main/premium/2015-v1/img/common/favicon/favicon-152.png">
+	<link rel="icon" href="//www.repstatic.it/cless/main/premium/2015-v1/img/common/favicon/favicon.ico">
+
+	<link rel="stylesheet" type="text/css" href="/edicola/css2/component.css" />
+    <link rel="stylesheet" media="print" type="text/css" href="/edicola/css2/print.css"/>
+	<link href="/edicola/css2/style.css" rel="stylesheet">
+	<link href="/edicola/css2/jcarousel.css" rel="stylesheet">
+	<!--<link href="//www.repstatic.it/cless/common/2013-v1/css/shared-social-buttons/theme/default/default.css" rel="stylesheet">-->
+
+	<script src="//www.repstatic.it/cless/common/2013-v1/js/vendor/jquery/jquery-1.8.2.min.js"></script>
+	<script src="//www.repstatic.it/cless/common/2013-v1/js/vendor/jquery/plugin/browser-selector/browser-selector-0.5.3.js"></script>
+	<script src="//www.repstatic.it/cless/common/2013-v1/js/vendor/jquery/plugin/cycle2/jquery.cycle2.min.js"></script>
+	<script src="//www.repstatic.it/cless/common/2013-v1/js/vendor/jquery/plugin/cycle2/jquery.cycle2.swipe.min.js"></script>
+	<script src="//www.repstatic.it/cless/common/2013-v1/js/vendor/jquery/plugin/cycle2/jquery.cycle2.carousel.min.js"></script>
+
+	<script src="//oasjs.kataweb.it/adsetup.js"></script>
+
+	<script src="/edicola/js2/jquery.cbpNTAccordion.min.js"></script>
+	<script src="/edicola/js2/library.js"></script>
+	<script src="/edicola/js2/edicola-lib.js"></script>
+	<script src="/edicola/js2/assistenza.js"></script>
+	<script src="/edicola/js/jquery.uniform.min.js"></script>
+
+	<script src="//www.repubblica.it/static/js/common/gs/gs-plugins.js"></script>
+
+	
+	<script type="text/javascript" src="https://login.kataweb.it/login/js/api/sso-api.js"></script>
+
+	
+    <script type="text/javascript" src="//www.repstatic.it/cless/premium/js.v1/premiumCommon.1.0.5.js"></script> 
+
+	
+	<script type="text/javascript" src="https://www.repubblica.it/social/common/js/gelesocial.cache.php"></script>
+	<script type="text/javascript" src="https://www.repubblica.it/social/sites/repubblica/nazionale/js/2016-v1/d/renderSocial.cache.php"></script>
+
+	 
+	<script type="text/javascript" >
+
+		function activeItemMenu(obj) {
+			var itemsMenu = $('nav[role="navigation"] ul li a');
+			if (itemsMenu) {
+				itemsMenu.each(function( i ) {
+					$(this).removeClass( "active" );
+				});
+				$(obj).addClass( "active" );
+			}
+		}
+
+		function checkHash() {
+			var obj;
+			var _hash = $(location).attr('hash');
+			if (_hash) {
+				var itemsMenu = $('nav[role="navigation"] ul li a');
+				if (itemsMenu) {
+					//var pattern = new RegExp(/_hash$/i);
+					itemsMenu.each(function( i ) {
+						if ($(this).attr("href").indexOf(_hash) >= 0) {
+							obj = this;
+							return false;
+						}
+					});
+				}
+			}
+			return obj;
+		}
+
+		$(document).ready(function() {
+			var itemsMenu = $('nav[role="navigation"] ul li a');
+			if (itemsMenu) {
+				itemsMenu.each(function( i ) {
+					$(this).on( "click", function() {
+						activeItemMenu(this);
+					});
+				});
+			}
+			// attiva la voce di menu' corrispondente allo hash
+			var obj = checkHash();
+			if (obj) activeItemMenu(obj);
+			
+	
+		});
+	</script>
+
+	<script src="https://login.kataweb.it/adagiojs/adagiorep.js"></script>
+	<script type="text/javascript">var sourceMapping = {"ATP_HP_quotidiano":"#kpm_content"}; </script>
+</head>
+<body id="home"> 
+	
+	<script type="text/javascript">
+		<!--
+		var reg_exp_1 = "^393[0-9]{8,10}$";
+		var reg_exp_2 = "^3[0-9]{8,10}$";
+		function checkNumber(){
+			var numero = document.getElementById('username').value;
+			if(numero.match(reg_exp_1)) {
+				return true;
+			}else
+			if(numero.match(reg_exp_2)) {
+				document.getElementById('username').value = "39"+numero;
+				return true;
+			}else{
+				return true;
+			}
+		}
+
+
+        if(window.GeleSocial) GeleSocial.settings.backurl = "https://quotidiano.repubblica.it/edicola/edicola.jsp?chkservice=true";
+
+ 		window.SSOConf = {
+			targetDomain: "https://login.kataweb.it",
+			appId:        "premium"
+		}
+		SSO.injectFrame()
+
+		var currentUrl            = window.location.href;
+		
+		var hashId                = null;
+		
+		var urlPremiumLogin       = "https://quotidiano.repubblica.it/edicola/manager?service=login&urlToken=repnzr3mdp19deez&source=ATP_HP_quotidiano" + "&SSID=";
+		var urlPremiumLoginViaSSO = "https://login.kataweb.it/login/SSO?op=login&service=premium&backurl=https%3A%2F%2Fquotidiano.repubblica.it%2Fedicola%2Fmanager%3Fservice%3Dlogin%26urlToken%3Drepnzr3mdp19deez%26source%3DATP_HP_quotidiano";
+
+		function AutoLoginCallBack(dati) {
+			if ("login" ==  dati.op)   { 
+				//--- non solo loggato sull'applicazione ma lo sono su SSO
+				console.log("AutoLogin - do login");
+				window.location.href = urlPremiumLogin+dati.SSID;
+			}
+			else  if ("changeuser" ==  dati.op)    {
+				//--- Lo SSO e' loggato con un altro utente: esegui il logout appplicativo del vecchio utente ed esegui login nuovo utente
+				console.log("AutoLogin - do changeuser");
+				window.location.href = urlPremiumLogin+dati.SSID;
+			}
+			else  if ("login_manual" ==  dati.op)    {
+				//  forzare il login in modo che questo attivi il flusso di registrazione: nessuna azione automatica eseguita
+				//alert("do login_manual");
+				console.log("AutoLogin - do login_manual");
+			}
+			else  if ("logout" ==  dati.op)    {
+				//--- logout applicativo (NO SSO) e ritorno sulla home
+				console.log("AutoLogin - do logout");
+				window.location.href = "https://quotidiano.repubblica.it/edicola/manager?service=logout";
+			}
+			else  if ("sameuser" ==  dati.op)    {
+				//-- nessuna azione presentare la pagina richiesta
+				console.log("AutoLogin - tutto OK");
+			}
+			else {
+				console.log("AutoLogin - ??????????");
+			}
+		}
+		SSO.checkStatusChange(hashId, AutoLoginCallBack, true);
+
+
+	//-->
+	</script>
+
+<div class="wrapper header zero">
+	<header class="page-header" role="banner">
+		
+		<div class="logo-container">
+			<h1>
+				<a class="rep-logo" href="https://quotidiano.repubblica.it/">
+					<img src="/edicola/img2/logorep.png" alt="Repubblica.it: il quotidiano online con tutte le notizie in tempo reale.">
+					<span class="assistive-text">Repubblica.it</span>
+				</a>
+			</h1>
+		</div>
+		
+		<nav role="navigation" class="main-nav">
+			<h1 class="assistive-text">Navigazione principale</h1>
+
+
+			<ul>
+				<!-- <li><a class="active firstmenuvoice" href="#link-zona_1">Offerta</a></li> -->
+				<li><a href="#link-zona_1">Offerta</a></li>
+				<li><a href="#link-zona_2">Scopri R+</a></li>
+				<li><a href="#link-zona_assistenza_faq">Assistenza</a></li>
+
+			<div id="cont-login">
+			<div id="login" class="login"><a href="#" class="signin"><span>Accedi</span></a> </div>
+				<fieldset id="signin_menu">
+					<form name="RepPre2" action="javascript:GeleSocial.settings.backurl='https://quotidiano.repubblica.it/edicola/manager?service=login.social'; 
+                                                            GeleSocial.openLoginModal(undefined, undefined, {'forward': false, 'origin': 'REP_ACC_SLIM', 
+															                                                 'urlToken': RenderSocial.FUNNEL_TOKEN_LOGIN})" method="GET">
+						<input type="submit" value="Accedi" id="signin_submit">
+					</form>
+
+
+					<form name="RepPre4" action="https://quotidiano.repubblica.it/edicola/manager" method="POST">
+						<input type="hidden" name="backurl" value="https://quotidiano.repubblica.it/edicola/home.jsp">
+						<input type="hidden" name="testata" value="repubblica">
+						<input type="hidden" name="service" value="loginpk">
+						<label for="codice">Se hai un codice di abbonamento inseriscilo qui di seguito e clicca su prosegui per entrare</label>
+						<input type="text" value="" id="phone_key" tabindex="7" name="phone_key">
+						<input type="submit" value="Prosegui" id="signin_submit">
+					</form>
+				</fieldset>
+			 </div>
+			</ul>
+
+
+		</nav>
+	</header>
+</div>
+
+
+	
+
+	<div id="kpm_content">
+
+
+
+
+
+
+
+	
+		
+		
+
+
+
+
+
+
+
+	
+	
+		<a class="nameclass" name="link-zona_1"></a>
+		<div id="main-articles-slider">
+			
+				
+					
+					
+					
+				
+				<article class="cycle-slide" data-cycle-pager-template="<span><strong>R+ con una rivista a tua scelta</strong><br />ad un prezzo davvero speciale!</span>">
+			        
+						<img src="https://www.repstatic.it/marketing/rplus/images/2020/01/14/124117568-ba61b192-c94b-4b27-9ce6-f80cbb76004d.jpg" alt="notitle"  height="680" width="1920"  />
+						<div class="titoli-container">
+							<div class="titoli-wrapper">
+								<div class="titoli">
+									
+									<h2></h2>
+								</div>
+							</div>
+						</div>
+					
+					
+						<div class="buttons-wrapper-container">
+							<div class="buttons-wrapper">
+					
+					
+						
+						
+						
+						<div class="buttontext">
+							<div class="button blu" id="button2">
+								<h3><a href="https://www.repubblica.it/promo/bundle2020?wt_g=ATP_HP_quotidiano.slider.bundle_st.TERM.bundle_st.&amp;source=ATP_HP_quotidiano"><strong>SCEGLI ORA IL TUO!</strong></a></h3>					
+							</div>
+						</div>	
+					
+					
+							</div>
+						</div>
+						
+				</article>
+			
+				
+					
+					
+					
+				
+				<article class="cycle-slide" data-cycle-pager-template="<span><strong>1 mese a soli 13,99&euro;</strong><br />prezzo bloccato per un anno!</span>">
+			        
+						<img src="https://www.repstatic.it/marketing/rplus/images/2020/01/14/123955370-01bf80ea-644f-484a-aafc-0fa7b5cb5013.jpg" alt="notitle"  height="680" width="1920"  />
+						<div class="titoli-container">
+							<div class="titoli-wrapper">
+								<div class="titoli">
+									
+									<h2></h2>
+								</div>
+							</div>
+						</div>
+					
+					
+						<div class="buttons-wrapper-container">
+							<div class="buttons-wrapper">
+					
+					
+						
+						
+						
+						<div class="buttontext">
+							<div class="button giallo" id="button2">
+								<h3><a href="https://quotidiano.repubblica.it/edicola/manager?service=purchase&amp;urlToken=repnz1mdp13&amp;productId=REPPASSUP_1M.000&amp;wt_g=ATP_HP_quotidiano.slider.promost.TERM.1M1399.&amp;source=ATP_HP_quotidiano"><strong>ATTIVA 1 MESE A 13,99&euro;!</strong></a></h3>					
+							</div>
+						</div>	
+					
+					
+							</div>
+						</div>
+						
+				</article>
+			
+				
+					
+					
+					
+				
+				<article class="cycle-slide" data-cycle-pager-template="<span><strong>15 mesi a soli 199,99&euro;</strong><br />anzich&eacute; 249,99&euro;!</span>">
+			        
+						<img src="https://www.repstatic.it/marketing/rplus/images/2020/01/14/103838306-e8e2eb20-fd05-4ee9-ac70-58b3d5d953e6.jpg" alt="notitle"  height="680" width="1920"  />
+						<div class="titoli-container">
+							<div class="titoli-wrapper">
+								<div class="titoli">
+									
+									<h2></h2>
+								</div>
+							</div>
+						</div>
+					
+					
+						<div class="buttons-wrapper-container">
+							<div class="buttons-wrapper">
+					
+					
+						
+						
+						
+						<div class="buttontext">
+							<div class="button blu" id="button2">
+								<h3><strong><a href="https://quotidiano.repubblica.it/edicola/manager?service=purchase&amp;urlToken=repnzr15mdp189&amp;productId=REPPASSUP_1Y.001&amp;wt_g=ATP_HP_quotidiano.slider.promost.TERM.15M199.&amp;source=ATP_HP_quotidiano">ATTIVA 15 mesi a 199,99&euro;!<br /> </a> </strong></h3>					
+							</div>
+						</div>	
+					
+					
+							</div>
+						</div>
+						
+				</article>
+			
+			<a href="" class="prev-button"><span class="icon-slider-left"> </a>
+			<a href="" class="next-button"><span class="icon-slider-right"> </a>
+			<div class="cicle-pager-wrapper"><div class="cycle-pager"></div></div>
+		</div>	
+	
+
+
+		
+
+
+
+
+
+
+<a class="nameclass" name="link-zona_2"></a>
+
+	<div class="wrapper scopri">
+		
+			
+			
+			
+			<h1>Scopri la Repubblica+</h1>
+			<p>Il piacere del tuo quotidiano su tutti i tuoi dispositivi: sfoglia la Repubblica con approfondimenti audio e video. In pi&ugrave;, in un unico abbonamento, tanti contenuti: tutte le edizioni locali, D, il Venerd&igrave;, Affari&amp;Finanza e Robinson.</p>
+			
+		
+			<section class="scopri-offerte">
+				
+					<div class="creativita">
+						<img src="https://www.repstatic.it/marketing/rplus/images/2019/05/14/163100976-76a269bb-5a41-47e0-ad66-1675b4307948.png" alt="Scopri la Repubblica+"  height="456" width="642"  />
+					</div>
+				
+				<div class="col-dx">
+				
+					
+					
+					
+					<article class="">
+						<span class="icon-slider-right"> </span>
+						<a href="https://quotidiano.repubblica.it/edicola/manager?service=purchase&amp;urlToken=npromo&amp;productId=REPPASSUP_1M.000&amp;wt_g=ATP_HP_quotidiano.box_listino.1Mnopromo.TERM.1Mnopromo.&amp;source=ATP_HP_quotidiano">
+							<h2>ABBONAMENTO   MENSILE</h2>
+							<h3>&euro; 19,99 / Mese</h3>
+						</a>
+					</article>
+				
+					
+					
+					
+					<article class="">
+						<span class="icon-slider-right"> </span>
+						<a href="https://quotidiano.repubblica.it/edicola/manager?service=purchase&amp;urlToken=npromo&amp;productId=REPPASSUP_1Y.001&amp;wt_g=ATP_HP_quotidiano.box_listino.1Ynopromo.TERM.1Ynopromo.&amp;source=ATP_HP_quotidiano">
+							<h2>ABBONAMENTO  ANNUALE</h2>
+							<h3>&euro; 199,99 / Anno</h3>
+						</a>
+					</article>
+				
+					
+					
+					
+					<article class="">
+						<span class="icon-slider-right"> </span>
+						<a href="http://quotidiano.repubblica.it/edicola/rplus/generica/2015/12/18/news/regala_abbonamento-3140/">
+							<h2>REGALA UN ABBONAMENTO</h2>
+							<h3>Fai un regalo a chi vuoi</h3>
+						</a>
+					</article>
+				
+					
+					
+					
+					<article class="">
+						<span class="icon-slider-right"> </span>
+						<a href="http://quotidiano.repubblica.it/edicola/offerte_business.jsp">
+							<h2>OFFERTA BUSINESS</h2>
+							<h3>Scopri gli sconti riservati alle aziende</h3>
+						</a>
+					</article>
+				
+				</div>
+			</section>
+	</div>
+
+
+	
+		
+		
+
+
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+<a class="nameclass" name="link-zona_assistenza_faq"></a>
+<div class="dark">
+	<div class="wrapper">
+			
+				
+					
+					
+					<section class="contatti">
+						<h1>Contatti</h1>
+						<p>Se hai bisogno di informazioni sul servizio, le modalit&agrave; di pagamento, oppure hai difficolt&agrave; nell'acquisto o nell'utilizzo dello sfogliatore, <a href="https://help.kataweb.it/assistenza/repubblicasfoglio/richiesta.php" title="https://help.kataweb.it/assistenza/repubblicasfoglio/richiesta.php">scrivici qui</a>. Prima di contattarci ti consigliamo di verificare nelle domande frequenti, che trovi di seguito, se la tua domanda ha gi&agrave; una risposta.</p>
+					</section>
+				
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="faq">
+	<h1>Domande frequenti</h1>
+			
+			<ul class="cbp-ntaccordion" id="cbp-ntaccordion">
+				
+    				
+    				
+    				
+										
+    				
+						<li>
+							<h3 class="cbp-nttrigger">Informazioni sul servizio la Repubblica+</h3>
+							<div class="cbp-ntcontent">
+								<ul class="cbp-ntsubaccordion">
+									
+									<li>
+										<h4 class="cbp-nttrigger">Che cos'è la Repubblica+?</h4>
+										<div class="cbp-ntcontent">
+											<p>la Repubblica + è il servizio di Repubblica che ti permette di sfogliare la Repubblica, tutti gli allegati e le edizioni locali sui tuoi schermi digitali: Computer, Tablet (iPad, Android, Windows 8, Amazon), Smartphone.
+Puoi accedere a la Repubblica + sul tuo computer all'indirizzo quotidiano.repubblica.it, su iPad e iPhone scaricando dall'App Store l'applicazione la Repubblica +.
+
+Se hai un tablet Android, puoi scaricare l'applicazione la Repubblica + da Google Play.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Come si accede a Repubblica+?</h4>
+										<div class="cbp-ntcontent">
+											<p>Per accedere ai contenuti di Repubblica basta attivare uno degli abbonamenti proposti e registrarsi al servizio scegliendo le credenziali di accesso. Con tali credenziali avrai la possibilità di accedere da tutti i dispositivi.
+
+Se disponi di un codice di accesso, basta scegliere dalla pagina di profilo la modalità di accesso con codice e inserirlo all'interno del box predisposto.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Quali sono i contenuti presenti in Repubblica+?</h4>
+										<div class="cbp-ntcontent">
+											<p>Abbonandoti a la Repubblica+, i contenuti disponibili sul tuo computer, iPad e tablet sono:
+
+- l'edizione Nazionale de la Repubblica,
+- le 9 edizioni locali di Roma, Milano, Bari, Bologna, Firenze, Genova, Napoli, Palermo, Torino,
+- tutti gli allegati, tra cui: D la Repubblica, Il Venerdì, Affari e Finanza e Robinson.
+- l'archivio con i 15 numeri precedenti rispetto al quotidiano del giorno e gli allegati.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">A che ora è disponibile solitamente il quotidiano?</h4>
+										<div class="cbp-ntcontent">
+											<p>Il quotidiano è disponibile ogni giorno già dalle prime ore del mattino.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Quando non viene pubblicato il quotidiano?</h4>
+										<div class="cbp-ntcontent">
+											<p>Il quotidiano non è disponibile nei seguenti giorni:
+1° gennaio; Lunedì di Pasqua; 2 maggio; 16 agosto;  25 e 26 dicembre.
+
+Il giornale non viene inoltre pubblicato in caso di sciopero.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Da quanti dispositivi posso accedere a Repubblica + con il mio abbonamento?</h4>
+										<div class="cbp-ntcontent">
+											<p>La Repubblica+ può essere utilizzata su qualsiasi computer dotato dei principali browser e connessione a Internet andando sul sito quotidiano.repubblica.it.
+Può inoltre accedere a la Repubblica+, scaricando l'applicazione dai relativi store, sui seguenti dispositivi:
+- iPad
+- Tablet Android (maggiore di 7")
+- Tablet Windows 8
+- Amazon Kindle Fire HD
+- iPhone</p>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+				
+    				
+    				
+										
+    				
+						<li>
+							<h3 class="cbp-nttrigger">Utilizzo dello sfogliatore via web</h3>
+							<div class="cbp-ntcontent">
+								<ul class="cbp-ntsubaccordion">
+									
+									<li>
+										<h4 class="cbp-nttrigger">Esiste la funzione di ricerca?</h4>
+										<div class="cbp-ntcontent">
+											<p>Si, puoi cercare un articolo cliccando sul pulsante "Cerca in Archivio" presente sull'edicola. Successivamente basta inserire una parola o un frase, seguire le istruzioni e lanciare la ricerca all'interno dell'archivio di Repubblica.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Posso stampare l'articolo in formato testo?</h4>
+										<div class="cbp-ntcontent">
+											<p>Si, basta cliccare una volta sull'articolo e selezionare l'icona "stampa" per far partire la stampa dell'articolo selezionato.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Posso salvare il pdf del quotidiano?</h4>
+										<div class="cbp-ntcontent">
+											<p>Si, per salvare il pdf basta cliccare sul pulsante "Scarica PDF" che trovi nell'edicola e selezionare l'edizione di cui si vuole scaricare il PDF.
+
+Successivamente basta selezionare le singole sezioni di cui si vuole salvare il PDF per far partire il download.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Come faccio a sfogliare il quotidiano dal computer?</h4>
+										<div class="cbp-ntcontent">
+											<p>Per cominciare a leggere, clicca sulla prima pagina dell'edizione desiderata. Puoi scegliere l'edizione nazionale o una delle 9 edizioni locali. Potrai anche scegliere se leggere il quotidiano del giorno oppure selezionare uno dei 10 numeri precedenti attraverso il menù a tendina.
+
+Per leggere un ARTICOLO puoi procedere in due modi:
+
+- un solo clic sull'area evidenziata per zoomare
+- due clic per aprire l'articolo in formato testuale</p>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+				
+    				
+    				
+										
+    				
+						<li>
+							<h3 class="cbp-nttrigger">Creazione e gestione dell'account</h3>
+							<div class="cbp-ntcontent">
+								<ul class="cbp-ntsubaccordion">
+									
+									<li>
+										<h4 class="cbp-nttrigger">Come si crea un account?</h4>
+										<div class="cbp-ntcontent">
+											<p>Per creare un account basta registrarsi sul nostro sito o sull'applicazione la Repubblica+ disponibile da Tablet iOs o Android. L'account è costituito da un indirizzo di posta elettronica e da una password, oltre alle informazioni del tuo profilo, alle impostazioni della privacy e ai dettagli sullo stato dell'abbonamento e di pagamento. Con lo steso account puoi accedere a Repubblica+ su tutti i dispositivi: PC, Tablet (iOS, Android, Windows 8, Amazon), Smartphone.
+
+In più puoi utilizzare lo stesso account per accedere e abbonarti anche agli altri servizi del Gruppo.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Ho perso la password, come faccio a recuperarla?</h4>
+										<div class="cbp-ntcontent">
+											<p>Per recuperare la password è necessario cliccare sul pulsante "Accedi" e poi cliccare sul testo "Non ricordo la Password", subito sotto lo spazio per inserire la password.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Posso modificare la mia password?</h4>
+										<div class="cbp-ntcontent">
+											<p>Per modificare la tua password puoi <a href="https://login.kataweb.it/membercenter/ChangePwd2.jsp">cliccare qui</a> e seguire le istruzioni che trovi sulla pagina.</p>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+				
+    				
+    				
+										
+    				
+						<li>
+							<h3 class="cbp-nttrigger">Problemi tecnici e Assistenza</h3>
+							<div class="cbp-ntcontent">
+								<ul class="cbp-ntsubaccordion">
+									
+									<li>
+										<h4 class="cbp-nttrigger">Come posso contattare l'assistenza Clienti?</h4>
+										<div class="cbp-ntcontent">
+											<p>Se hai bisogno di informazioni sul servizio e sulle modalità di pagamento o se necessiti di aiuto puoi scrivere un'email a: repubblica@gedidigital.it
+
+Se hai dei problemi con l'acquisto tramite operatore telefonico, contatta il customer care allo 06/62289879, tutti i giorni dalle ore 9:00 alle ore 21:00</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Quali sono le informazioni utili all'assistenza clienti per identificare il problema?</h4>
+										<div class="cbp-ntcontent">
+											<p>Le informazioni utili che servono al servizio clienti per identificare facilmete il problema sono:
+- da PC:
+  - Browser che si sta utilizzando: Tipo e aggiornamento
+  - Account
+  - Tipologia di abbonamento sottoscritto
+
+- da Tablet:
+  - Modello del tablet
+  - Numero di versione del sistema operativo
+  - Account
+  - Tipologia di abbonamento sottoscritto</p>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+				
+    				
+    				
+										
+    				
+						<li>
+							<h3 class="cbp-nttrigger">Costi del servizio e modalità di pagamento</h3>
+							<div class="cbp-ntcontent">
+								<ul class="cbp-ntsubaccordion">
+									
+									<li>
+										<h4 class="cbp-nttrigger">Posso richiedere la fattura?</h4>
+										<div class="cbp-ntcontent">
+											<p>Si, le fatture vengono inviate seguendo la periodicità dell'abbonamento. 
+Per gli enti pubblici è possibile richiedere la fattura anticipata.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Quali sono le modalità di pagamento del servizio?</h4>
+										<div class="cbp-ntcontent">
+											<p>Sono ammesse le seguenti modalità di pagamento: addebito su SIM telefonica (solo per abbonamento settimanale), carta di credito, pay pal.
+
+Per l'offerta business è anche ammesso il bonifico bancario e la fattura anticipata.</p>
+										</div>
+									</li>
+									
+									<li>
+										<h4 class="cbp-nttrigger">Quanto costa R+?</h4>
+										<div class="cbp-ntcontent">
+											<p>Se sei un nuovo cliente puoi usufruire di una delle nostre offerte in corso. 
+Successivamente al periodo promozionale potrai usufruire del nostro servizio al seguente prezzo:
+
+- Abbonamento settimanale: 4,99 euro
+- Abbonamento mensile: 19,99 euro
+- Abbonamento annuale: 199,99 euro
+
+Tutti gli abbonamenti sono autorinnovabili salvo disattivazione.</p>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</li>
+				
+				
+		</ul>
+</section>
+
+				
+					
+					
+					
+					
+						
+						
+			            	
+			            	
+			            		<section class="galleria-01">
+									<h1>Guida all'uso</h1>
+									<p></p>
+									
+									<div class="cycle-gallery-01">
+				            			
+				            		
+										
+											
+											
+											
+												
+											
+											<img src="https://www.repstatic.it/marketing/rplus/images/2017/09/27/124737709-a39563be-946b-4cb0-b219-f70d232b14dc.jpg" data-src="https://www.repstatic.it/marketing/rplus/images/2017/09/27/124737709-a39563be-946b-4cb0-b219-f70d232b14dc.jpg">
+										
+											
+											
+											
+											<img src="https://www.repstatic.it/cless/main/nazionale/2013-v1/img/common/placeholder.png" data-src="https://www.repstatic.it/marketing/rplus/images/2019/09/30/121126035-fb42c26e-3754-4746-98cc-f76738be0bd8.jpg">
+										
+											
+											
+											
+											<img src="https://www.repstatic.it/cless/main/nazionale/2013-v1/img/common/placeholder.png" data-src="https://www.repstatic.it/marketing/rplus/images/2017/09/27/124719857-4170c8fc-e79f-4969-826d-4f35c3341b42.jpg">
+										
+											
+											
+											
+											<img src="https://www.repstatic.it/cless/main/nazionale/2013-v1/img/common/placeholder.png" data-src="https://www.repstatic.it/marketing/rplus/images/2017/09/27/124733204-80b0c82a-6b4b-461f-9aef-ba1ee75cad88.jpg">
+										
+											
+											
+											
+											<img src="https://www.repstatic.it/cless/main/nazionale/2013-v1/img/common/placeholder.png" data-src="https://www.repstatic.it/marketing/rplus/images/2017/09/27/124744507-0eb07acd-04d5-41e7-9c05-1a18ba0364d4.jpg">
+										
+										
+										<div class="gallery-01-cycle-pager"></div>
+										<a href="" class="prev-button"><span class="icon-slider-left"> </a>
+										<a href="" class="next-button"><span class="icon-slider-right"> </a>
+									</div>
+								</section>
+			            	
+			        	
+					
+					
+				
+			
+	</div>
+</div>
+		<!-- </html> -->
+
+
+</div>
+
+	<div class="darklight">
+	<div class="wrapper">
+		<section class="dispositivi">
+			<h1>Scopri la Repubblica+ su tutti i tuoi dispositivi</h1>
+			<ul>
+				<li class="apple"><a href="#"><div class="logo"></div><h2>Apple iOS</h2><!--<h3>Scarica dallâ<U+0080><U+0099>App Store per iPad o iPhone</h3>--></a>
+					<div class="iphoneipad">
+						<h3>Scegli la versione</h3>
+						<ul>
+							<li class="ipad"><a href="https://itunes.apple.com/it/app/la-repubblica-+/id369348994?mt=8"><div class="logo"></div><h3>iPad</h3></a></li>
+							<li class="iphone"><a href="https://itunes.apple.com/it/app/la-repubblica/id365904910?mt=8"><div class="logo"></div><h3>iPhone</h3></a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="android"><a href="https://play.google.com/store/apps/details?id=com.paperlit.android.repubblica&hl=it"><div class="logo"></div><h2>Android</h2><!--<h3>Scarica dal Play Store</h3>--></a></li>
+				<!-- <li class="windows"><a href="http://apps.microsoft.com/windows/it-it/app/abbea675-b688-4fac-abcc-3b538a3ba102"><div class="logo"></div><h2>Windows</h2></a></li> -->
+				<!-- <li class="amazon"><a href="http://www.amazon.it/Gruppo-Editoriale-lEspresso-la-Repubblica/dp/B00AJPVDXE/ref=sr_1_13?s=mobile-apps&ie=UTF8&qid=1436352878&sr=1-13"><div class="logo"></div><h2>Amazon</h2></a></li> -->
+				<li class="pcmac"><div class="logo"></div><h2>Pc / Mac</h2><!--<h3>Accedi da quotidiano.repubblica.it</h3>--></li>
+			</ul>
+		</section>
+	</div>
+</div>
+
+	<!--<div class="wrapper half">-->
+	<footer id="page-footer" role="contentinfo">
+		<h1 class="assistive-text">Footer</h1>
+		Copyright &copy; 1999-<script type="text/javascript">document.write(new Date().getFullYear());</script> GEDI Digital S.r.l. Tutti i diritti riservati - All rights reserved - <a href="https://quotidiano.repubblica.it/edicola/condizioni.jsp">Condizioni Generali del servizio e regolamento</a>
+	</footer>
+<!--</div>-->
+
+    <script>
+
+    window.customerlySettings = {
+        app_id: "a215de03",
+        // Force hiding the widget 
+        widget_visible: true,
+        
+        // Set the widget color
+        widget_color: '087bbb',
+        
+        // Set the widget position
+        widget_position: 'right',
+        
+        // Shows the widget when the user has conversations
+        show_with_conversation: true,
+    
+        // Hide the screenshot button
+        screenshot_available: true,
+    
+        // Hide the attachments button
+        attachments_available: true,
+    
+        // Hide the widget on mobile only when true
+        widget_hide_mobile: true,
+
+    };
+
+   !function(){function e(){var e=t.createElement("script");
+    e.type="text/javascript",e.async=!0,
+    e.src="https://widget.customerly.io/widget/35611d02";
+    var r=t.getElementsByTagName("script")[0];r.parentNode.insertBefore(e,r)}
+    var r=window,t=document,n=function(){n.c(arguments)};
+    r.customerly_queue=[],n.c=function(e){r.customerly_queue.push(e)},
+    r.customerly=n,r.attachEvent?r.attachEvent("onload",e):r.addEventListener("load",e,!1)}();
+
+</script>
+
+
+<script type='text/javascript'>
+var axel = Math.random()+"";
+var a = axel * 10000000000000;
+document.write('<img src="https://pubads.g.doubleclick.net/activity;xsp=4438566;ord='+ a +'?" width=1 height=1 border=0/>');
+</script>
+<noscript>
+<img src="https://pubads.g.doubleclick.net/activity;xsp=4438566;ord=1?" width=1 height=1 border=0/>
+</noscript>
+
+<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>																
+<script type="text/javascript">twttr.conversion.trackPid('ntoi7', { tw_sale_amount: 0, tw_order_quantity: 0 });</script>																
+<noscript>																
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=ntoi7&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />																
+<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=ntoi7&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />																
+</noscript>
+
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 967792575;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/967792575/?value=0&guid=ON&script=0"/>
+</div>
+</noscript>
+
+<!-- Global site tag (gtag.js) - Google Ads: 967792575 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-967792575"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-967792575');
+</script>
+
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '247428115450514');
+fbq('track', "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=247428115450514&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+<!-- Start of Home Page Mastertag Code: -->
+<div class="zx_163F4FFE0A23690D1E51 zx_mediaslot">
+    <script type="text/javascript">
+        window._zx = window._zx || [];
+        window._zx.push({"id":"163F4FFE0A23690D1E51"});
+        (function(d) {
+            var s = d.createElement("script"); s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//static.zanox.com/scripts/zanox.js";
+            var a = d.getElementsByTagName("script")[0]; a.parentNode.insertBefore(s, a);
+        }(document));
+    </script>
+</div>
+<!-- End of Home Page Mastertag Code -->
+<!-- START Script di AWI -->
+<script type="text/javascript" src="https://www.repstatic.it/cless/premium/2017-v1/js/repubblica/smc-service-worker.js" charset="utf-8"></script>
+<!-- END Script AWI-->
+
+
+   
+
+
+
+<!-- START Webtrekk start: -->
+<script type="text/javascript">
+	//--- prendo appendo al dominio della pagina chiamata il nome del contesto.
+	var pageHref          = 'https://quotidiano.repubblica.it/home.jsp';
+	var pageType          = 'homepage';
+	var wt_logged_service = 'premium';
+	var wt_step           = 'offerta non abbonati';
+	var wt_source         = 'ATP_HP_quotidiano';
+	var loggedUser        = 'non loggato';
+	var wt_premium_status         ='stato-off';
+var wt_premium_service_type   ='no-service';
+var wt_premium_promo_active   ='no-promo';
+var wt_premium_product_active ='no-product';
+var wt_premium_user_type      ='no-user';
+var wt_premium_user_source    ='no-source';
+
+	
+</script>
+<!-- [GEDI] Centralized Webtrekk Include dc -->
+<!-- START Webtrekk 4.4.1 - lib 1.0 - https://www.repstatic.it/cless/common/stable/include/wt/wt.html === including another esi === https://www.repstatic.it/cless/common/stable/include/wt/wt.js -->
+<script>
+if(!window.kw_tlh) {
+    (function(){
+        var loadEl = function(el, fn){
+            if(el.readyState) {
+                if(el.readyState == 'loaded' || el.readyState == 'complete') { 
+                    fn();
+                } else {
+                    el.onreadystatechange = function() {
+                        if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                            this.onreadystatechange = null;
+                            fn();
+                        }
+                    };  
+                }
+            } else {
+                el.onload = fn
+            }
+        }
+        var loadScriptAsync = function(script, fn){
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.src = script;
+            s.async = true;
+            if(fn) { 
+                loadEl(s, fn);
+            }
+            document.getElementsByTagName('head')[0].appendChild(s);
+        }
+        var loadSequence = function(seq){
+            var f = undefined;
+            for(var i=seq.length-1;i>=0;i--){
+                var seq1 = seq[i];
+                (function(seq1){
+                    var f1 = f;
+                    f = function(){
+                        loadScriptAsync(seq1, f1);
+                    }
+                })(seq1);
+            }
+            f();
+        }
+        var wtmapping_url = '';
+        try {
+            if(!window.__wt_section) {
+                wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js?pageurl='+encodeURIComponent(location.href.toString());
+            } else {
+                wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js?__wt_section='+(window.__wt_section ? encodeURIComponent(window.__wt_section.toLowerCase()) : "");
+            }
+        } catch(e) {
+            wtmapping_url = 'https://scripts.kataweb.it/wt/wt.js';
+        }
+        if(window.pageHref !== "http://www.repubblica.it/" && window.pageHref !== "https://www.repubblica.it/") { // Eccezione per homepage di Repubblica.it che ha mapping hardcoded in pagina
+            loadSequence([
+                'https://www.repstatic.it/cless/common/stable/js/script/wt/wt_premium_manager.js',
+                wtmapping_url,
+                'https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4&v=1'
+            ]);
+        } else {
+            // INCLUDE exception for Repubblica Homepage
+            loadSequence([
+                'https://www.repstatic.it/cless/common/stable/js/script/wt/wt_premium_manager.js',
+                'https://www.repstatic.it/minify/sites/common/config_webtrekk_01.cache.php?name=webtrekk_441_4&v=1'
+            ]);
+        }
+    })();
+}
+</script>
+
+<!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2012 Nielsen Online -->
+<script type="text/javascript" src="//secure-it.imrworldwide.com/v60.js">
+</script>
+<script type="text/javascript">
+ var pvar = { cid: "kataweb-it", content: "0", server: "secure-it" };
+ var feat = { check_cookie: 0 };
+ var trac = nol_t(pvar, feat);
+ trac.record().post();
+</script>
+<noscript>
+ <div>
+ <img src="//secure-it.imrworldwide.com/cgi-bin/m?ci=kataweb-it&amp;cg=0&amp;cc=0&amp;ts=noscript" 
+ width="1" height="1" alt="" />
+ </div>
+</noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+
+<!-- END  Webtrekk start -->
+
+<!-- avazu inizio script tracciamento --> 
+<script type="text/javascript" charset="UTF-8">
+	var _AvazuRunid = "ODEwaWVyX2ZnKzQ=";
+	var _AvazuRadvid = "MjEzMG1lX3QrNGlr";
+	(function() {
+		var avazu = document.createElement('script'); avazu.type = 'text/javascript'; avazu.async = true;
+		avazu.src = "https://avazudsp.net/ret/dspJSs.js";
+		var avazujs = document.getElementsByTagName('script')[0]; avazujs.parentNode.insertBefore(avazu, avazujs);
+	});
+</script> 
+<!-- avazu fine script tracciamento -->
+
+<script type="text/javascript">
+//-- tracking neodata
+var trackingShopJSON = {"step": "offerta non abbonati",
+                        "source": "ATP_HP_quotidiano", 
+                        "testata":"repubblica" };
+adagioGetRegistration(trackingShopJSON);
+</script>
+
+<script defer="defer" src="https://www.dwin1.com/15069.js" type="text/javascript"></script> 
+
+</body>
+</html>
+
