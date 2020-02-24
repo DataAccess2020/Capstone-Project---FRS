@@ -34,24 +34,29 @@ There are three dataset:
 
 **data_sentimet**: it is the dataset used to conduct both sentiment and emotional analysis. 
 
+**comparative_dataset**: it contains the dataset about the three newspapers. 
+
 ## **SRC**
 This folder contains the scripts:
 1. **00_setup**: it is the script containing all the used packages and the library of them; 
 2. **01_scraping**: it is the script which contains the scraping part;
 3. **02_textanalysis**: it is the script that contains 
    - the part of *tokenization* and *pre-processing*;
-   - the part about *word frequencies* 
-4. **03_sentiment**: it is the script containg the sentiment analysis. 
+   - the part about *word frequencies*; 
+4. **03_sentiment**: it is the script containg the sentiment analysis;
+5. **04_comparative analysis**: it is the script about the comparison between the data about the three newspapers. 
 
 ## **JUNK**
 This folder contains all the things I didn't want to delate:
 - **03_quantedatextanalysis**: it is a script in which I was sperimenting a new package for the text analysis; 
 - **Scriptcorriere** and **Scriptcorrierebozza** which are the first script I used; they are a sort of draft. 
+- **Mergingdataset**: it contains the first script to conduct the comparative analysis. Its limit is the non-reproducibility.
 
 ## **DICTIONARY** 
 This folder contains the two dictionaries used to conduct the sentiment analysis:
 - *DepecheMood_italian_token_full*: it is an emotive lexic with five different emotions (indignation, worry, sad, happy, satisfied);
 - *opeNER_df*: it is a lexic with positive, negative and neutral sentiment; 
+- *it-sentiment_lexicon.lmf.xml*: it is the lexicon to construct the dictionary. 
 
 ## **FIG**
 This folder contains the graphs with descriptive names. 
