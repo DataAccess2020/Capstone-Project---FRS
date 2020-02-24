@@ -168,51 +168,16 @@ In the brench there are five folders:
       - the saved dataset.
 
 The saved dataset are: 
- - dat: it is the starting dataset, created after the scraping part of my analysis. It is composed by:
+ 1. dat: it is the starting dataset, created after the scraping part of my analysis. It is composed by:
  
-                  - 30 observation (the articles published on the homepage on February 17);
-                  - 3 variables: link, articlestext, section 
+            - 30 observation (the articles published on the homepage on February 17);
+            
+             - 3 variables: link, articlestext, section 
                 
 his dataset can be opened going to the folder data and then opening the file Corrierearticles1702.Rdata.
 datcharacter: it is the dataset in which the text of the articles is saved as character.
 
-dat3: it is the dataset in which the variable "word" is added. It presents 4 variables and 8440 observation.
 
-This dataset was obtained in two steps:
-The first step is what we call vectorization: using the command unnest_token I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
-The second step is about the pre-processing: I removed from the observations what was unusful for the analysis. This way I obtained dat3;
-This dataset can be opened going to the folder data and then opening the file IlCorriereDellaSera.Rdata.
-corriere_words: it is the dataset that contains only the words.
-
-It is constituted by one variable and 8440 observations;
-This dataset can be opened going to the folder data and then opening the file IlCorriereDellaSeraWORDS.Rdata
-data_sentimet: it is the dataset used to conduct both sentiment and emotional analysis.
-
-SRC
-
-This folder contains the scripts:
-
-00_setup: it is the script containing all the used packages and the library of them;
-01_scraping: it is the script which contains the scraping part;
-02_textanalysis: it is the script that contains
-the part of tokenization and pre-processing;
-the part about word frequencies
-03_sentiment: it is the script containg the sentiment analysis.
-JUNK
-
-This folder contains all the things I didn't want to delate:
-
-03_quantedatextanalysis: it is a script in which I was sperimenting a new package for the text analysis;
-Scriptcorriere and Scriptcorrierebozza which are the first script I used; they are a sort of draft.
-DICTIONARY
-
-This folder contains the two dictionaries used to conduct the sentiment analysis:
-
-DepecheMood_italian_token_full: it is an emotive lexic with five different emotions (indignation, worry, sad, happy, satisfied);
-opeNER_df: it is a lexic with positive, negative and neutral sentiment;
-FIG
-
-This folder contains the graphs with descriptive names.
 
 #### What I learned
 During the development of the project we were free, for the first time, to create a personal project: chosing the topic and being free to conduct any kind of analysis and to use any kind of package we know. From the course, of sure, I learned at looking behind what I already know and to try to find a solution also when it seems impossible. Developing this skills meant that we searched for resources everywhere and we discovered new useful packages. We contacted Federico Vegetti, asking him some materials about the sentiment and emotional analysis and he gives us a fundamental resource, that is what allowed us to complete the project. 
@@ -222,7 +187,6 @@ It was challenging working in a group. Sometimes it's more esier making things a
 The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research fild. 
 Fabiana Gemma Giannuzzi 
 
-SPIEGAZIONE DI SCELTE PRESE 
-POSSIBILI MIGLIORAMENTI E SVILUPPI 
+
 * parlare del perchè il 17 febbraio: quando avevamo tutti i codici -> + articoli la prox volta 
 “default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”

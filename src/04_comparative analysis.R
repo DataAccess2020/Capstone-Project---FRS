@@ -69,18 +69,3 @@ jac_sim1 <- sections_dtm %>%
 jac_sim1
 
 
-quanteda::convert(newspapers_dtm,
-                  to = "data.frame") %>%
-  rename(section = document) %>%
-  gather(var, val, -newspaper) %>%
-  group_by(newspaper) %>%
-  mutate(
-    val = val/sum(val)
-  ) %>%
-  ggplot(., aes(x = var, y = val)) +
-  geom_bar(aes(fill = newspaper), 
-           stat = "identity", alpha = 0.5) +
-  facet_wrap(~newspaper, ncol = 3) +
-  scale_y_continuous(labels = scales::percent) +
-  theme_bw()
-
