@@ -44,25 +44,25 @@ opeNER <- opeNER %>%
 dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
 head(dpm)
 
-# Sentiment----------------------------------------------------
+# Sentiment----
 opeNERdict <- quanteda::dictionary(
   split(opeNER$lemma, opeNER$polarity)
 )
 lengths(opeNERdict)
 
-# import dataset-------
+# import dataset----
 load(here::here("data/articoli_repubblica_17_02_2020.Rdata"))
 
-# remove double links-------------
+# remove double links----
 dataset_pulito <- unique (dat_definitivo)
 
-# "text" column transformed from factor to character---------------
+# "text" column transformed from factor to character----
 text_cleaned <- sapply(dataset_pulito$text, toString, windth=57)
 
-# replaced into "dataset_pulito"--------
+# replaced into "dataset_pulito"----
 dataset_pulito <- mutate(dataset_pulito, text = text_cleaned)
 
-# create a dataset with the text (as character) and the section(filtered)-----
+# create a dataset with the text (as character) and the section(filtered)----
 data_sentiment <-  dataset_pulito %>% 
   select(section, text) %>% 
   filter(!is.na(section))
@@ -87,7 +87,7 @@ rep_dtm1 <- dfm(
 
 head(rep_dtm1)
 
-# SENTIMENT GRAPH, for each of the 4 sections------------
+# SENTIMENT GRAPH, for each of the 4 sections----
 quanteda::convert(rep_dtm1,
                   to = "data.frame") %>%
   rename(section = document) %>%
@@ -102,7 +102,7 @@ quanteda::convert(rep_dtm1,
   scale_y_continuous(labels = scales::percent) +
   theme_bw()
 
-# SENTIMENT GRAPH for the whole dataset------
+# SENTIMENT GRAPH for the whole dataset----
 quanteda::convert(rep_dtm1,
                   to = "data.frame") %>%
   rename(section = document) %>%
@@ -115,13 +115,13 @@ quanteda::convert(rep_dtm1,
   xlab("Polarity sentiment\n(from negative to positive)") +
   theme_bw()
 
-## SENTIMENT WITH CONTINOUS CATEGORIES-----------------
+## SENTIMENT WITH CONTINOUS CATEGORIES----
 # analysis of the emotions
 # Creating vectors for each categories of the DPM, each is weighted
 # saving the words from DPM in a vector
 dpm_words <- dpm$V1
 
-# Creating vectors for each categories of the DPM, each is weighted-----
+# Creating vectors for each categories of the DPM, each is weighted----
 
 # 1 Indignato / Outrage----
 dpm_ind <- dpm$INDIGNATO
@@ -197,8 +197,8 @@ rep_sent_emo <- bind_cols(
 
 rep_sent_emo
 
-# GRAPHS FOR EMOTIONS------------
-# for each sections:
+# GRAPHS FOR EMOTIONS----
+# for each sections
 rep_sent_emo %>%
   gather(var, val, -section) %>%
   ggplot(., aes(x = reorder_within(var, val, section), y = val)) +
