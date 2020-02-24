@@ -19,7 +19,9 @@ There are three dataset:
   2) Articlestext; 
   3) Section;
 - This dataset can be opened going to the folder **data** and then opening the file **Corrierearticles1702.Rdata**. 
-           
+
+**datcharacter**: it is the dataset in which the text of the articles is saved as character. 
+
 **dat3**: it is the dataset in which the variable *"word"* is added. It presents 4 variables and 8440 observation. 
 - This dataset was obtained in two steps:
   1) The first step is what we call *vectorization*: using the command **unnest_token** I divided the entire articles in single words. This way, I obtained a dataset with 18920 observations;
@@ -29,6 +31,8 @@ There are three dataset:
 **corriere_words**: it is the dataset that contains only the words. 
 - It is constituted by one variable and 8440 observations;
 - This dataset can be opened going to the folder **data** and then opening the file **IlCorriereDellaSeraWORDS.Rdata**
+
+**data_sentimet**: it is the dataset used to conduct both sentiment and emotional analysis. 
 
 ## **SRC**
 This folder contains the scripts:
