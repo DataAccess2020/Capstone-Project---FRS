@@ -207,7 +207,7 @@ This folder contains the graphs with descriptive names.
 
 ### **What I learned**
 During the development of the project we were free, for the first time, to create a personal project: chosing the topic and being free to conduct any kind of analysis and to use any kind of package we know. From the course, of sure, I learned at looking behind what I already know and to try to find a solution also when it seems impossible. Developing this skills meant that we searched for resources everywhere and we discovered new useful packages. We contacted Federico Vegetti, asking him some materials about the sentiment and emotional analysis and he gives us a fundamental resource, that is what allowed us to complete the project. 
-It was challenging working in a group. Sometimes it's more esier making things alone because of the absence of the necessity to coordinate the work but for sure working with my colleagues has make this project more complete and accurate. 
+It was challenging working in a group. Sometimes it's more esier making things alone because of the absence of the necessity to coordinate the work but for sure working with my colleagues has make this project more complete and accurate. Working on this project allowed me to better learn how to use GitHub.
 
 ### **Comments**
 The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research field. 
