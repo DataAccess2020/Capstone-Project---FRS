@@ -155,7 +155,7 @@ This graph displays the distribution of the emotional dimensions in the differen
 ### **Comparative analysis and results**
 In this part we created a dataset (**/data/comparative_dataset.Rdata**) that contains values from all the dataset of the members of the team. In this dataset we added the variable *"newspaper"* that allows us to compare data of the three journal and observe the hypothesis we did in the explanation of the project. 
 
-Firstly I created a corpus and a dfm defining as group "newspaper". Then I used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers. 
+Firstly we created a corpus and a dfm defining as group "newspaper". Then we used some measures to look at the similarity or difference between vocabulary used in different dataset, that represents different newspapers. 
 
 - **cosine method**: is a measure of similarity between two texts, based on the angolar distance between two vectors.
 
@@ -164,7 +164,13 @@ Looking at the results we can observe that the texts are more similar between *I
 - **jaccard**: it is a measure of similarity based on the number of words in common at regard of the total number of words.
 Looking at the results it can be said that the three considered newspapers use a low number of common words.
 
-Secondly I created a corpus and a dfm defining as group "sections". Then I used the same measures: considering cosine method I observed that there is an high level of similarity between all the sections meanwhile using jaccard I observed that there is a low level of common words. 
+Secondly, we conducted a sentiment analysis through which compare the sentiment of the three newspapers.
+
+Fig. 6 Sentiment analysis: comparison between newspapers
+![](fig/sentimentcomparative.png)
+
+Looking at this graph emerges that different newspapers behave differently on the basis of the political orientation. Particularly, the behavior we observe satisfy our expectation because the political-right newspaper results to have a more negative language while the political-left newspaper is on the positive side of the scale. Il Corriere, which represents the center-wing has an intermediate position also within the sentiment graph. 
+
 
 ### **Understanding the branch** 
 In the brench there are five folders:
@@ -211,6 +217,7 @@ It was challenging working in a group. Sometimes it's more esier making things a
 
 ### **Comments**
 The project obviously presents some limits. It would be better if we had a large number of observation: we could have scraped the articles of many days or we could have included many newspapers, for instance. The analysis could have be more precise, but I think this project was an important step in developing our skills in the research field. 
+
 
 Fabiana Gemma Giannuzzi 
 

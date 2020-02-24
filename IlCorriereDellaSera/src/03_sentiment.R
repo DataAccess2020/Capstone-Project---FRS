@@ -3,7 +3,7 @@ source(here::here("src","00_setup.R"))
 
 # SENTIMENT ANALYSIS 
 # Read file and find the nodes
-opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
+opeNER_xml <- read_xml("./IlCorriereDellaSera/dictionary/it-sentiment_lexicon.lmf.xml")
 entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
 lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
 confidence <- xml_find_all(opeNER_xml, ".//Confidence")
@@ -32,7 +32,7 @@ opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 write.csv(opeNER_df, file = here::here("dictionary","opeNER_df.csv"))
 
 # Importing dictionary 
-opeNER <- rio::import("./dictionary/opeNER_df.csv")
+opeNER <- rio::import("./IlCorriereDellaSera/dictionary/opeNER_df.csv")
 head(opeNER)
 
 # deleting words without polarity
@@ -42,7 +42,7 @@ opeNER <- opeNER %>%                       #obs change 25098 - 25053
 
 # DEPECHE MOOD --------
 # importing Depeche Mood dictionary: 
-dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
+dpm <- rio::import("./IlCorriereDellaSera/dictionary/DepecheMood_italian_token_full.tsv")
 head(dpm)
 
 
@@ -56,7 +56,7 @@ lengths(opeNERdict)
 #ANALYSIS ----
 
 #importing dataset with the text of the article as character
-rio::import("./data/datcharacter.Rdata")
+rio::import("./IlCorriereDellaSera/data/datcharacter.Rdata")
 
 #create the a dataset with only two variables: section and text 
 data_sentiment <-  datcharacter %>% 
@@ -71,7 +71,7 @@ data_sentiment <- subset(data_sentiment, section == "esteri" | section =="cronac
 
 data_sentiment
 
-save(data_sentiment, file = here::here("/data/datasentiment.Rdata"))
+save(data_sentiment, file = here::here("./IlCorriereDellaSera/data/datasentiment.Rdata"))
 
 #creating the corpus
 crp <- quanteda::corpus (

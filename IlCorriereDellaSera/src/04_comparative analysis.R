@@ -2,7 +2,7 @@
 source(here::here("src","00_setup.R"))
 
 #Loading the dataset which contains data about all our three newspapers. 
-load(here::here("./data/comparative_dataset.Rdata"))
+load(here::here("./IlCorriereDellaSera/data/comparative_dataset.Rdata"))
 
 comparative_dataset        #It has four variables: link, section, text, newspaper
 
@@ -38,39 +38,7 @@ jac_sim <- newspapers_dtm %>%
 jac_sim
 
 
-
-#WORKING WITH SECTIONS
-
-SECTIONS <- filter(NEWSPAPERS, section == "esteri" | section =="cronache" | section=="politica"| section=="economia" | section== "la-lettura" | section== "scuola") 
-
-table(NEWSPAPERS$section)
-
-#Creating corpus 
-corp1 <- corpus(
-  SECTIONS
-)
-
-summary(corp)
-
-sections_dtm <- dfm(
-  corp1,
-  group = "section")
-
-#cosine similarity: it is a measure of similarity between two texts, based on the angolar distance between two vectors
-cos_sim1 <- sections_dtm %>%
-  textstat_simil(method = "cosine",
-                 margin = "documents")
-
-cos_sim1
-
-#jaccard, extended jaccard: it is a measure of similarity based on the number of words in common at regard of the
-#total number of words
-jac_sim1 <- sections_dtm %>%
-  textstat_simil(method = "jaccard",
-                 margin = "documents") 
-jac_sim1
-
-#sentiment graph 
+#comparison of sentiment analysis for the three newspapers --------
 
 # CREATING OPENER
 opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
@@ -95,7 +63,6 @@ opeNER_df <- data.frame(
 opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
                              "neutral", opeNER_df$polarity)
 
-
 # Make quanteda dictionary 
 opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
@@ -111,7 +78,7 @@ table(opeNER$polarity, useNA = "always")
 opeNER <- opeNER %>%                       #obs change 25098 - 25053
   filter(polarity != "")
 
-#SENTIMENT GRAPH 
+#SENTIMENT GRAPH ---------
 
 # Creare dizionario dal lessico opeNER
 opeNERdict <- quanteda::dictionary(
@@ -122,7 +89,7 @@ lengths(opeNERdict)
 library(quanteda)
 
 news_dtm <- dfm(
-  newspapers_dtm,
+  corp,
   tolower = T,
   dictionary = opeNERdict
 ) %>%
