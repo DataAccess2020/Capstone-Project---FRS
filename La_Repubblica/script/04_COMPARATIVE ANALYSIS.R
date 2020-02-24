@@ -14,17 +14,20 @@ newspapers_dtm <- dfm(
   comparative_corp,
   group = "newspaper")
 
-# SIMILARITY BETWEEN NEWSPAPERS-------
+# SIMILARITY BETWEEN NEWSPAPERS----
 
-#cosine similarity: it is a measure of similarity between two texts, based on the angolar distance between two vectors
+# cosine similarity
+# it is a measure of similarity between two texts,
+# based on the angolar distance between two vectors
 cos_sim <- newspapers_dtm %>%
   textstat_simil(method = "cosine",
                  margin = "documents")
 
 cos_sim
 
-#jaccard, extended jaccard: it is a measure of similarity based on the number of words in common at regard of the
-#total number of words
+# jaccard, extended jaccard
+# it is a measure of similarity based on the number of words in common
+# at regard of the total number of words
 jac_sim <- newspapers_dtm %>%
   textstat_simil(method = "jaccard",
                  margin = "documents") 
