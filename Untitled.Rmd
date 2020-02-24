@@ -86,7 +86,7 @@ In the entire set of data I obtained the following results:
 
 Fig. 1: wordcloud in the entire dataset 
 
-![](fig/wordcloud-tot.png) 
+![](fig/wordcloud - tot.png) 
 
 
 Fig. 2: five most used word in the entire dataset.
@@ -127,13 +127,14 @@ From this analysis it is possible to observe that in the newspaper *Il Corriere 
 Emotional analysis is considered a sentiment analysis with continuous categories because it refers to more specific emotional dimensions. In this analysis there are five dimensions: *indignation, concern, sadness, happiness and satisfaction*. 
 We obtained two inverted graphs:
 
-1Fig. 4 Percentages of each emotional dimension in each sections. 
+Fig. 4 Percentages of each emotional dimension in each sections. 
 
 ![](fig/emotionalanalysis - forsection.png)
 
 From this graph we can say that almost all the sections (at the exception of "economia") present **"Divertito"** as the most frequent emotion meanwhile **"Triste"** is the emotion with the lower percentage in all the sections.
 
 The positioing of **"Soddisfatto", "Preoccupato" e " Indignato"** is about the same for each section, meaning that the journal has a coerent style in the use of words and emotion transmitted. 
+
 
 
 Fig. 5 Percentage of emotional dimension in sections 
