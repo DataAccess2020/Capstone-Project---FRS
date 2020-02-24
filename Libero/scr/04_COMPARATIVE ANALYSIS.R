@@ -39,6 +39,13 @@ jac_sim
 
 
 # sentiment:----------------------------------------------------------
+
+opeNER <- rio::import("./Libero/dictionary/opeNER_df.csv")
+head(opeNER)
+opeNERdict <- quanteda::dictionary(
+  split(opeNER$lemma, opeNER$polarity)
+)
+
 news_dtm <- dfm(
   comparative_corp,
   tolower = T,
