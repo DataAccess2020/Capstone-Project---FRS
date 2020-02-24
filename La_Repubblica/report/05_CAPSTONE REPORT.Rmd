@@ -35,6 +35,7 @@ newspapers_dtm <- dfm(
 
 
 ### TO START
+
 ##### The initial idea of this project was to scraping the homepage of a newspaper, downloading all the articles for analyze the text. In parallel to this goal there was to become as independent as possible in the management of the packages to do this kind of research.
 
 ##### After a first attempt on international newspapers we decided to continue with Italian newspapers that had fewer limitations (more favorable robots.txt).
@@ -145,6 +146,8 @@ jac_sim
 
 
 ### CONCLUDING
+
+
 ##### I understand that one of the limitation of this work is the reduced number of downloaded articles, nevertheless having a more "contained" dataset to manage has allowed us to concentrate better on the use of the functions and on the part of the code. This project will be of great help for the construction of more in-depth studies (such as the thesis).
 
 ##### In addition to having learned to use certain packages in R and to have become generally more confident with these jobs, thanks to this project I realized the importance, potential and difficulties of working in a team, an aspect that with this experience I believe fundamental for my future.
