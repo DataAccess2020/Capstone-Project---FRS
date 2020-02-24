@@ -1,21 +1,29 @@
 #Text analysis 
 source(here::here("src","00_setup.R"))
 
+import("./data/Corrierearticles1702.Rdata")
 
 # 1. vectorization -----------------
+#1.1 Converting the text of the articles from factor to character
 
 articles <- sapply(dat$articlestext, toString, windth=57)
 
-dat <- mutate(dat, text = articles)
+dat <- mutate(dat, text = articles) 
 
 as.tbl(dat, stringsAsFactor = FALSE)
 
-dat <- select(dat, text, link, section)
+#1.2 Selecting needed variables 
 
-save(dat, file = here::here("/data/Corrierearticles1702.Rdata"))
+datcharacter <- select(dat, text, link, section)
+as.tbl(datcharacter)
 
+#1.3 Saving dataset 
 
-dat1 <- dat %>%
+save(datcharacter, file = here::here("/data/datcharacter.Rdata"))
+
+#1.4 vectorizing dataset: obtaining a dataset with single words
+
+dat1 <- datcharacter %>%
   unnest_tokens (word, text)
 
 
@@ -36,13 +44,13 @@ dat3 <- dat2 %>%
   filter(!str_detect(word, '\\n+'))
 #4. Saving vectorized dataset 
 
-save(dat3, file = here::here("/data/IlCorriereDellaSera.Rdata"))
+save(dat3, file = here::here("/data/datpreprocessed.Rdata"))
 
 
 #5. Creating a dataset with only 2 variables: word and count ---------------
 corriere_words <- tibble (word = dat3$word)
 
-save(corriere_words, file = here::here("/data/IlCorriereDellaSeraWORDS.Rdata"))
+save(corriere_words, file = here::here("/data/datWORDS.Rdata"))
 
 
 #6. Word frequencies 

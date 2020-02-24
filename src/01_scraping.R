@@ -138,15 +138,6 @@ dat
 
 save(dat, file = here::here("/data/Corrierearticles1702.Rdata"))
 
- # ---
-text_cleaned <- sapply(dat$articlestext, toString, windth=57)
 
-# adding the new text format to the data frame: 
-dat_character <- mutate(dat, articlestext = text_cleaned)
-
-as.tbl(dat_character, stringsAsFactor = FALSE)
-
-# saving it locally: 
-save(dat_character, file = here::here("dat_character.Rdata"))
 
 

@@ -5,7 +5,7 @@ date: "22/2/2020"
 output: 
   html_document:
     toc: true
-    theme: journal
+    theme: default
     highlight: tango
     fig_width: 10
     fig_height: 8
@@ -14,11 +14,13 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
+“default”, “cerulean”, “journal”, “flatly”, “darkly”, “readable”, “spacelab”, “united”, “cosmo”, “lumen”, “paper”, “sandstone”, “simplex”, “yeti”
 
 ## *The use of words in newspapers*
 
-#### **Introduction**
+### **Introduction**
 During the '80s researchers considered journalist as creators of news, the responsible of the form that an event takes within the society. Gans (1979) explicitly sustain the idea that anything is a news originally: the news are just what journalists share with the public and the way in which they do that. (Spelndore 2017)
 
 The core idea of this project is to test this perspective, analysing and comparing the way in which events are reported and represented in different newspapers. The political orientation is the way in which we decided to classify newspapers assuming that journalism has to be considered a practice partially influenced and constituted by its relations with politics. (Splendore 2017)
@@ -30,7 +32,7 @@ At the basis of this project there are two assumptions:
 
 2. Words are powerful tools in creating, reproducing and representing events. 
 
-#### **The project**
+### **The project**
 The research question of this project aims to discover whether newspapers positioning themselves in different political areas presents the news in different ways. Specifically, the hypothesis is that different newspapers presents news in different ways.
 We selected three newspapers ans then we scraped the articles presents on the homepage on February 17. The newspapers object of this project are:
 
@@ -44,11 +46,12 @@ Our objective is achieved conducting sentiment, emotional and text analysis of t
 The sentiment and emotional analysis use dictionaires and some algoritms to evaluate the feelings expressed in one text just looking at the words used; the text analysis is more observational and descriptive: it allows you to have a look at the frequency of the word used in the articles. 
 
 The analysis of this project involves two levels:
+
 1. An internal level, which means that the way to express an idea or to describe en event depends on political perspective of the journal about an argument in general. At this purpose we created the variable *"section"* that may be useful to contestualize the use of some words, their frequency and the sentiments emerging from the articles.
 
 2. An external level, which is about the comparison between the various newspapers. This part allows us to accept or reject our starting hypothesis.  
 
-#### **Scraping**
+### **Scraping**
 Scraping the articles of the various homepages is the focal part of the project. 
 To scrape the pages we used four different packages that we learned to use during the course of Data Access and Regulation II. These packages are: 
 
@@ -72,23 +75,50 @@ links <- read_html(here::here("/data/Ilcorrieredellasera1402.html")) %>%
 links
 ```
 
-#### **Analysis**
+### **Analysis**
 In the first part of the analysis I used the package *"tidytext"*. 
-The starting point was to tokenize the articles, meaning that we must divide the text in separate words.   
+The starting point was to tokenize the articles, meaning that we must divide the text in separate words.To do that, the function asked me to convert my *articlestext* variable from a factor to a character. Then I saved the first dataset. 
 
 ##### **Pre-processing**
-Pre-processing is a fundamental phase to conduct the analysis because it allows you to clean data 
+Pre-processing is a fundamental phase to conduct the analysis because it allows you to clean data. In this part I removed digits, punctuation and stopwords. To remove stopwords I used a new package *stopwords*. 
 
 ##### **Text analysis**
+In this part I created a dataset containing only words. This was the dataset I used to look at the word frequencies.
+
+In the entire set of data I obtained the following results:
+
+I also looked at the words most used in the articles scraped considering the sections. I considered five main sections: *"economia", "cronaca", "scuola", "la-lettura" and "esteri"*. To obtain the frequencies divided for sections I used a dataset which contains also the variable *section* (dat3). 
 
 ##### **Sentiment and emotional analysis**
+This is the most important phase of the project. This part is divided in three moments:
+
+1. The first part is about the uploading of the sentiment lexicon and then of the dictionaries needed to conduct the sentiment analysis;
+
+2. In the second part I imported the dataset **datcharacter** in which the text of the article was converted from factor to character. Then I created a new dataset **dat_sentiment** that will be used to conduct both sentiment and emtional analysis. The dataset contains only two variables: text and section, which is particularly useful because in the analysis we will compare the sentiment expressed in the different sections.
+ 
+ 3. In the third part we conducted the analysis:
+        
+        
+##### **Sentiment analysis**
+This kind of analysis is also defined a sentiment analysis with discrete categories. 
+Firstly I created a corpus and a dfm that allows us to arrange documents on the basis of the document's variables. 
+Then, I created a graph shwoing the percentage of each category of sentiment (negative, neutral and positive) for each section.
+
+GRAFICO 
+        
+##### **Emotional analysis**
+Emotional analysis is considered a sentiment analysis with continuous categories because it refers to more specific emotional dimensions. In this analysis there are five dimensions: *indignation, concern, sadness, happiness and satisfaction*. 
+We obtained two inverted graphs:
+
+GRAPH
+It shows the percentages of each emotional dimension in each sections. 
+
+GRAPH
+It shows how an emotional dimension is distribuited in the sections. 
+    
 
 
 
-
-
-Specifically, sentiment, emotional and text analysis are expected to explore  in terms of words used and 
-with different political orientations. This way, it can be said that two point are central: (two assumptions)
 
 SPIEGAZIONE DI SCELTE PRESE 
 POSSIBILI MIGLIORAMENTI E SVILUPPI 

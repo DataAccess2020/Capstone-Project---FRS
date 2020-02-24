@@ -1,5 +1,6 @@
 source(here::here("src","00_setup.R"))
 
+
 # SENTIMENT ANALYSIS 
 # Read file and find the nodes
 opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
@@ -18,7 +19,9 @@ opeNER_df <- data.frame(
   polarity = as.character(xml_attr(sentiment, "polarity")),
   stringsAsFactors = F)
 
-# Fix a mistake
+
+# opeNER_df --------
+# Fix a mistake (join "nneutral" and "neutral")
 opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral", 
                              "neutral", opeNER_df$polarity)
 
@@ -28,7 +31,7 @@ opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 # Saving it locally
 write.csv(opeNER_df, file = here::here("dictionary","opeNER_df.csv"))
 
-# Import it
+# Importing dictionary 
 opeNER <- rio::import("./dictionary/opeNER_df.csv")
 head(opeNER)
 
@@ -37,8 +40,8 @@ table(opeNER$polarity, useNA = "always")
 opeNER <- opeNER %>%                       #obs change 25098 - 25053
   filter(polarity != "")
 
-
-# Depeche Mood: 
+# DEPECHE MOOD --------
+# importing Depeche Mood dictionary: 
 dpm <- rio::import("./dictionary/DepecheMood_italian_token_full.tsv")
 head(dpm)
 
@@ -50,27 +53,34 @@ opeNERdict <- quanteda::dictionary(
 lengths(opeNERdict)
 
 
+#ANALYSIS ----
 
-# create the a dataset with the text (as character) and the section(filtered)-----
+#importing dataset with the text of the article as character
+rio::import("./data/datcharacter.Rdata")
+
+#create the a dataset with only two variables: section and text 
 data_sentiment <-  datcharacter %>% 
   select(section, text) %>% 
   filter(!is.na(section))
 
+#looking at the number of articles divided for sections
+table(datcharacter$section)
 
-table(dat$section)
+#selecting interesting section
 data_sentiment <- subset(data_sentiment, section == "esteri" | section =="cronache" | section=="politica"| section=="economia" | section== "la-lettura" | section== "scuola") 
 
 data_sentiment
 
+save(data_sentiment, file = here::here("/data/datasentiment.Rdata"))
 
-#creo il corpus
+#creating the corpus
 crp <- quanteda::corpus (
   data_sentiment
   )
 
 crp
 
-#credo dfm
+#creating dfm that allows us to arrange documents on the basis of the document's variables
 crp_sentiment <- dfm(
   crp,
   tolower = T,
@@ -82,7 +92,7 @@ crp_sentiment <- dfm(
 
 head(crp_sentiment)
 
-
+#the graph showing 
 quanteda::convert(crp_sentiment,
                   to = "data.frame") %>%
   rename(section = document) %>%
