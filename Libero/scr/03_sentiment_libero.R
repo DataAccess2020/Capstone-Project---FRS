@@ -21,7 +21,7 @@ library(hunspell)
 
 # Dictionary 1: -----------------------------------------------------
 # Read file and find the nodes
-opeNER_xml <- read_xml("./dictionary/it-sentiment_lexicon.lmf.xml")
+opeNER_xml <- read_xml("./Libero/dictionary/it-sentiment_lexicon.lmf.xml")
 entries <- xml_find_all(opeNER_xml, ".//LexicalEntry")
 lemmas <- xml_find_all(opeNER_xml, ".//Lemma")
 confidence <- xml_find_all(opeNER_xml, ".//Confidence")
@@ -45,7 +45,7 @@ opeNER_df$polarity <- ifelse(opeNER_df$polarity == "nneutral",
 opeNER_dict <- quanteda::dictionary(with(opeNER_df, split(lemma, polarity)))
 
 # Saving it locally: 
-write.csv(opeNER_df, file = here::here("opeNER_df.csv"))
+write.csv(opeNER_df, file = here::here("./Libero/dictionary/opeNER_df.csv"))
 
 # Import it: 
 opeNER <- rio::import("./Libero/dictionary/opeNER_df.csv")
