@@ -12,7 +12,7 @@
 # - saving the dataset with the variable text as character --> dat_character.Rdata
 
 # Sourcing all the needed packages: ---------------------------------------------------
-source(here::here("scr","00_setup.R"))
+source(here::here("Libero/scr","00_setup.R"))
 
 # Browsing the robots.txt file: -------------------------------------------------------
 browseURL("https://www.liberoquotidiano.it/robots.txt")
