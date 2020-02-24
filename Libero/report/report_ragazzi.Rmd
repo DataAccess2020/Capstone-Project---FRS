@@ -72,7 +72,7 @@ The process of understanding and applying the sentiment and emotion analysis was
 
 # Results: 
 
-By completing the textual, sentiment and emotion analysis, we managed to produce a substantial output. As far as the textual analysis is concerned, the output consisted in a set of wordcloud visualizations of word frequencies within the corpus; the same output was also visualized through a horizontal bar plot (figures 1 and 2). These graphs gave a rough overview of the most relevant topics discussed during the day of analysis: laws, italian prime minister Matteo Salvini and other politicians, the recent music festival Sanremo, the ongoing coronavirus crisis. 
+By completing the textual, sentiment and emotion analysis, we managed to produce a substantial output. As far as the textual analysis is concerned, the output consisted in a set of wordcloud visualizations of word frequencies within the corpus; the same output was also visualized through a horizontal bar plot (figures 1 and 2). These graphs gave a rough overview of the most relevant topics discussed during the day of analysis: laws, italian minister Matteo Salvini and other politicians, the recent music festival Sanremo, the ongoing coronavirus crisis. 
 
 The same approach was used to analyse different sections of the corpus. However this did not produce new insight into the research topic, rather showing that there are no substantial differences between specific sections of the newspaper. Nevertheless, each of those was saved in the folder “figs” of this project repository on GitHub. 
 
